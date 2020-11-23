@@ -1,0 +1,24 @@
+.bg-red-150 {
+	background: #ffeeee;
+}
+
+.bg-randomize {
+	background: #feb2b2;
+}
+
+.bg-randomize-2 {
+	background: #ff8585;
+}
+
+.btn-randomize {
+	background: #fc8181;
+}
+
+.btn-ghost {
+	border: solid 2px #fff;
+	color: #fff;
+}
+
+.font-alata {
+	font-family: "Alata", sans-serif;
+}
