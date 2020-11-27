@@ -10,4 +10,11 @@ class Home extends CI_Controller{
 		return view('pages/home', ['title' => $title]);
     }
 
+    function profile(){
+
+        $title = 'Profile';
+        
+		return view('pages/profile', ['title' => $title]);
+    }
+
 }

@@ -54,3 +54,4 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['session/new'] = 'authentication';
 $route['session/createaccount'] = 'authentication/register';
+$route['profile'] = 'home/profile';
