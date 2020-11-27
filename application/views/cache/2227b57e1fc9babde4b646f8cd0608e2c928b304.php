@@ -1,12 +1,12 @@
-@extends('layouts.authentication')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
     <div class="container d-flex align-items-center justify-content-center h-100 py-5 my-5">
         <div class="row col-md-10">
             <div class="col-md-6 bg-white rounded-left py-4">
                 <div class="px-2">
                     <div class="py-3">
-                        <h2>{{ $title }}</h2>
+                        <h2><?php echo e($title); ?></h2>
                     </div>
                     <form action="<?=base_url("authentication/perform_register")?>" method="post">
                         <div class="form-group">
@@ -42,4 +42,5 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.authentication', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\random3\application\views/sign-up.blade.php ENDPATH**/ ?>
