@@ -10,28 +10,114 @@
             </a>
         </div>
         <div class="col-md-9 text-right">
-            <a class="navbar-brand" href="#">Profile</a>
+            <div class="row d-flex justify-content-end align-items-center">
+                <a class="navbar-brand" href="#">Profile</a>
+                <a href="#" class="nav-link"><i class="gg-options"></i></a>
+            </div>
         </div>
     </div>
 </nav>
 <div class="row">
     <div class="col-md-3">
-
-    </div>
-    <div class="col-md-9 bg-light mt-3">
-        <div class="row container">
-            <div class="row no-gutters text-right">
-                <div class="col-sm-9 mt-5">
-                    <h1>Anonymous User</h1>
-                </div>
-                <div class="col-sm-9">
-                    <h5>Anonymous User</h5>
+        <div class="p-3">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+                <div class="card-title font-weight-bold">MY FRIENDS</div>
+                <a class="card-title" href="#">ALL</a>
+            </div>
+            <div class="friends shadow">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <?php get_images("photo.png") ?>
+                    </div>
+                    <div class="col-md-8">
+                        <strong>Kelvin Kurniawan</strong>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-3 mt-5">
-                <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16 9C16 11.2091 14.2091 13 12 13C9.79086 13 8 11.2091 8 9C8 6.79086 9.79086 5 12 5C14.2091 5 16 6.79086 16 9ZM14 9C14 10.1046 13.1046 11 12 11C10.8954 11 10 10.1046 10 9C10 7.89543 10.8954 7 12 7C13.1046 7 14 7.89543 14 9Z" fill="currentColor" />
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1ZM3 12C3 14.0902 3.71255 16.014 4.90798 17.5417C6.55245 15.3889 9.14627 14 12.0645 14C14.9448 14 17.5092 15.3531 19.1565 17.4583C20.313 15.9443 21 14.0524 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12ZM12 21C9.84977 21 7.87565 20.2459 6.32767 18.9878C7.59352 17.1812 9.69106 16 12.0645 16C14.4084 16 16.4833 17.1521 17.7538 18.9209C16.1939 20.2191 14.1881 21 12 21Z" fill="currentColor" /></svg>
+            <div class="friends shadow">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <?php get_images("photo.png") ?>
+                    </div>
+                    <div class="col-md-8">
+                        <strong>Kelvin Kurniawan</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="friends shadow">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <?php get_images("photo.png") ?>
+                    </div>
+                    <div class="col-md-8">
+                        <strong>Kelvin Kurniawan</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9 no-gutters bg-light mt-2 card widget right no-gutters">
+        <div class="d-flex flex-row container justify-content-end">
+            <div class="row mr-5 pr-5">
+                <div class="col-md-9 no-gutters mt-5 text-right">
+                    <h1>Kelvin Kurniawan</h1>
+                    <div class="d-flex flex-row justify-content-end">
+                        <div class="lead mr-3 ml-3">Followers <span class="font-weight-bold">150</span></div>
+                        <div class="lead ml-3">Likes <span class="font-weight-bold">1500</span></div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-4 pr-3">
+                    <div class="rounded">
+                        <?php get_images("photo.png") ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ml-5 mr-5 mt-3">
+            <div class="font-weight-bold">Recent Post</div>
+            <div class="card widget center shadow p-3 mt-3">
+                <div class="font-weight-bold">Kelvin Kurniawan</div>
+                <div class="post-body">
+                    Tinggal kenangan - semua yang kau berikan kini menjadi
+                    sebuah bagian dari ingatan yang tak bisa untuk ku lupakan,
+                    meskipun begitu aku cukup bersyukur, pertemuan singkat ini
+                    membuatku hidup
+                </div>
+                <div class="post-control">
+                    <div class="d-flex justify-content-between">
+                        <a href="#"><i class="gg-heart"></i> 10 Likes</a>
+                        <a href="#"><i class="gg-comment"></i> 5 Replies</a>
+                        <a href="#"><i class="gg-attribution"></i> 10 Likes</a>
+                        <a href="#"><i class="gg-share"></i> 10 Likes</a>
+                    </div>
+                </div>
+                <div class="show-all mt-3">
+                    <a href="#">>> Show all replies <<</a> </div> <div class="tags mt-3">
+                            <a href="#" class="bg-primary px-3 py-1 text-white">Tinggal Kenangan</a>
+                            <a href="#" class="bg-info px-3 py-1 text-white">Slice of life</a>
+                </div>
+            </div>
+            <div class="card widget center shadow p-3 mt-3">
+                <div class="font-weight-bold">Kelvin Kurniawan</div>
+                <div class="post-body">
+                    Tinggal kenangan - semua yang kau berikan kini menjadi
+                    sebuah bagian dari ingatan yang tak bisa untuk ku lupakan,
+                    meskipun begitu aku cukup bersyukur, pertemuan singkat ini
+                    membuatku hidup
+                </div>
+                <div class="post-control">
+                    <div class="d-flex justify-content-between">
+                        <a href="#"><i class="gg-heart"></i> 10 Likes</a>
+                        <a href="#"><i class="gg-comment"></i> 5 Replies</a>
+                        <a href="#"><i class="gg-attribution"></i> 10 Likes</a>
+                        <a href="#"><i class="gg-share"></i> 10 Likes</a>
+                    </div>
+                </div>
+                <div class="show-all mt-3">
+                    <a href="#">>> Show all replies <<</a> </div> <div class="tags mt-3">
+                            <a href="#" class="bg-primary px-3 py-1 text-white">Tinggal Kenangan</a>
+                            <a href="#" class="bg-info px-3 py-1 text-white">Slice of life</a>
+                </div>
             </div>
         </div>
     </div>
