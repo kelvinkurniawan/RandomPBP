@@ -22,3 +22,12 @@
 .font-alata {
 	font-family: "Alata", sans-serif;
 }
+
+.navbar .nav-link {
+	color: #000;
+}
+
+.navbar .nav-link.primary {
+	font-weight: 700;
+	color: #000;
+}
