@@ -13,7 +13,7 @@
             <div class="col-md-6 bg-white rounded-right py-4">
                 <div class="px-2">
                     <div class="py-3">
-                        <h2>Sign In</h2>
+                        <h2><?php echo e($title); ?></h2>
                     </div>
                     <form action="#">
                         <div class="form-group">
