@@ -11,3 +11,9 @@ if(!function_exists('get_js')){
         echo '<script src="' . base_url("/static/js/". $path) . '" ></script>';
     }
 }
+
+if(!function_exists('get_images')){
+    function get_images($path){
+        echo '<img src="' . base_url("/static/images/". $path) . '" width="100%" />';
+    }
+}
