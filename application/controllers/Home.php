@@ -23,4 +23,18 @@ class Home extends CI_Controller{
 		return view('pages/profile', ['title' => $title]);
     }
 
+    function performAddPost(){
+
+        $this->load->model('posts');
+
+        $data['body'] = $this->input->post('body');
+        $data['user'] = $this->session->userId;
+        $data['parent'] = $this->input->post('parent');
+
+        $this->posts->save($data);
+        
+        redirect(base_url('/home'));
+
+    }
+
 }
