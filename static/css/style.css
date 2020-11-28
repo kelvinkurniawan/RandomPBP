@@ -1,13 +1,13 @@
 .bg-red-150 {
-	background: #ffeeee;
+	background: #a2cef5;
 }
 
 .bg-randomize {
-	background: #feb2b2;
+	background: #a2cef5;
 }
 
 .bg-randomize-2 {
-	background: #ff8585;
+	background: #739FC6;
 }
 
 .bg-randomize-3 {
@@ -15,7 +15,7 @@
 }
 
 .btn-randomize {
-	background: #fc8181;
+	background: #6C94B8;
 }
 
 .btn-ghost {
@@ -23,8 +23,17 @@
 	color: #fff;
 }
 
+.btn-ghost:hover {
+	background-color: #fff;
+	color: #739FC6;
+}
+
 .font-alata {
 	font-family: "Alata", sans-serif;
+}
+
+.elevation {
+	box-shadow: 0px 0.5px 3px rgb(167, 167, 167);
 }
 
 .navbar .nav-link {
@@ -58,7 +67,7 @@
 	border-radius: 10px;
 }
 .card.widget .widget-link {
-	color: #ed8936;
+	color: #80A8CC;
 	font-size: 16px;
 }
 .card.widget .card-title {

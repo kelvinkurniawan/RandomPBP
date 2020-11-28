@@ -1,27 +1,25 @@
 
 
 <?php $__env->startSection('content'); ?>
-    <div class="container d-flex align-items-center justify-content-center h-100 py-5 my-5">
+    <div class="container d-flex align-items-center justify-content-center h-100 py-3 my-5">
         <div class="row col-md-10">
-            <div class="col-md-6 bg-white rounded-left py-4">
+            <div class="col-md-6 bg-white elevation py-4">
                 <div class="px-2">
                     <div class="py-3">
                         <h2><?php echo e($title); ?></h2>
                     </div>
-                    <form action="#">
+                    <form action="<?=base_url("authentication/perform_register")?>" method="post">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Username</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                            <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Confirm Password</label>
@@ -35,7 +33,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-md-6 bg-randomize-2 rounded-right py-4 d-flex">
+            <div class="col-md-6 bg-randomize-2 elevation py-4 d-flex">
                 <div class="w-100 d-flex flex-column justify-content-center align-items-center px-2">
                     <h2 class="mb-3 text-white">Welcome, dude!</h2>
                     <p class="lead text-white text-center">Enter your personal details, and start journey with us</p>
