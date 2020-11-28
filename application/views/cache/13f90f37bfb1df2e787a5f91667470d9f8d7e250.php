@@ -3,7 +3,7 @@
 <?php $__env->startSection('content'); ?>
     <div class="container d-flex align-items-center justify-content-center h-100 pt-5 mt-5">
         <div class="row col-md-10">
-            <div class="col-md-6 bg-randomize-2 rounded-left rounded-lg py-4 d-flex">
+            <div class="col-md-6 bg-randomize-2 rounded-left py-4 d-flex">
                 <div class="w-100 d-flex flex-column justify-content-center align-items-center px-2">
                     <h2 class="mb-3 text-white">Welcome, dude!</h2>
                     <p class="lead text-white text-center">Enter your personal details, and start journey with us</p>

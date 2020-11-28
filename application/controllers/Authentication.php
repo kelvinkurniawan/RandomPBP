@@ -5,6 +5,8 @@ class Authentication extends CI_Controller {
 
 	public function index(){
 
+		isLogin();
+
         $title = 'Sign In';
         
 		return view('sign-in', ['title' => $title]);
@@ -12,12 +14,17 @@ class Authentication extends CI_Controller {
 
 	public function register(){
 
+		isLogin();
+
         $title = 'Sign Up';
         
 		return view('sign-up', ['title' => $title]);
 	}
 
 	public function perform_register(){
+
+		isLogin();
+
 		$this->load->model('users');
 
 		$data['name'] = $this->input->post('name');
@@ -31,6 +38,8 @@ class Authentication extends CI_Controller {
 	}
 
 	public function perform_login(){
+
+		isLogin();
 		
 		$this->load->model('users');
 
