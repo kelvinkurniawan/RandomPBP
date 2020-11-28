@@ -11,9 +11,12 @@ class Home extends CI_Controller{
 
     function index(){
 
+        $this->load->model('posts');
+
         $title = 'Timeline';
+        $posts = $this->posts->getAll();
         
-		return view('pages/home', ['title' => $title]);
+		return view('pages/home', ['title' => $title, 'posts' => $posts]);
     }
 
     function profile(){
@@ -29,12 +32,33 @@ class Home extends CI_Controller{
 
         $data['body'] = $this->input->post('body');
         $data['user'] = $this->session->userId;
-        $data['parent'] = $this->input->post('parent');
+        $data['parent'] = 0;
 
         $this->posts->save($data);
         
         redirect(base_url('/home'));
 
+    }
+
+    function performLikePost($postId){
+        
+        $this->load->model('likes');
+
+        $data['post'] = $postId;
+        $data['user'] = $this->session->userId;
+
+        $this->likes->save($data);
+
+        redirect(base_url('/home'));
+    }
+
+    function performUnlikePost($likeId){
+        
+        $this->load->model('likes');
+
+        $this->likes->delete($likeId);
+        
+        redirect(base_url('/home'));
     }
 
 }

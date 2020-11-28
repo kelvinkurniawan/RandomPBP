@@ -3,19 +3,23 @@
 }
 
 .bg-randomize {
-	background: #a2cef5;
+	background: #80a8cc;
+}
+
+.bg-randomize-light {
+	background-color: #f2eee8;
 }
 
 .bg-randomize-2 {
-	background: #739FC6;
+	background: #6c94b8;
 }
 
 .bg-randomize-3 {
-	background-color: #fed7d7;
+	background-color: #fffbf5;
 }
 
 .btn-randomize {
-	background: #6C94B8;
+	background: #6c94b8;
 }
 
 .btn-ghost {
@@ -25,7 +29,7 @@
 
 .btn-ghost:hover {
 	background-color: #fff;
-	color: #739FC6;
+	color: #739fc6;
 }
 
 .font-alata {
@@ -51,28 +55,36 @@
 }
 
 .card.widget.left {
-	border-top-right-radius: 10px;
-	border-bottom-right-radius: 10px;
 	padding: 15px;
+	-webkit-box-shadow: 1px 0px 3px 0px rgba(224, 224, 224, 1);
+	-moz-box-shadow: 1px 0px 3px 0px rgba(224, 224, 224, 1);
+	box-shadow: 1px 0px 3px 0px rgba(224, 224, 224, 1);
 }
 
 .card.widget.right {
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
 	padding: 10px;
-	background-color: #ffeeee;
+	-webkit-box-shadow: -1px 0px 3px 0px rgba(224, 224, 224, 1);
+	-moz-box-shadow: -1px 0px 3px 0px rgba(224, 224, 224, 1);
+	box-shadow: -1px 0px 3px 0px rgba(224, 224, 224, 1);
+}
+
+.card.widget.right .card-title {
+	color: #000;
 }
 
 .card.widget.center {
-	border-radius: 10px;
+	-webkit-box-shadow: 0px 0px 3px 0px rgba(224, 224, 224, 1);
+	-moz-box-shadow: 0px 0px 3px 0px rgba(224, 224, 224, 1);
+	box-shadow: 0px 0px 3px 0px rgba(224, 224, 224, 1);
 }
 .card.widget .widget-link {
-	color: #80A8CC;
+	color: #80a8cc;
 	font-size: 16px;
 }
 .card.widget .card-title {
 	margin: 0;
 	font-size: 16px;
+	color: #fff;
 }
 .main-content {
 	padding: 0 20px !important;
@@ -84,11 +96,13 @@
 .trending .list {
 	font-weight: 700;
 	font-size: 14px;
+	color: #fff;
 }
 .trending .sub-list {
 	color: #718096;
 	font-size: 12px;
 	font-weight: 500;
+	color: #ddd;
 }
 .friends {
 	background: #fff;
@@ -133,4 +147,11 @@
 .tags a {
 	font-size: 12px;
 	border-radius: 10px;
+}
+.attachment a {
+	color: #718096;
+	margin-right: 30px;
+}
+.post-info {
+	font-size: 12px;
 }
