@@ -1,16 +1,16 @@
 @extends('layouts.authentication')
 
 @section('content')
-    <div class="container d-flex align-items-center justify-content-center h-100 pt-5 mt-5">
+    <div class="container d-flex align-items-center justify-content-center h-100 pt-3 mt-5">
         <div class="row col-md-10">
-            <div class="col-md-6 bg-randomize-2 rounded-left py-4 d-flex">
+            <div class="col-md-6 bg-randomize-2 py-4 elevation d-flex">
                 <div class="w-100 d-flex flex-column justify-content-center align-items-center px-2">
                     <h2 class="mb-3 text-white">Welcome, dude!</h2>
                     <p class="lead text-white text-center">Enter your personal details, and start journey with us</p>
                     <a href="/register" class="btn btn-randomize btn-ghost">Sign Up</a>
                 </div>
             </div>
-            <div class="col-md-6 bg-white rounded-right py-4">
+            <div class="col-md-6 bg-white elevation py-4">
                 <div class="px-2">
                     <div class="py-3">
                         <h2>{{ $title }}</h2>
