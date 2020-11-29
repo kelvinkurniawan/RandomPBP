@@ -72,9 +72,10 @@
 						<div class="col-md-2 pt-2"><?php get_images("photo.png")?></div>
 						<div class="col-md-10">
 							<form
-								action="<?=base_url('/home/performAddPost')?>"
+								action="<?=base_url('/home/performAddPost/home')?>"
 								method="POST"
 							>
+								<input type="hidden" name="parent" value="0">
 								<div class="form-group">
 									<textarea
 										name="body"
@@ -138,25 +139,24 @@
 									<div class="post-control">
 										<div class="d-flex justify-content-between">
 											@if(isPostLiked($post->id))
-												<a href="{{base_url('/home/performUnlikePost/')}}{{$post->id}}" class="text-success"><i class="gg-heart"></i> {{getLikesCount($post->id)}} Likes</a>
+												<a href="{{base_url('/home/performUnlikePost/home/'.$post->id)}}" class="text-success"><i class="gg-heart"></i> {{getLikesCount($post->id)}} Likes</a>
 											@else
-												<a href="{{base_url('/home/performLikePost/')}}{{$post->id}}" ><i class="gg-heart"></i> {{getLikesCount($post->id)}} Likes</a>
+												<a href="{{base_url('/home/performLikePost/home/'.$post->id)}}" ><i class="gg-heart"></i> {{getLikesCount($post->id)}} Likes</a>
 											@endif
-											<a href="#"><i class="gg-comment"></i> {{getRepliesCount($post->id)}} Replies</a>
-											<a href="#"><i class="gg-attribution"></i> 10 Likes</a>
+											<a href="{{base_url('/home/read/')}}{{$post->id}}"><i class="gg-comment"></i> {{getRepliesCount($post->id)}} Replies</a>
+											<a href="#"><i class="gg-attribution"></i> 10 Retext</a>
 											<a href="#"><i class="gg-share"></i> 10 Likes</a>
 										</div>
 									</div>
+									@if(getRepliesCount($post->id) > 0)
 									<div class="show-all mt-3">
 										<a href="#">>> Show all replies <<</a>
 									</div>
+									@endif
 									<div class="tags mt-3">
-										<a href="#" class="bg-primary px-3 py-1 text-white"
-											>Tinggal Kenangan</a
-										>
-										<a href="#" class="bg-info px-3 py-1 text-white"
-											>Slice of life</a
-										>
+										@foreach(getHashtagWidget($post->body) as $hashtag)
+											<a href="#" class="bg-primary px-3 py-1 text-white">{{$hashtag}}</a>
+										@endforeach
 									</div>
 								</div>
 							</div>

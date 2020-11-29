@@ -20,8 +20,9 @@ class Likes extends CI_Model{
         return $this->db->insert($this->table, $data);
     }
 
-    public function delete($id){
-        $this->db->where('id', $id);
+    public function delete($postId, $userId){
+        $this->db->where('post', $postId);
+        $this->db->where('user', $userId);
         return $this->db->delete($this->table);
     }
 

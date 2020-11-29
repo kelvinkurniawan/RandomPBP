@@ -26,21 +26,34 @@ class Home extends CI_Controller{
 		return view('pages/profile', ['title' => $title]);
     }
 
-    function performAddPost(){
+    function performAddPost($postPath){
 
         $this->load->model('posts');
 
         $data['body'] = $this->input->post('body');
         $data['user'] = $this->session->userId;
-        $data['parent'] = 0;
+        $data['parent'] = $this->input->post('parent');
 
         $this->posts->save($data);
         
-        redirect(base_url('/home'));
-
+        if($postPath == 'home'){
+            redirect(base_url('/home'));
+        }else{ 
+            redirect(base_url('/home/read/' . $postPath));
+        }
     }
 
-    function performLikePost($postId){
+    function read($postId){
+        $this->load->model('posts');
+
+        $title = 'Timeline';
+        $post = $this->posts->getById($postId);
+        $replies = $this->posts->getReplies($postId);
+        
+		return view('pages/single', ['title' => $title, 'post' => $post, 'replies' => $replies]);
+    }
+
+    function performLikePost($postPath, $postId = ""){
         
         $this->load->model('likes');
 
@@ -49,16 +62,24 @@ class Home extends CI_Controller{
 
         $this->likes->save($data);
 
-        redirect(base_url('/home'));
+        if($postPath == 'home'){
+            redirect(base_url('/home'));
+        }else{ 
+            redirect(base_url('/home/read/' . $postPath));
+        }
     }
 
-    function performUnlikePost($likeId){
+    function performUnlikePost($postPath, $postId){
         
         $this->load->model('likes');
 
-        $this->likes->delete($likeId);
+        $this->likes->delete($postId, $this->session->userId);
         
-        redirect(base_url('/home'));
+        if($postPath == 'home'){
+            redirect(base_url('/home'));
+        }else{ 
+            redirect(base_url('/home/read/' . $postPath));
+        }
     }
 
 }

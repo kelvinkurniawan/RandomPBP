@@ -24,11 +24,20 @@ if(!function_exists('isLogin')){
 
 if(!function_exists('renderPost')){
     function renderPost($postBody){
-        $expHashtag = "/#+([a-zA-Z0-9_]+)/";  
+        $expHashtag = "(\#(?P<hashtag>[a-zA-Z\-\_]+))";  
         $expMention = "(\@(?P<names>[a-zA-Z\-\_]+))";
         $string = preg_replace($expHashtag, '<a href="'.base_url('/read/hashtag/$1').'">$0</a>', $postBody);  
         $string = preg_replace($expMention, '<a href="'.base_url('/profile/$1').'">$0</a>', $string);  
         echo $string; 
+    }
+}
+
+if(!function_exists('getHashtagWidget')){
+    function getHashtagWidget($postBody){
+        $result = [];
+        $expHashtag = "(\#(?P<hashtag>[a-zA-Z\-\_]+))";  
+        preg_match_all($expHashtag, $postBody, $result);  
+        return $result['hashtag']; 
     }
 }
 

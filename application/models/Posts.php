@@ -15,6 +15,11 @@ class Posts extends CI_Model{
         $this->db->where('id', $id);
         return $this->db->get($this->table)->row_array();
     }
+    
+    public function getReplies($parent){
+        $this->db->where('parent', $parent);
+        return $this->db->get($this->table)->result();
+    }
 
     public function RepliesCount($id){
         $this->db->where('parent', $id);
