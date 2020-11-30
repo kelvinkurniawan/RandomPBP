@@ -110,61 +110,7 @@
 					</div>
 				</div>
 			</div>
-			@foreach ($posts as $post)
-			<div class="card widget bg-randomize-3 center mt-4" style="width: 100%">
-				<div class="card-body">
-					<div class="post">
-						<div class="post-single">
-							<div class="row">
-								@if($post->parent != 0)
-									<div class="col-md-12 mb-3">
-										<div class="post-info text-sm d-flex align-items-center">
-											<div style="width:24px">
-												<i class="gg-corner-up-left mr-3"></i>
-											</div>
-											Replied to <a href="#" class="ml-1">{{getPostAuthor($post->id)}}</a>
-										</div>
-									</div>
-								@endif
-								<div class="col-md-2">
-									<div class="photo-profile">
-										<?php get_images("photo.png")?>
-									</div>
-								</div>
-								<div class="col-md-10">
-									<div class="post-author">Kelvin Kurniawan</div>
-									<div class="post-body">
-										{{renderPost($post->body)}}
-									</div>
-									<div class="post-control">
-										<div class="d-flex justify-content-between">
-											@if(isPostLiked($post->id))
-												<a href="{{base_url('/home/performUnlikePost/home/'.$post->id)}}" class="text-success"><i class="gg-heart"></i> {{getLikesCount($post->id)}} Likes</a>
-											@else
-												<a href="{{base_url('/home/performLikePost/home/'.$post->id)}}" ><i class="gg-heart"></i> {{getLikesCount($post->id)}} Likes</a>
-											@endif
-											<a href="{{base_url('/home/read/')}}{{$post->id}}"><i class="gg-comment"></i> {{getRepliesCount($post->id)}} Replies</a>
-											<a href="#"><i class="gg-attribution"></i> 10 Retext</a>
-											<a href="#"><i class="gg-share"></i> 10 Likes</a>
-										</div>
-									</div>
-									@if(getRepliesCount($post->id) > 0)
-									<div class="show-all mt-3">
-										<a href="#">>> Show all replies <<</a>
-									</div>
-									@endif
-									<div class="tags mt-3">
-										@foreach(getHashtagWidget($post->body) as $hashtag)
-											<a href="#" class="bg-primary px-3 py-1 text-white">{{$hashtag}}</a>
-										@endforeach
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			@endforeach
+			<div class="main-content-post"></div>
 		</div>
 		<div class="col-md-3">
 			<div class="card widget right bg-randomize-3" style="width: 100%">

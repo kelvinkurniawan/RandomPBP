@@ -17,3 +17,9 @@ if(!function_exists('get_images')){
         echo '<img src="' . base_url("/static/images/". $path) . '" width="100%" />';
     }
 }
+
+if(!function_exists('get_images_path')){
+    function get_images_path($path){
+        return base_url("/static/images/" . $path);
+    }
+}

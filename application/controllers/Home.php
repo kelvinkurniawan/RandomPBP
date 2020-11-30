@@ -6,7 +6,42 @@ class Home extends CI_Controller{
     public function __construct(){
         parent::__construct();
 
-        isNotLogin();
+        //isNotLogin();
+    }
+
+    function getStatus(){
+        $this->load->model('posts');
+        $posts = $this->posts->getAll();
+
+        $result = array();
+
+        foreach ($posts as $row) {
+            $postAuthorParent = '';
+            if($row->parent != 0){
+                $postAuthorParent = getPostAuthor($row->parent);
+            }else{
+                $postAuthorParent= '';
+            }
+            $tempResult =  array(
+                'postId' => $row->id,
+                'postParent' => $row->parent,
+                'postBody' => $row->body,
+                'postDate' => $row->timestamp,
+                'postAuthor' => getPostAuthor($row->id),
+                'postAuthorParent' => $postAuthorParent,
+                'authorPhoto' => get_images_path('photo.png'),
+                'postMeta' => array(
+                    'postLikes' => getLikesCount($row->id),
+                    'postReplies' => getRepliesCount($row->id),
+                    'postTags' => getHashtagWidget($row->body),
+                    'isLiked' => isPostLiked($row->id)
+                )
+            );
+
+            array_push($result, $tempResult);
+        }
+        
+        echo json_encode($result);
     }
 
     function index(){
@@ -27,15 +62,30 @@ class Home extends CI_Controller{
     }
 
     function performAddPost($postPath){
-
+        
         $this->load->model('posts');
 
         $data['body'] = $this->input->post('body');
         $data['user'] = $this->session->userId;
         $data['parent'] = $this->input->post('parent');
 
-        $this->posts->save($data);
+        $options = array(
+            'cluster' => 'ap1',
+            'useTLS' => true
+        );
         
+        $pusher = new Pusher\Pusher(
+            'd9a7263363532f7ffbb5',
+            '8698c39b26359fcc185a',
+            '1115050',
+            $options
+        );
+ 
+        $result['message'] = 'success';
+        $pusher->trigger('status', 'insert', $result);
+
+        $this->posts->save($data);
+
         if($postPath == 'home'){
             redirect(base_url('/home'));
         }else{ 

@@ -9,6 +9,11 @@ class Posts extends CI_Model{
     public function getAll(){
         $this->db->order_by('id', 'DESC');
         return $this->db->get($this->table)->result();
+    }    
+    
+    public function getAllRow(){
+        $this->db->order_by('id', 'DESC');
+        return $this->db->get($this->table)->row_array();
     }
 
     public function getById($id){
