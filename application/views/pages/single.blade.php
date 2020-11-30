@@ -69,7 +69,7 @@
 			<div class="card widget bg-randomize-3 center mt-4">
 				<div class="card-body">
 					<div class="row">
-						<div class="col-md-2 pt-2"><?php get_images("photo.png")?></div>
+						<div class="col-md-2 pt-2"><?php get_images(getUserDetail('photo'))?></div>
 						<div class="col-md-10">
 							<form>
 								<input type="hidden" name="parent" value="{{$post['id']}}" class="input-parent">
