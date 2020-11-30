@@ -32,6 +32,16 @@
 	color: #739fc6;
 }
 
+.btn-out {
+	border: solid 2px #fff;
+	color: #fff;
+}
+.btn-out:hover {
+	border: solid 2px red;
+	background-color: red;
+	color: #fff;
+}
+
 .font-alata {
 	font-family: "Alata", sans-serif;
 }
@@ -186,4 +196,9 @@
 }
 .no-padding {
 	padding: 0;
+}
+.modal-header-custom {
+	justify-content: flex-start;
+	display: flex;
+	align-items: flex-start;
 }
