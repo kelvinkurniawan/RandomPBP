@@ -155,3 +155,35 @@
 .post-info {
 	font-size: 12px;
 }
+.float-component {
+	top: 4.5em;
+}
+.ph-15px {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.limit-text {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2; /* number of lines to show */
+	-webkit-box-orient: vertical;
+}
+.trending-dark .list {
+	font-weight: 700;
+	font-size: 14px;
+	color: black;
+}
+
+.trending-group .trending-dark {
+	padding: 15px 0;
+	border-bottom: solid 1px #cbd5e0;
+}
+.trending-dark .sub-list {
+	color: #718096;
+	font-size: 12px;
+	font-weight: 500;
+}
+.no-padding {
+	padding: 0;
+}

@@ -1,24 +1,31 @@
 @extends('layouts.master')
 
 @section('content')
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="row col-md-12 bg">
+<nav class="navbar navbar-expand-lg navbar-light bg-randomize-3 sticky-top">
+    <div class="row col-md-12">
         <div class="col-md-3 d-flex justify-content-between align-items-center">
             <a class="navbar-brand" href="#">Randomize</a>
             <a href="#" class="nav-link">
                 <i class="gg-home-alt"></i>
             </a>
         </div>
-        <div class="col-md-9 text-right">
-            <div class="row d-flex justify-content-end align-items-center">
-                <a class="navbar-brand" href="#">Profile</a>
-                <a href="#" class="nav-link"><i class="gg-options"></i></a>
+        <div class="col-md-6 d-flex justify-content-between align-items-center">
+            <div class="left">
+                <a href="#" class="nav-link primary">Profile</a>
+            </div>
+            <div class="right d-flex justify-content-between align-items-center">
+                <a href="#" class="nav-link">
+                    <i class="gg-search"></i>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="gg-options"></i>
+                </a>
             </div>
         </div>
     </div>
 </nav>
 <div class="row">
-    <div class="col-md-3 bg-randomize-2">
+    <div class="col-md-3 bg-randomize-2 elevation">
         <div class="container text-center">
             <div class="mt-5">
                 <img class="rounded-circle" src="http://localhost/pbp/randomApp/static/images/photo.png" width="50%">
@@ -127,24 +134,32 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3 bg-white">
+    <div class="col-md-3 bg-white elevation">
         <div class="p-3">
             <div class="d-flex">
-                <div class="card-title">INDONESIA TRENDS</div>
+                <div class="card-title">TOP STORIES</div>
             </div>
-            <div class="link">
-                <div>#HASHTAG</div>
-                <div>#HASHTAG</div>
-                <div>#HASHTAG</div>
-                <div>#HASHTAG</div>
+            <div class="link trending-group">
+                <div class="trending-dark">
+                    <div class="list">#Tinggal Kenangan</div>
+                    <div class="sub-list">By anonymous</div>
+                </div>
+                <div class="trending-dark">
+                    <div class="list">#Tinggal Kenangan</div>
+                    <div class="sub-list">By anonymous</div>
+                </div>
+                <div class="trending-dark">
+                    <div class="list">#Tinggal Kenangan</div>
+                    <div class="sub-list">By anonymous</div>
+                </div>
             </div>
             <div class="mt-5">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>WHO TO FOLLOW</div>
                     <div class="text-muted">More</div>
                 </div>
-                <div class="friends-group">
-                    <div class="friends">
+                <div class="trending-group">
+                    <div class="friends trending-dark">
                         <div class="row align-items-center">
                             <div class="col-md-4">
                                 <img class="rounded-circle" src="http://localhost/pbp/randomApp/static/images/photo.png" width="100%">
@@ -152,12 +167,12 @@
                             <div class="col-md-6 p-0 small">
                                 <strong>Kelvin Kurniawan</strong>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-2 no-padding">
                                 <i class="gg-add"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="friends">
+                    <div class="friends trending-dark">
                         <div class="row align-items-center">
                             <div class="col-md-4">
                                 <img class="rounded-circle" src="http://localhost/pbp/randomApp/static/images/photo.png" width="100%">
@@ -165,12 +180,12 @@
                             <div class="col-md-6 p-0 small">
                                 <strong>Kelvin Kurniawan</strong>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-2 no-padding">
                                 <i class="gg-add"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="friends">
+                    <div class="friends trending-dark">
                         <div class="row align-items-center">
                             <div class="col-md-4">
                                 <img class="rounded-circle" src="http://localhost/pbp/randomApp/static/images/photo.png" width="100%">
@@ -178,7 +193,7 @@
                             <div class="col-md-6 p-0 small">
                                 <strong>Kelvin Kurniawan</strong>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-2 no-padding">
                                 <i class="gg-add"></i>
                             </div>
                         </div>

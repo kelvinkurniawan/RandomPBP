@@ -26,6 +26,13 @@ class Home extends CI_Controller{
 		return view('pages/profile', ['title' => $title]);
     }
 
+    function friends(){
+
+        $title = 'Friends';
+        
+		return view('pages/friends', ['title' => $title]);
+    }
+
     function performAddPost($postPath){
 
         $this->load->model('posts');

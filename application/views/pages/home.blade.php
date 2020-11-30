@@ -122,7 +122,7 @@
 											<div style="width:24px">
 												<i class="gg-corner-up-left mr-3"></i>
 											</div>
-											Replied to <a href="#" class="ml-1">{{getPostAuthor($post->id)}}</a>
+											Replied to <a href="#" class="ml-1">{{getPostAuthor($post->parent)}}</a>
 										</div>
 									</div>
 								@endif
@@ -132,7 +132,7 @@
 									</div>
 								</div>
 								<div class="col-md-10">
-									<div class="post-author">Kelvin Kurniawan</div>
+									<div class="post-author">{{getPostAuthor($post->id)}}</div>
 									<div class="post-body">
 										{{renderPost($post->body)}}
 									</div>
