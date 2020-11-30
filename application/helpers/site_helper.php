@@ -50,6 +50,15 @@ if(!function_exists('getRepliesCount')){
     }
 }
 
+if(!function_exists('getUserDetail')){
+    function getUserDetail($row){
+        $ci =& get_instance();
+        $ci->load->model('users');
+        $user = $ci->users->getById($ci->session->userId);
+        return $user[$row];
+    }
+}
+
 if(!function_exists('getLikesCount')){
     function getLikesCount($postId){
         $ci =& get_instance();
@@ -69,6 +78,32 @@ if(!function_exists('getPostAuthor')){
         $user = $ci->users->getById($post['user']);
 
         return $user['name'];
+    }
+}
+
+if(!function_exists('getPostAuthorUsername')){
+    function getPostAuthorUsername($postId){
+        $ci =& get_instance();
+        $ci->load->model('posts');
+        $ci->load->model('users');
+
+        $post = $ci->posts->getById($postId);
+        $user = $ci->users->getById($post['user']);
+
+        return $user['username'];
+    }
+}
+
+if(!function_exists('getAuthorPhoto')){
+    function getAuthorPhoto($postId){
+        $ci =& get_instance();
+        $ci->load->model('posts');
+        $ci->load->model('users');
+
+        $post = $ci->posts->getById($postId);
+        $user = $ci->users->getById($post['user']);
+
+        return $user['photo'];
     }
 }
 

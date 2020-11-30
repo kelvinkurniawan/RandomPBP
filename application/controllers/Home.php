@@ -32,8 +32,9 @@ class Home extends CI_Controller{
                 'postBody' => $row->body,
                 'postDate' => $row->timestamp,
                 'postAuthor' => getPostAuthor($row->id),
+                'postAuthorUsername' => getPostAuthorUsername($row->id),
                 'postAuthorParent' => $postAuthorParent,
-                'authorPhoto' => get_images_path('photo.png'),
+                'authorPhoto' => get_images_path(getAuthorPhoto($row->id)),
                 'postMeta' => array(
                     'postLikes' => getLikesCount($row->id),
                     'postReplies' => getRepliesCount($row->id),

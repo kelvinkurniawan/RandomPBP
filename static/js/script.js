@@ -10,6 +10,19 @@ function like_post(postId) {
 	});
 }
 
+function renderPost(post, userId) {
+	post = post.replace(
+		/(^|\s)(@[a-z\d-]+)/gi,
+		"$1<a href='" + url + "profile/$2'>$2</a>"
+	);
+	post = post.replace(
+		/(^|\s)(#[a-z\d-]+)/gi,
+		"$1<a href='" + url + "hashtag/$2'>$2</a>"
+	);
+
+	return post;
+}
+
 function unlike_post(postId) {
 	$.ajax({
 		url: url + "home/performUnlikePost/" + postId,
@@ -78,7 +91,7 @@ function show_status() {
 					data[i].postAuthor +
 					"</div>" +
 					'<div class="post-body">' +
-					data[i].postBody +
+					renderPost(data[i].postBody) +
 					"</div>" +
 					'<div class="post-control">' +
 					'<div class="d-flex justify-content-between">';
