@@ -75,14 +75,14 @@
 								action="<?=base_url('/home/performAddPost/home')?>"
 								method="POST"
 							>
-								<input type="hidden" name="parent" value="0">
+								<input type="hidden" name="parent" class="input-parent" value="0">
 								<div class="form-group">
 									<textarea
 										name="body"
 										id="body"
 										cols="30"
 										rows="3"
-										class="form-control textarea"
+										class="form-control textarea input-body"
 										placeholder="Whats happening ?"
 									></textarea>
 								</div>
@@ -96,12 +96,11 @@
 											<a href="#"><i class="gg-browser"></i></a>
 										</div>
 										<div class="button-placement">
-											<button
-												type="submit"
-												class="btn btn-primary btn-randomize"
+											<a
+												class="btn btn-primary btn-randomize btn-submit-post"
 											>
 												Random
-											</button>
+										</a>
 										</div>
 									</div>
 								</div>
