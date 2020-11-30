@@ -55,3 +55,4 @@ $route['translate_uri_dashes'] = FALSE;
 $route['session/new'] = 'authentication';
 $route['session/createaccount'] = 'authentication/register';
 $route['profile'] = 'home/profile';
+$route['friends'] = 'home/friends';

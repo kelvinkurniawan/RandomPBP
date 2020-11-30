@@ -1,24 +1,28 @@
 
 
 <?php $__env->startSection('content'); ?>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="row col-md-12 bg">
+<nav class="navbar navbar-expand-lg navbar-light bg-randomize-3 sticky-top">
+    <div class="row col-md-12">
         <div class="col-md-3 d-flex justify-content-between align-items-center">
             <a class="navbar-brand" href="#">Randomize</a>
             <a href="#" class="nav-link">
                 <i class="gg-home-alt"></i>
             </a>
         </div>
-        <div class="col-md-9 text-right">
-            <div class="row d-flex justify-content-end align-items-center">
-                <a class="navbar-brand" href="#">Profile</a>
-                <a href="#" class="nav-link"><i class="gg-options"></i></a>
+        <div class="col-md-6 d-flex justify-content-between align-items-center">
+            <div class="left">
+                <a href="#" class="nav-link primary">Profile</a>
+            </div>
+            <div class="right d-flex justify-content-between align-items-center">
+                <a href="#" class="nav-link">
+                    <i class="gg-search"></i>
+                </a>
             </div>
         </div>
     </div>
 </nav>
 <div class="row">
-    <div class="col-md-3 bg-randomize-2">
+    <div class="col-md-3 bg-randomize-2 elevation">
         <div class="container text-center">
             <div class="mt-5">
                 <img class="rounded-circle" src="http://localhost/pbp/randomApp/static/images/photo.png" width="50%">
@@ -27,6 +31,8 @@
             <div class="font-weight-light text-light small mt-1">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </div>
+            <div><button class="btn btn-randomize btn-ghost mt-5 w-50" data-toggle="modal" data-target="#exampleModal">Edit Profile</Button></div>
+            <div><button class="btn btn-randomize btn-out mt-3 w-50">Log Out</button></div>
         </div>
     </div>
     <div class="col-md-6 no-gutters bg-light pt-3 pl-4 pr-4">
@@ -127,24 +133,32 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3 bg-white">
+    <div class="col-md-3 bg-white elevation">
         <div class="p-3">
             <div class="d-flex">
-                <div class="card-title">INDONESIA TRENDS</div>
+                <div class="card-title">TOP STORIES</div>
             </div>
-            <div class="link">
-                <div>#HASHTAG</div>
-                <div>#HASHTAG</div>
-                <div>#HASHTAG</div>
-                <div>#HASHTAG</div>
+            <div class="link trending-group">
+                <div class="trending-dark">
+                    <div class="list">#Tinggal Kenangan</div>
+                    <div class="sub-list">By anonymous</div>
+                </div>
+                <div class="trending-dark">
+                    <div class="list">#Tinggal Kenangan</div>
+                    <div class="sub-list">By anonymous</div>
+                </div>
+                <div class="trending-dark">
+                    <div class="list">#Tinggal Kenangan</div>
+                    <div class="sub-list">By anonymous</div>
+                </div>
             </div>
             <div class="mt-5">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>WHO TO FOLLOW</div>
                     <div class="text-muted">More</div>
                 </div>
-                <div class="friends-group">
-                    <div class="friends">
+                <div class="trending-group">
+                    <div class="friends trending-dark">
                         <div class="row align-items-center">
                             <div class="col-md-4">
                                 <img class="rounded-circle" src="http://localhost/pbp/randomApp/static/images/photo.png" width="100%">
@@ -152,12 +166,12 @@
                             <div class="col-md-6 p-0 small">
                                 <strong>Kelvin Kurniawan</strong>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-2 no-padding">
                                 <i class="gg-add"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="friends">
+                    <div class="friends trending-dark">
                         <div class="row align-items-center">
                             <div class="col-md-4">
                                 <img class="rounded-circle" src="http://localhost/pbp/randomApp/static/images/photo.png" width="100%">
@@ -165,12 +179,12 @@
                             <div class="col-md-6 p-0 small">
                                 <strong>Kelvin Kurniawan</strong>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-2 no-padding">
                                 <i class="gg-add"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="friends">
+                    <div class="friends trending-dark">
                         <div class="row align-items-center">
                             <div class="col-md-4">
                                 <img class="rounded-circle" src="http://localhost/pbp/randomApp/static/images/photo.png" width="100%">
@@ -178,7 +192,7 @@
                             <div class="col-md-6 p-0 small">
                                 <strong>Kelvin Kurniawan</strong>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-2 no-padding">
                                 <i class="gg-add"></i>
                             </div>
                         </div>
@@ -187,6 +201,52 @@
             </div>
         </div>
     </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form action="">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header align-items-center">
+                    <div class="modal-header-custom">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true" class="text-primary">&times;</span>
+                        </button>
+                        <h5 class="modal-title font-weight-bold ml-3" id="exampleModalLabel">Edit Profile</h5>
+                    </div>
+                    <button type="submit" class="btn btn-primary rounded-pill text-white">Save</button>
+                </div>
+                <div class="modal-body pl-4 pr-4">
+                    <div class="form-group">
+                        <label for="image" class="text-muted">Photo</label>
+                        <div id="image" class="row mb-4 align-items-center">
+                            <div class="col-md-4">
+                                <img class="rounded-circle" src="http://localhost/pbp/randomApp/static/images/photo.png" width="100%">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="btn btn-link"><i class="gg-more-alt"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username" class="text-muted">Username</label>
+                        <input type="username" class="form-control" id="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="text-muted">Email</label>
+                        <input type="email" class="form-control" id="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="text-muted">Password</label>
+                        <input type="password" class="form-control" id="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmpassword" class="text-muted">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmpassword">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\pbp\randomApp\application\views/pages/profile.blade.php ENDPATH**/ ?>
