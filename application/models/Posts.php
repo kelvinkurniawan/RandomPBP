@@ -10,7 +10,14 @@ class Posts extends CI_Model{
         $this->db->order_by('id', 'DESC');
         return $this->db->get($this->table)->result();
     }    
-    
+
+    public function getAllByParent($parentId){
+        $this->db->where('id', $parentId);
+        $this->db->or_where('parent', $parentId);
+        $this->db->order_by('id', 'DESC');
+        return $this->db->get($this->table)->result();
+    }   
+
     public function getAllRow(){
         $this->db->order_by('id', 'DESC');
         return $this->db->get($this->table)->row_array();

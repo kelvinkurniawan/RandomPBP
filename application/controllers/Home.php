@@ -6,12 +6,16 @@ class Home extends CI_Controller{
     public function __construct(){
         parent::__construct();
 
-        //isNotLogin();
+        isNotLogin();
     }
 
-    function getStatus(){
+    function getStatus($parentId = 0){
         $this->load->model('posts');
-        $posts = $this->posts->getAll();
+        if($parentId != 0){
+            $posts = $this->posts->getAllByParent($parentId);
+        }else{
+            $posts = $this->posts->getAll();
+        }
 
         $result = array();
 
@@ -28,8 +32,9 @@ class Home extends CI_Controller{
                 'postBody' => $row->body,
                 'postDate' => $row->timestamp,
                 'postAuthor' => getPostAuthor($row->id),
+                'postAuthorUsername' => getPostAuthorUsername($row->id),
                 'postAuthorParent' => $postAuthorParent,
-                'authorPhoto' => get_images_path('photo.png'),
+                'authorPhoto' => get_images_path(getAuthorPhoto($row->id)),
                 'postMeta' => array(
                     'postLikes' => getLikesCount($row->id),
                     'postReplies' => getRepliesCount($row->id),
@@ -68,7 +73,7 @@ class Home extends CI_Controller{
 		return view('pages/friends', ['title' => $title]);
     }
 
-    function performAddPost($postPath){
+    function performAddPost(){
         
         $this->load->model('posts');
 
@@ -87,17 +92,11 @@ class Home extends CI_Controller{
             '1115050',
             $options
         );
+
+        $this->posts->save($data);
  
         $result['message'] = 'success';
         $pusher->trigger('status', 'insert', $result);
-
-        $this->posts->save($data);
-
-        if($postPath == 'home'){
-            redirect(base_url('/home'));
-        }else{ 
-            redirect(base_url('/home/read/' . $postPath));
-        }
     }
 
     function read($postId){
@@ -110,7 +109,7 @@ class Home extends CI_Controller{
 		return view('pages/single', ['title' => $title, 'post' => $post, 'replies' => $replies]);
     }
 
-    function performLikePost($postPath, $postId = ""){
+    function performLikePost($postId){
         
         $this->load->model('likes');
 
@@ -119,24 +118,42 @@ class Home extends CI_Controller{
 
         $this->likes->save($data);
 
-        if($postPath == 'home'){
-            redirect(base_url('/home'));
-        }else{ 
-            redirect(base_url('/home/read/' . $postPath));
-        }
+        $options = array(
+            'cluster' => 'ap1',
+            'useTLS' => true
+        );
+        
+        $pusher = new Pusher\Pusher(
+            'd9a7263363532f7ffbb5',
+            '8698c39b26359fcc185a',
+            '1115050',
+            $options
+        );
+
+        $result['message'] = 'success';
+        $pusher->trigger('status', 'insert', $result);
     }
 
-    function performUnlikePost($postPath, $postId){
+    function performUnlikePost($postId){
         
         $this->load->model('likes');
 
         $this->likes->delete($postId, $this->session->userId);
         
-        if($postPath == 'home'){
-            redirect(base_url('/home'));
-        }else{ 
-            redirect(base_url('/home/read/' . $postPath));
-        }
+        $options = array(
+            'cluster' => 'ap1',
+            'useTLS' => true
+        );
+        
+        $pusher = new Pusher\Pusher(
+            'd9a7263363532f7ffbb5',
+            '8698c39b26359fcc185a',
+            '1115050',
+            $options
+        );
+
+        $result['message'] = 'success';
+        $pusher->trigger('status', 'insert', $result);
     }
 
 }

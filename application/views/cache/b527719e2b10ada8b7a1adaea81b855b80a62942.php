@@ -71,18 +71,15 @@
 					<div class="row">
 						<div class="col-md-2 pt-2"><?php get_images("photo.png")?></div>
 						<div class="col-md-10">
-							<form
-								action="<?=base_url('/home/performAddPost/'. $post['id'])?>"
-								method="POST"
-							>
-								<input type="hidden" name="parent" value="<?php echo e($post['id']); ?>">
+							<form>
+								<input type="hidden" name="parent" value="<?php echo e($post['id']); ?>" class="input-parent">
 								<div class="form-group">
 									<textarea
 										name="body"
 										id="body"
 										cols="30"
 										rows="3"
-										class="form-control textarea"
+										class="form-control textarea input-body"
 										placeholder="Whats happening ?"
 									></textarea>
 								</div>
@@ -96,12 +93,9 @@
 											<a href="#"><i class="gg-browser"></i></a>
 										</div>
 										<div class="button-placement">
-											<button
-												type="submit"
-												class="btn btn-primary btn-randomize"
-											>
+											<a class="btn btn-primary btn-randomize btn-submit-post">
 												Random
-											</button>
+											</a>
 										</div>
 									</div>
 								</div>
@@ -110,90 +104,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="card widget bg-randomize-3 center mt-4" style="width: 100%">
-				<div class="card-body">
-					<div class="post">
-						<div class="post-single">
-							<div class="row">
-								<?php if($post['parent'] != 0): ?>
-									<div class="col-md-12 mb-3">
-										<div class="post-info text-sm d-flex align-items-center">
-											<div style="width:24px">
-												<i class="gg-corner-up-left mr-3"></i>
-											</div>
-											Replied to <a href="#" class="ml-1"><?php echo e(getPostAuthor($post['id'])); ?></a>
-										</div>
-									</div>
-								<?php endif; ?>
-								<div class="col-md-2">
-									<div class="photo-profile">
-										<?php get_images("photo.png")?>
-									</div>
-								</div>
-								<div class="col-md-10">
-									<div class="post-author">Kelvin Kurniawan</div>
-									<div class="post-body">
-										<?php echo e(renderPost($post['body'])); ?>
-
-									</div>
-									<div class="post-control">
-										<div class="d-flex justify-content-between">
-											<?php if(isPostLiked($post['id'])): ?>
-												<a href="<?php echo e(base_url('/home/performUnlikePost/'.$post['id'].'/'. $post['id'])); ?>" class="text-success"><i class="gg-heart"></i> <?php echo e(getLikesCount($post['id'])); ?> Likes</a>
-											<?php else: ?>
-												<a href="<?php echo e(base_url('/home/performLikePost/'.$post['id'].'/'. $post['id'])); ?>"><i class="gg-heart"></i> <?php echo e(getLikesCount($post['id'])); ?> Likes</a>
-											<?php endif; ?>
-											<a href="#"><i class="gg-comment"></i> <?php echo e(getRepliesCount($post['id'])); ?> Replies</a>
-											<a href="#"><i class="gg-attribution"></i> 10 Retext</a>
-											<a href="#"><i class="gg-share"></i> 10 Likes</a>
-										</div>
-									</div>
-									<div class="replies">
-										<?php $__currentLoopData = $replies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $reply): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-										<div class="post-single">
-											<div class="row">
-												<div class="col-md-2">
-													<div class="photo-profile">
-														<?php get_images("photo.png")?>
-													</div>
-												</div>
-												<div class="col-md-10">
-													<div class="post-author">Kelvin Kurniawan</div>
-													<div class="post-body">
-														<?php echo e(renderPost($reply->body)); ?>
-
-													</div>
-													<div class="post-control">
-														<div class="d-flex justify-content-between">
-															<?php if(isPostLiked($reply->id)): ?>
-																<a href="<?php echo e(base_url('/home/performLikePost/'.$post['id'].'/'. $reply->id)); ?>" class="text-success"><i class="gg-heart"></i> <?php echo e(getLikesCount($reply->id)); ?> Likes</a>
-															<?php else: ?>
-																<a href="<?php echo e(base_url('/home/performUnlikePost/'.$post['id'].'/'. $reply->id)); ?>" ><i class="gg-heart"></i> <?php echo e(getLikesCount($reply->id)); ?> Likes</a>
-															<?php endif; ?>
-															<a href="<?php echo e(base_url('/home/read/')); ?><?php echo e($reply->id); ?>"><i class="gg-comment"></i> <?php echo e(getRepliesCount($reply->id)); ?> Replies</a>
-															<a href="#"><i class="gg-attribution"></i> 10 Retext</a>
-															<a href="#"><i class="gg-share"></i> 10 Likes</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-									</div>
-									<div class="tags mt-3">
-										<a href="#" class="bg-primary px-3 py-1 text-white"
-											>Tinggal Kenangan</a
-										>
-										<a href="#" class="bg-info px-3 py-1 text-white"
-											>Slice of life</a
-										>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div class="main-content-post"></div>
 		</div>
 		<div class="col-md-3">
 			<div class="card widget right bg-randomize-3" style="width: 100%">
