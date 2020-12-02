@@ -100,7 +100,7 @@ function show_status() {
 					html +=
 						'<a href="javascript:void(0)" onclick="unlike_post(' +
 						data[i].postId +
-						')" class="text-success d-none d-sm-none d-md-none"><i class="gg-heart" style="margin-right: 10px"></i> ' +
+						')" class="text-success"><i class="gg-heart" style="margin-right: 10px"></i> ' +
 						data[i].postMeta.postLikes +
 						" Likes</a>";
 				} else {
