@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2020 at 02:39 AM
+-- Generation Time: Dec 02, 2020 at 02:41 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -37,6 +37,25 @@ CREATE TABLE `attachments` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `follow`
+--
+
+CREATE TABLE `follow` (
+  `id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `followId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `follow`
+--
+
+INSERT INTO `follow` (`id`, `userId`, `followId`) VALUES
+(20, 5, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `likes`
 --
 
@@ -55,7 +74,7 @@ INSERT INTO `likes` (`id`, `user`, `post`) VALUES
 (27, 3, 25),
 (28, 3, 31),
 (33, 4, 35),
-(34, 3, 35);
+(35, 3, 35);
 
 -- --------------------------------------------------------
 
@@ -86,7 +105,9 @@ INSERT INTO `posts` (`id`, `body`, `timestamp`, `user`, `parent`) VALUES
 (32, 'haloooo @kelvink', '2020-11-30 23:06:11', 4, 0),
 (33, 'ngapaa', '2020-11-30 23:06:37', 3, 32),
 (34, 'gapapaaaa', '2020-11-30 23:07:04', 4, 33),
-(35, 'update status terus', '2020-11-30 23:15:16', 4, 27);
+(35, 'update status terus', '2020-11-30 23:15:16', 4, 27),
+(36, 'test', '2020-12-02 10:06:17', 3, 0),
+(37, 'Halooooo', '2020-12-02 12:38:20', 5, 0);
 
 -- --------------------------------------------------------
 
@@ -101,7 +122,7 @@ CREATE TABLE `users` (
   `username` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
   `birth` date DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) NOT NULL DEFAULT 'default.png',
   `role` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -111,7 +132,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `username`, `password`, `birth`, `photo`, `role`) VALUES
 (3, 'Kelvin Kurniawan Oktavianto', 'tepinnko@gmail.com', 'kelvink', '$2y$10$9qGzPwFbRkaEjW6wZPfrJODz5UC94Np9LHR8YHPW0usc9/2SS8V0.', NULL, 'photo.png', 0),
-(4, 'Ardian Pramudya', 'ardianpramudya81@gmail.com', '', '$2y$10$lDniUB9857sz13Pg3pzqkOaZyRKB73N4tElF4Z1/d.Cfm2Qk9Z2Ru', NULL, 'cio.png', 0);
+(4, 'Ardian Pramudya', 'ardianpramudya81@gmail.com', 'ardianp', '$2y$10$lDniUB9857sz13Pg3pzqkOaZyRKB73N4tElF4Z1/d.Cfm2Qk9Z2Ru', NULL, 'cio.png', 0),
+(5, 'Bambang', 'user100@mail.com', 'bambank', '$2y$10$rtT9nlprkqCN4udnPWmdyezYvCnSL8di1JXYmg95RjYEaanVLwC1q', NULL, 'default.png', 0);
 
 --
 -- Indexes for dumped tables
@@ -121,6 +143,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `username`, `password`, `birth`, `ph
 -- Indexes for table `attachments`
 --
 ALTER TABLE `attachments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `follow`
+--
+ALTER TABLE `follow`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -152,22 +180,28 @@ ALTER TABLE `attachments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `follow`
+--
+ALTER TABLE `follow`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

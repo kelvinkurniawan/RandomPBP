@@ -10,6 +10,30 @@ function like_post(postId) {
 	});
 }
 
+function follow(followId) {
+	$.ajax({
+		url: url + "home/performFollow/" + followId,
+		method: "GET",
+		success: function (data) {
+			show_status();
+			$("#user-" + followId + "-follow").hide();
+			$("#user-" + followId + "-unfollow").show();
+		},
+	});
+}
+
+function unfollow(followId) {
+	$.ajax({
+		url: url + "home/performUnfollow/" + followId,
+		method: "GET",
+		success: function (data) {
+			show_status();
+			$("#user-" + followId + "-follow").show();
+			$("#user-" + followId + "-unfollow").hide();
+		},
+	});
+}
+
 function renderPost(post, userId) {
 	post = post.replace(
 		/(^|\s)(@[a-z\d-]+)/gi,
@@ -120,8 +144,10 @@ function show_status() {
 					'"><i class="gg-comment" style="margin-right: 10px"></i> ' +
 					data[i].postMeta.postReplies +
 					" Replies</a>";
-				html += '<a href="#"><i class="gg-attribution" style="margin-right: 5px"></i> 10 Retext</a>';
-				html += '<a href="#"><i class="gg-share" style="margin-right: 15px"></i> 10 Shares</a>';
+				html +=
+					'<a href="#"><i class="gg-attribution" style="margin-right: 5px"></i> 10 Retext</a>';
+				html +=
+					'<a href="#"><i class="gg-share" style="margin-right: 15px"></i> 10 Shares</a>';
 				html += "</div></div>";
 
 				if (data[i].postMeta.postReplies > 0 && getParentByPath() == "home") {

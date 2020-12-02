@@ -38,11 +38,11 @@
             <div class="row text-center">
                 <div class="col-md-6">
                     <div class="text-black-50 small">FOLLOWING</div>
-                    <div class="font-weight-bold">500</div>
+                    <div class="font-weight-bold"><?php echo e($following); ?></div>
                 </div>
                 <div class="col-md-6">
                     <div class="text-black-50 small">FOLLOWERS</div>
-                    <div class="font-weight-bold">500</div>
+                    <div class="font-weight-bold"><?php echo e($followers); ?></div>
                 </div>
             </div>
         </div>

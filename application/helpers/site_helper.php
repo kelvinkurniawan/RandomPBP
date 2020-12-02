@@ -125,4 +125,20 @@ if(!function_exists('isPostLiked')){
     }
 }
 
+if(!function_exists('isUserFollowed')){
+    function isUserFollowed($followId){
+        $ci =& get_instance();
+
+        $id = $ci->session->userId;
+        $ci->load->model('follow');
+
+        $check = $ci->follow->getByUserAndFollow($id, $followId);
+
+        if($check->num_rows() > 0){
+            return true;
+        }
+
+        return false;
+    }
+}
 ?>

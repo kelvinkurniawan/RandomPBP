@@ -14,7 +14,8 @@ class Home extends CI_Controller{
         if($parentId != 0){
             $posts = $this->posts->getAllByParent($parentId);
         }else{
-            $posts = $this->posts->getAll();
+            //$posts = $this->posts->getAll();
+            $posts = $this->posts->getPostsFeed($this->session->userId);
         }
 
         $result = array();
@@ -52,11 +53,13 @@ class Home extends CI_Controller{
     function index(){
 
         $this->load->model('posts');
+        $this->load->model('users');
 
         $title = 'Timeline';
         $posts = $this->posts->getAll();
+        $users = $this->users->userList($this->session->userId);
         
-		return view('pages/home', ['title' => $title, 'posts' => $posts]);
+		return view('pages/home', ['title' => $title, 'posts' => $posts, 'users' => $users]);
     }
 
     function profile(){
@@ -68,9 +71,13 @@ class Home extends CI_Controller{
 
     function friends(){
 
+        $this->load->model('follow');
         $title = 'Friends';
         
-		return view('pages/friends', ['title' => $title]);
+        $followers = $this->follow->getFollowersCount($this->session->userId);
+        $following = $this->follow->getFollowingCount($this->session->userId);
+
+		return view('pages/friends', ['title' => $title, 'followers' => $followers, 'following' => $following]);
     }
 
     function performAddPost(){
@@ -140,6 +147,53 @@ class Home extends CI_Controller{
 
         $this->likes->delete($postId, $this->session->userId);
         
+        $options = array(
+            'cluster' => 'ap1',
+            'useTLS' => true
+        );
+        
+        $pusher = new Pusher\Pusher(
+            'd9a7263363532f7ffbb5',
+            '8698c39b26359fcc185a',
+            '1115050',
+            $options
+        );
+
+        $result['message'] = 'success';
+        $pusher->trigger('status', 'insert', $result);
+    }
+
+    function performFollow($followId){
+        $this->load->model('follow');
+
+        $data['userId'] = $this->session->userId;
+        $data['followId'] = $followId;
+    
+        $this->follow->insert($data);
+
+        $options = array(
+            'cluster' => 'ap1',
+            'useTLS' => true
+        );
+        
+        $pusher = new Pusher\Pusher(
+            'd9a7263363532f7ffbb5',
+            '8698c39b26359fcc185a',
+            '1115050',
+            $options
+        );
+
+        $result['message'] = 'success';
+        $pusher->trigger('status', 'insert', $result);
+    }
+
+    function performUnfollow($followId){
+        $this->load->model('follow');
+
+        $userId = $this->session->userId;
+    
+        $this->follow->delete($userId, $followId);
+
         $options = array(
             'cluster' => 'ap1',
             'useTLS' => true
