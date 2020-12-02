@@ -66,7 +66,7 @@ class Home extends CI_Controller{
 
         $title = 'Profile';
 
-		return view('pages/profile', ['title' => $title, 'following' => $following]);
+		return view('pages/profile', ['title' => $title]);
     }
 
     function friends(){
