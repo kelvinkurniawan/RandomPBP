@@ -13,8 +13,8 @@ if(!function_exists('get_js')){
 }
 
 if(!function_exists('get_images')){
-    function get_images($path){
-        echo '<img src="' . base_url("/static/images/". $path) . '" width="100%" />';
+    function get_images($path, $class = ""){
+        echo '<img src="' . base_url("/static/images/". $path) . '" width="100%" class="'.$class.'"/>';
     }
 }
 
