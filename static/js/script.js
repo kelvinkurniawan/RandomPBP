@@ -125,15 +125,15 @@ function show_status() {
 						'<a href="javascript:void(0)" onclick="unlike_post(' +
 						data[i].postId +
 						')" class="text-success"><i class="gg-heart" style="margin-right: 10px"></i> ' +
-						data[i].postMeta.postLikes +
-						" Likes</a>";
+						data[i].postMeta.postLikes + 
+						"<div class='d-none d-sm-none d-md-block ml-1'> Likes</div></a>";
 				} else {
 					html +=
 						'<a href="javascript:void(0)" onclick="like_post(' +
 						data[i].postId +
 						')" ><i class="gg-heart" style="margin-right: 10px"></i> ' +
 						data[i].postMeta.postLikes +
-						" Likes</a>";
+						"<div class='d-none d-sm-none d-md-block ml-1'> Likes</div></a>";
 				}
 
 				html +=
@@ -143,11 +143,11 @@ function show_status() {
 					data[i].postId +
 					'"><i class="gg-comment" style="margin-right: 10px"></i> ' +
 					data[i].postMeta.postReplies +
-					" Replies</a>";
+					" <div class='d-none d-sm-none d-md-block ml-1'> Replies</div></a>";
 				html +=
-					'<a href="#"><i class="gg-attribution" style="margin-right: 5px"></i> 10 Retext</a>';
+					'<a href="#"><i class="gg-attribution" style="margin-right: 5px"></i> 10 <div class="d-none d-sm-none d-md-block ml-1">Retext</div></a>';
 				html +=
-					'<a href="#"><i class="gg-share" style="margin-right: 15px"></i> 10 Shares</a>';
+					'<a href="#"><i class="gg-share" style="margin-right: 15px"></i> 10 <div class="d-none d-sm-none d-md-block ml-1"> Shares</div></a>';
 				html += "</div></div>";
 
 				if (data[i].postMeta.postReplies > 0 && getParentByPath() == "home") {
