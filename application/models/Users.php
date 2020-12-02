@@ -10,6 +10,11 @@ class Users extends CI_Model{
         return $this->db->get($this->table)->result();
     }
 
+    public function userList($id){
+        $this->db->where('id !=', $id);
+        return $this->db->get($this->table)->result();
+    }
+
     public function getById($id){
         $this->db->where('id', $id);
         return $this->db->get($this->table)->row_array();

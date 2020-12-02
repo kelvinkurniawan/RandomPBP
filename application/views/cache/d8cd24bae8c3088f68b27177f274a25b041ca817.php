@@ -1,6 +1,6 @@
-@extends('layouts.master')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-randomize-3 sticky-top">
     <div class="row col-md-12">
         <div class="col-md-3 d-flex justify-content-between align-items-center">
@@ -38,11 +38,11 @@
             <div class="row text-center">
                 <div class="col-md-6">
                     <div class="text-black-50 small">FOLLOWING</div>
-                    <div class="font-weight-bold">{{$following}}</div>
+                    <div class="font-weight-bold"><?php echo e($following); ?></div>
                 </div>
                 <div class="col-md-6">
                     <div class="text-black-50 small">FOLLOWERS</div>
-                    <div class="font-weight-bold">{{$followers}}</div>
+                    <div class="font-weight-bold"><?php echo e($followers); ?></div>
                 </div>
             </div>
         </div>
@@ -190,4 +190,5 @@
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\random3\application\views/pages/friends.blade.php ENDPATH**/ ?>

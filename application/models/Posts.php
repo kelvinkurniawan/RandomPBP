@@ -11,6 +11,25 @@ class Posts extends CI_Model{
         return $this->db->get($this->table)->result();
     }    
 
+    public function getPostsFeed($userId){
+        $this->load->model('follow');
+        
+        $following = $this->follow->getFollowing($userId);
+        $userlist = array();
+
+        $this->db->order_by('id', 'DESC');
+        $this->db->where('user', $userId);
+
+        if(count($following) > 0){
+            foreach ($following as $row) {
+                array_push($userlist,$row->followId);
+            }
+            $this->db->or_where_in('user', $userlist);
+        }
+
+        return $this->db->get($this->table)->result();
+    }
+
     public function getAllByParent($parentId){
         $this->db->where('id', $parentId);
         $this->db->or_where('parent', $parentId);
