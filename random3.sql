@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2020 at 02:41 PM
+-- Generation Time: Dec 02, 2020 at 04:16 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -51,7 +51,9 @@ CREATE TABLE `follow` (
 --
 
 INSERT INTO `follow` (`id`, `userId`, `followId`) VALUES
-(20, 5, 3);
+(20, 5, 3),
+(21, 5, 4),
+(22, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -74,7 +76,9 @@ INSERT INTO `likes` (`id`, `user`, `post`) VALUES
 (27, 3, 25),
 (28, 3, 31),
 (33, 4, 35),
-(35, 3, 35);
+(35, 3, 35),
+(36, 5, 36),
+(37, 3, 36);
 
 -- --------------------------------------------------------
 
@@ -121,6 +125,7 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `bio` text DEFAULT NULL,
   `birth` date DEFAULT NULL,
   `photo` varchar(255) NOT NULL DEFAULT 'default.png',
   `role` int(11) NOT NULL
@@ -130,10 +135,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `username`, `password`, `birth`, `photo`, `role`) VALUES
-(3, 'Kelvin Kurniawan Oktavianto', 'tepinnko@gmail.com', 'kelvink', '$2y$10$9qGzPwFbRkaEjW6wZPfrJODz5UC94Np9LHR8YHPW0usc9/2SS8V0.', NULL, 'photo.png', 0),
-(4, 'Ardian Pramudya', 'ardianpramudya81@gmail.com', 'ardianp', '$2y$10$lDniUB9857sz13Pg3pzqkOaZyRKB73N4tElF4Z1/d.Cfm2Qk9Z2Ru', NULL, 'cio.png', 0),
-(5, 'Bambang', 'user100@mail.com', 'bambank', '$2y$10$rtT9nlprkqCN4udnPWmdyezYvCnSL8di1JXYmg95RjYEaanVLwC1q', NULL, 'default.png', 0);
+INSERT INTO `users` (`id`, `name`, `email`, `username`, `password`, `bio`, `birth`, `photo`, `role`) VALUES
+(3, 'Kelvin Kurniawan Oktavianto', 'tepinnko@gmail.com', 'kelvink', '$2y$10$9qGzPwFbRkaEjW6wZPfrJODz5UC94Np9LHR8YHPW0usc9/2SS8V0.', 'aku memang pencinta wanita, namun ku bukan buaya', NULL, 'photo.png', 0),
+(4, 'Ardian Pramudya', 'ardianpramudya81@gmail.com', 'ardianp', '$2y$10$lDniUB9857sz13Pg3pzqkOaZyRKB73N4tElF4Z1/d.Cfm2Qk9Z2Ru', 'wanita memanggilku buaya namun aku hanya lah se ekor kadal yang mencoba menjadi buaya', NULL, 'cio.png', 0),
+(5, 'Bambang', 'user100@mail.com', 'bambank', '$2y$10$rtT9nlprkqCN4udnPWmdyezYvCnSL8di1JXYmg95RjYEaanVLwC1q', NULL, NULL, 'default.png', 0);
 
 --
 -- Indexes for dumped tables
@@ -183,13 +188,13 @@ ALTER TABLE `attachments`
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `posts`
