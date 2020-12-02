@@ -41,9 +41,9 @@
 			<div class="card widget bg-randomize-3 center mt-4">
 				<div class="card-body">
 					<div class="row">
-						<div class="col-2 pt-2 d-none d-sm-block"><?php get_images(getUserDetail('photo')) ?></div>
+						<div class="col-2 pt-2 d-none d-sm-block">{{get_images(getUserDetail('photo'))}}</div>
 						<div class="col">
-							<form action="<?= base_url('/home/performAddPost/home') ?>" method="POST">
+							<form action="{{base_url('/home/performAddPost/home')}}" method="POST">
 								<input type="hidden" name="parent" class="input-parent" value="0">
 								<div class="form-group">
 									<textarea name="body" id="body" cols="30" rows="3" class="form-control textarea input-body" placeholder="Whats happening ?"></textarea>
@@ -82,17 +82,17 @@
 							<div class="friends">
 								<div class="row align-items-center">
 									<div class="col-md-4">
-										<?php get_images($user->photo) ?>
+										{{get_images($user->photo)}}
 									</div>
 									<div class="col-md-8">
 										<strong>{{$user->name}}</strong>
-										<?php if(isUserFollowed($user->id)) :?>
+										@php if(isUserFollowed($user->id)) : @endphp
 											<a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?=$user->id?>-follow" style="display: none" onclick="follow(<?=$user->id?>)">+ Follow</a>
 											<a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?=$user->id?>-unfollow"onclick="unfollow(<?=$user->id?>)">- Unfollow</a>
-										<?php else :?>
+										@php else : @endphp
 											<a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?=$user->id?>-follow" onclick="follow(<?=$user->id?>)">+ Follow</a>
 											<a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?=$user->id?>-unfollow" style="display: none" onclick="unfollow(<?=$user->id?>)">- Unfollow</a>
-										<?php endif;?>
+										@php endif; @endphp
 									</div>
 								</div>
 							</div>

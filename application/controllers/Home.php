@@ -65,19 +65,23 @@ class Home extends CI_Controller{
     function profile(){
 
         $title = 'Profile';
-        
-		return view('pages/profile', ['title' => $title]);
+
+		return view('pages/profile', ['title' => $title, 'following' => $following]);
     }
 
     function friends(){
 
         $this->load->model('follow');
+
         $title = 'Friends';
         
         $followers = $this->follow->getFollowersCount($this->session->userId);
+
         $following = $this->follow->getFollowingCount($this->session->userId);
 
-		return view('pages/friends', ['title' => $title, 'followers' => $followers, 'following' => $following]);
+        $followingList = $this->follow->getFollowing($this->session->userId);
+
+		return view('pages/friends', ['title' => $title, 'followers' => $followers, 'following' => $following, 'followingList' => $followingList]);
     }
 
     function performAddPost(){

@@ -141,4 +141,16 @@ if(!function_exists('isUserFollowed')){
         return false;
     }
 }
+
+if(!function_exists('getUserById')){
+    function getUserById($id, $row){
+        $ci =& get_instance();
+
+        $ci->load->model("users");
+
+        $user = $ci->users->getById($id); 
+
+        return $user[$row];
+    }
+}
 ?>
