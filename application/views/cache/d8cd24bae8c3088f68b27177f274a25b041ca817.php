@@ -3,8 +3,8 @@
 <?php echo $__env->make('layouts.components.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <div class="row no-gutters">
     <div class="col-md-3 bg-randomize-2 card widget left">
-        <div class="container text-center">
-            <div class="mt-5">
+        <div class="container text-center sticky-top float-component">
+            <div class="mt-3">
                 <?php echo e(get_images(getUserDetail("photo"), "rounded-circle w-50")); ?>
 
             </div>
@@ -23,50 +23,90 @@
         </div>
     </div>
     <div class="col-md-6 no-gutters pt-3 pl-4 pr-4">
-        <div class="card widget center p-3 sticky-top float-component">
-            <div class="row text-center">
-                <div class="col-6">
-                    <div class="text-black-50 small">FOLLOWING</div>
-                    <div class="font-weight-bold"><?php echo e($following); ?></div>
-                </div>
-                <div class="col-6">
-                    <div class="text-black-50 small">FOLLOWERS</div>
-                    <div class="font-weight-bold"><?php echo e($followers); ?></div>
-                </div>
+        <div class="row sticky-top float-component">
+            <div class="col">
+                <ul class="nav">
+                    <li class="nav-item card widget center text-center bg-randomize-3 p-2 w-50">
+                        <a href="#following" class="nav-link active" data-toggle="tab">
+                            <div class="text-black-50 small">FOLLOWING</div>
+                            <div class="font-weight-bold text-dark"><?php echo e($following); ?></div>
+                        </a>
+                    </li>
+                    <li class="nav-item card widget center text-center bg-randomize-3 p-2 w-50">
+                        <a href="#followers" class="nav-link" data-toggle="tab">
+                            <div class="text-black-50 small">FOLLOWERS</div>
+                            <div class="font-weight-bold text-dark"><?php echo e($followers); ?></div>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="mt-5">
-            <?php $__currentLoopData = $followingList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="card widget center bg-white mb-3 w-100">
-                <div class="card-body">
-                    <div class="post">
-                        <div class="post-single">
-                            <div class="row">
-                                <div class="col-2 ">
-                                    <div class="photo-profile">
-                                        <?php echo e(get_images(getUserById($row->followId, "photo"))); ?>
+        <div class="tab-content">
+            <!-- Following -->
+            <div class="mt-5 tab-pane fade show active" id="following">
+                <?php $__currentLoopData = $followingList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="card widget center bg-randomize-3 mb-3 w-100">
+                    <div class="card-body">
+                        <div class="post">
+                            <div class="post-single">
+                                <div class="row">
+                                    <div class="col-2 ">
+                                        <div class="photo-profile">
+                                            <?php echo e(get_images(getUserById($row->followId, "photo"))); ?>
 
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <div class="post-author"><?php echo e(getUserById($row->followId, "name")); ?></div>
-                                    <div class="post-body limit-text d-none d-sm-block">
-                                        <?php echo e(getUserById($row->followId, "bio")); ?>
+                                    <div class="col">
+                                        <div class="post-author"><?php echo e(getUserById($row->followId, "name")); ?></div>
+                                        <div class="post-body limit-text d-none d-sm-block">
+                                            <?php echo e(getUserById($row->followId, "bio")); ?>
 
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-3 d-none d-sm-block">
-                                    <a href="#" class="btn bg-randomize-2 rounded-pill text-white small">Following</a>
+                                    <div class="col-3 d-none d-sm-block">
+                                        <a href="#" class="btn bg-randomize-2 rounded-pill text-white small">Following</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <!-- Follower -->
+            <div class="mt-5 tab-pane fade" id="followers">
+                <?php $__currentLoopData = $followingList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="card widget center bg-white mb-3 w-100">
+                    <div class="card-body">
+                        <div class="post">
+                            <div class="post-single">
+                                <div class="row">
+                                    <div class="col-2 ">
+                                        <div class="photo-profile">
+                                            <?php echo e(get_images(getUserById($row->followId, "photo"))); ?>
+
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="post-author"><?php echo e(getUserById($row->followId, "name")); ?></div>
+                                        <div class="post-body limit-text d-none d-sm-block">
+                                            <?php echo e(getUserById($row->followId, "bio")); ?>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-3 d-none d-sm-block">
+                                        <a href="#" class="btn bg-randomize-2 rounded-pill text-white small">Following</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
         </div>
     </div>
-    <div class="card widget right col-md-3 bg-white">
+    <div class="card widget right col-md-3 bg-randomize-3">
         <div class="p-3">
             <div class="d-none d-sm-none d-md-block">
                 <div class="d-flex">
@@ -92,7 +132,7 @@
                     <div>WHO TO FOLLOW</div>
                     <div class="text-muted">More</div>
                 </div>
-                <div class="trending-group" >
+                <div class="trending-group">
                     <div class="friends-group">
                         <div class="card widget center p-3 mt-3">
                             <div class="row align-items-center">

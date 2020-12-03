@@ -4,8 +4,8 @@
 @include('layouts.components.navbar')
 <div class="row no-gutters">
     <div class="col-md-3 bg-randomize-2 card widget left">
-        <div class="container text-center">
-            <div class="mt-5">
+        <div class="container text-center sticky-top float-component">
+            <div class="mt-3">
                 <img class="rounded-circle" src="{{get_images_path(getUserDetail('photo'))}}" width="50%">
             </div>
             <div class="font-weight-bold mt-3 text-light">{{getUserDetail("name")}}</div>
@@ -133,16 +133,16 @@
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <div class="post-author"></div>
+                                            <div class="post-author">{{getUserDetail("name")}}</div>
                                             <div class="post-body">
                                                 {{renderPost($row->body)}}
                                             </div>
                                             <div class="post-control">
                                                 <div class="d-flex justify-content-between">
-                                                    <a href="#"><i class="gg-heart"></i> {{getLikesCount($row->id)}} <span class="ml-1 d-none d-sm-none d-md-block">Likes</span></a>
-                                                    <a href="#"><i class="gg-comment"></i> {{getRepliesCount($row->id)}} <span class="ml-1 d-none d-sm-none d-md-block">Replies</span></a>
-                                                    <a href="#"><i class="gg-attribution"></i> 10 <span class="ml-1 d-none d-sm-none d-md-block">Retext</span></a>
-                                                    <a href="#"><i class="gg-share"></i> 10 <span class="ml-1 d-none d-sm-none d-md-block">Share</span></a>
+                                                    <a href="#"><i class="gg-heart" style="margin-right: 10px;"></i> {{getLikesCount($row->id)}}<span class="ml-1 d-none d-sm-none d-md-block">Likes</span></a>
+                                                    <a href="#"><i class="gg-comment" style="margin-right: 10px;"></i> {{getRepliesCount($row->id)}}<span class="ml-1 d-none d-sm-none d-md-block">Replies</span></a>
+                                                    <a href="#"><i class="gg-attribution"style="margin-right: 5px;"></i> 10<span class="ml-1 d-none d-sm-none d-md-block">Retext</span></a>
+                                                    <a href="#"><i class="gg-share" style="margin-right: 15px;"></i> 10<span class="ml-1 d-none d-sm-none d-md-block">Share</span></a>
                                                 </div>
                                             </div>
                                             @if(getRepliesCount($row->id) > 0)

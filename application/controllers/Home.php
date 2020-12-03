@@ -97,6 +97,35 @@ class Home extends CI_Controller{
 		return view('pages/friends', ['title' => $title, 'followers' => $followers, 'following' => $following, 'followingList' => $followingList]);
     }
 
+    function admin(){
+
+        $this->load->model('follow');
+
+        $title = 'Admin';
+
+        $followers = $this->follow->getFollowersCount($this->session->userId);
+        $following = $this->follow->getFollowingCount($this->session->userId);
+        $followingList = $this->follow->getFollowing($this->session->userId);
+
+		return view('pages/admin', ['title' => $title, 'followers' => $followers, 'following' => $following, 'followingList' => $followingList]);
+    }
+
+    function adminDetail(){
+
+        $this->load->model('follow');
+        $this->load->model("posts");
+
+        $title = 'Admin Detail';
+
+        $followers = $this->follow->getFollowersCount($this->session->userId);
+        $following = $this->follow->getFollowingCount($this->session->userId);
+        $followingList = $this->follow->getFollowing($this->session->userId);
+        $myPosts = $this->posts->getPostsByUserId($this->session->userId, true);
+        $myPostsCount = $this->posts->getPostsByUserIdCount($this->session->userId, true);
+
+		return view('pages/admindetail', ['title' => $title, 'followers' => $followers, 'following' => $following, 'followingList' => $followingList, 'myPosts' => $myPosts, 'myPostsCount' => $myPostsCount]);
+    }
+
     function performAddPost(){
         
         $this->load->model('posts');
