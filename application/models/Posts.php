@@ -60,6 +60,19 @@ class Posts extends CI_Model{
     public function save($data){
         return $this->db->insert($this->table, $data);
     }
+
+    public function getPostsByUserId($id, $parentOnly = false){
+        $this->db->order_by('id', 'DESC');
+        $this->db->where('user', $id);
+        if($parentOnly) $this->db->where('parent', 0);
+        return $this->db->get($this->table)->result();
+    }
+
+    public function getPostsByUserIdCount($id, $parentOnly = false){
+        $this->db->where('user', $id);
+        if($parentOnly) $this->db->where('parent', 0);
+        return $this->db->get($this->table)->num_rows();
+    }
 }
 
 ?>
