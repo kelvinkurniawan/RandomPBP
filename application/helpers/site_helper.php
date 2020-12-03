@@ -28,7 +28,7 @@ if(!function_exists('renderPost')){
         $expMention = "(\@(?P<names>[a-zA-Z\-\_]+))";
         $string = preg_replace($expHashtag, '<a href="'.base_url('/read/hashtag/$1').'">$0</a>', $postBody);  
         $string = preg_replace($expMention, '<a href="'.base_url('/profile/$1').'">$0</a>', $string);  
-        return $string; 
+        echo $string; 
     }
 }
 

@@ -27,15 +27,15 @@
                 <div class="row text-center">
                     <div class="col-4">
                         <div class="text-black-50 small">POST</div>
-                        <div class="font-weight-bold">500</div>
+                        <div class="font-weight-bold">{{$myPostsCount}}</div>
                     </div>
                     <div class="col-4">
                         <div class="text-black-50 small">FOLLOWING</div>
-                        <div class="font-weight-bold">500</div>
+                        <div class="font-weight-bold">{{$following}}</div>
                     </div>
                     <div class="col-4">
                         <div class="text-black-50 small">FOLLOWERS</div>
-                        <div class="font-weight-bold">500</div>
+                        <div class="font-weight-bold">{{$followers}}</div>
                     </div>
                 </div>
             </div>
@@ -121,80 +121,47 @@
                 </div>
             </div>
             <div class="mt-5">
-                <div class="bg-randomize-3 card widget center mb-3 w-100">
-                    <div class="card-body">
-                        <div class="post">
-                            <div class="post-single">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <div class="photo-profile">
-                                            <?php get_images("photo.png") ?>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="post-author">Kelvin Kurniawan</div>
-                                        <div class="post-body">
-                                            Tinggal kenangan - semua yang kau berikan kini menjadi
-                                            sebuah bagian dari ingatan yang tak bisa untuk ku lupakan,
-                                            meskipun begitu aku cukup bersyukur, pertemuan singkat ini
-                                            membuatku hidup
-                                        </div>
-                                        <div class="post-control">
-                                            <div class="d-flex justify-content-between">
-                                                <a href="#"><i class="gg-heart"></i> 10 <span class="ml-1 d-none d-sm-none d-md-block">Likes</span></a>
-                                                <a href="#"><i class="gg-comment"></i> 5 <span class="ml-1 d-none d-sm-none d-md-block">Replies</span></a>
-                                                <a href="#"><i class="gg-attribution"></i> 10 <span class="ml-1 d-none d-sm-none d-md-block">Retext</span></a>
-                                                <a href="#"><i class="gg-share"></i> 10 <span class="ml-1 d-none d-sm-none d-md-block">Share</span></a>
+                @foreach ($myPosts as $row)
+                    <div class="bg-randomize-3 card widget center mb-3 w-100">
+                        <div class="card-body">
+                            <div class="post">
+                                <div class="post-single">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <div class="photo-profile">
+                                                {{get_images(getAuthorPhoto($row->id))}}
                                             </div>
                                         </div>
-                                        <div class="show-all mt-3">
-                                            <a href="#">>> Show all replies <<</a> </div> <div class="tags mt-3">
-                                                    <a href="#" class="bg-primary px-3 py-1 text-white">Tinggal Kenangan</a>
-                                                    <a href="#" class="bg-info px-3 py-1 text-white">Slice of life</a>
+                                        <div class="col">
+                                            <div class="post-author"></div>
+                                            <div class="post-body">
+                                                {{renderPost($row->body)}}
+                                            </div>
+                                            <div class="post-control">
+                                                <div class="d-flex justify-content-between">
+                                                    <a href="#"><i class="gg-heart"></i> {{getLikesCount($row->id)}} <span class="ml-1 d-none d-sm-none d-md-block">Likes</span></a>
+                                                    <a href="#"><i class="gg-comment"></i> {{getRepliesCount($row->id)}} <span class="ml-1 d-none d-sm-none d-md-block">Replies</span></a>
+                                                    <a href="#"><i class="gg-attribution"></i> 10 <span class="ml-1 d-none d-sm-none d-md-block">Retext</span></a>
+                                                    <a href="#"><i class="gg-share"></i> 10 <span class="ml-1 d-none d-sm-none d-md-block">Share</span></a>
+                                                </div>
+                                            </div>
+                                            @if(getRepliesCount($row->id) > 0)
+                                                <div class="show-all mt-3">
+                                                    <a href="#">>> Show all replies <<</a>
+                                                </div>
+                                            @endif 
+                                            @foreach(getHashtagWidget($row->body) as $hashtag)
+                                                <div class="tags mt-3">
+                                                    <a href="#" class="bg-primary px-3 py-1 text-white">{{$hashtag}}</a>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="bg-randomize-3 card widget center mb-3 w-100">
-                    <div class="card-body">
-                        <div class="post">
-                            <div class="post-single">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <div class="photo-profile">
-                                            <?php get_images("photo.png") ?>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="post-author">Kelvin Kurniawan</div>
-                                        <div class="post-body">
-                                            Tinggal kenangan - semua yang kau berikan kini menjadi
-                                            sebuah bagian dari ingatan yang tak bisa untuk ku lupakan,
-                                            meskipun begitu aku cukup bersyukur, pertemuan singkat ini
-                                            membuatku hidup
-                                        </div>
-                                        <div class="post-control">
-                                            <div class="d-flex justify-content-between">
-                                                <a href="#"><i class="gg-heart"></i> 10 <span class="ml-1 d-none d-sm-none d-md-block">Likes</span></a>
-                                                <a href="#"><i class="gg-comment"></i> 5 <span class="ml-1 d-none d-sm-none d-md-block">Replies</span></a>
-                                                <a href="#"><i class="gg-attribution"></i> 10 <span class="ml-1 d-none d-sm-none d-md-block">Retext</span></a>
-                                                <a href="#"><i class="gg-share"></i> 10 <span class="ml-1 d-none d-sm-none d-md-block">Share</span></a>
-                                            </div>
-                                        </div>
-                                        <div class="show-all mt-3">
-                                            <a href="#">>> Show all replies <<</a> </div> <div class="tags mt-3">
-                                                    <a href="#" class="bg-primary px-3 py-1 text-white">Tinggal Kenangan</a>
-                                                    <a href="#" class="bg-info px-3 py-1 text-white">Slice of life</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

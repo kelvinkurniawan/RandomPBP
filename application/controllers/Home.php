@@ -64,9 +64,22 @@ class Home extends CI_Controller{
 
     function profile(){
 
-        $title = 'Profile';
+        $this->load->model("posts");
+        $this->load->model("follow");
 
-		return view('pages/profile', ['title' => $title]);
+        $title = 'Profile';
+        $myPosts = $this->posts->getPostsByUserId($this->session->userId, true);
+        $myPostsCount = $this->posts->getPostsByUserIdCount($this->session->userId, true);
+        $following = $this->follow->getFollowingCount($this->session->userId);
+        $followers = $this->follow->getFollowersCount($this->session->userId);
+
+		return view('pages/profile', [
+            'title' => $title, 
+            'myPosts' => $myPosts, 
+            'myPostsCount' => $myPostsCount,
+            'following' => $following,
+            'followers' => $followers
+            ]);
     }
 
     function friends(){
