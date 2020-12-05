@@ -11,7 +11,7 @@ class Posts extends CI_Model{
         return $this->db->get($this->table)->result();
     }    
 
-    public function getPostsFeed($userId){
+    public function getPostsFeed($userId, $limit = 10){
         $this->load->model('follow');
         
         $following = $this->follow->getFollowing($userId);
@@ -26,6 +26,8 @@ class Posts extends CI_Model{
             }
             $this->db->or_where_in('user', $userlist);
         }
+
+        $this->db->limit($limit);
 
         return $this->db->get($this->table)->result();
     }

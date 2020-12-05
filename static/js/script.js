@@ -125,7 +125,7 @@ function show_status() {
 						'<a href="javascript:void(0)" onclick="unlike_post(' +
 						data[i].postId +
 						')" class="text-success"><i class="gg-heart" style="margin-right: 10px"></i> ' +
-						data[i].postMeta.postLikes + 
+						data[i].postMeta.postLikes +
 						"<div class='d-none d-sm-none d-md-block ml-1'> Likes</div></a>";
 				} else {
 					html +=
@@ -198,10 +198,16 @@ $(document).ready(function () {
 	$(".btn-submit-post").on("click", function () {
 		var body = $(".input-body").val();
 		var parent = $(".input-parent").val();
+		var anonym;
+		if ($(".input-anonym:checked").length > 0) {
+			anonym = 1;
+		} else {
+			anonym = 0;
+		}
 		$.ajax({
 			url: url + "home/performAddPost",
 			method: "POST",
-			data: { body: body, parent: parent },
+			data: { body: body, parent: parent, anonym: anonym },
 			success: function () {
 				show_status();
 				$(".input-body").val("");

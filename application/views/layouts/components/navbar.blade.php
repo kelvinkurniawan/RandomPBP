@@ -52,8 +52,10 @@
 					<i class="gg-notifications"></i>
 				</a>
 				<div class="profile-nav d-flex justify-content-between align-items-center">
-					{{getUserDetail("name")}}
-					<i class="ml-3 gg-user"></i>
+					<a href="{{base_url('/home/profile/')}}">
+						{{getUserDetail("name")}}
+						<i class="ml-3 gg-user"></i>
+					</a>
 				</div>
 			</div>
 		</div>

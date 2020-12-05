@@ -52,9 +52,11 @@
 					<i class="gg-notifications"></i>
 				</a>
 				<div class="profile-nav d-flex justify-content-between align-items-center">
-					<?php echo e(getUserDetail("name")); ?>
+					<a href="<?php echo e(base_url('/home/profile/')); ?>">
+						<?php echo e(getUserDetail("name")); ?>
 
-					<i class="ml-3 gg-user"></i>
+						<i class="ml-3 gg-user"></i>
+					</a>
 				</div>
 			</div>
 		</div>
