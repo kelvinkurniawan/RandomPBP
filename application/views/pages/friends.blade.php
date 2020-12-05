@@ -2,7 +2,30 @@
 @section('content')
 @include('layouts.components.navbar')
 <div class="row no-gutters">
-    <div class="col-md-3 bg-randomize-2 card widget left">
+    <div class="col-md-3 bg-randomize-2 card widget left d-sm-block d-md-none d-lg-none d-xl-none">
+        <div class="container">
+            <div class="row mt-3">
+                <div class="col-3 pr-0">
+                    <img class="rounded-circle" src="{{get_images_path(getUserDetail('photo'))}}" width="100%">
+                </div>
+                <div class="col">
+                    <div class="font-weight-bold text-light h4">{{getUserDetail("name")}}</div>
+                    <div class="font-weight-light text-light small mt-1 limit-text">
+                        {{getUserDetail("bio")}}
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <button class="btn btn-randomize btn-ghost w-100" data-toggle="modal" data-target="#exampleModal">Edit Profile</Button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-randomize btn-out w-100">Log Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 bg-randomize-2 card widget left d-none d-sm-none d-md-block">
         <div class="container text-center sticky-top float-component">
             <div class="mt-3">
                 {{get_images(getUserDetail("photo"), "rounded-circle w-50")}}
@@ -37,6 +60,40 @@
                         </a>
                     </li>
                 </ul>
+            </div>
+        </div>
+        <div class="row d-md-none d-lg-none d-xl-none">
+            <div class="col">
+                <a data-toggle="collapse" href="#people" role="button" aria-expanded="false" aria-controls="personal" class="text-dark text-decoration-none">
+                    <div class="bg-randomize-3 p-3 card widget center">
+                        <div class="row d-flex justify-content-center align-items-center pl-5 pr-5">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8 11C10.2091 11 12 9.20914 12 7C12 4.79086 10.2091 3 8 3C5.79086 3 4 4.79086 4 7C4 9.20914 5.79086 11 8 11ZM8 9C9.10457 9 10 8.10457 10 7C10 5.89543 9.10457 5 8 5C6.89543 5 6 5.89543 6 7C6 8.10457 6.89543 9 8 9Z" fill="currentColor" />
+                                <path d="M11 14C11.5523 14 12 14.4477 12 15V21H14V15C14 13.3431 12.6569 12 11 12H5C3.34315 12 2 13.3431 2 15V21H4V15C4 14.4477 4.44772 14 5 14H11Z" fill="currentColor" />
+                                <path d="M18 7H20V9H22V11H20V13H18V11H16V9H18V7Z" fill="currentColor" /></svg>
+                            <div class="ml-3">WHO TO FOLLOWS</div>
+                        </div>
+                    </div>
+                </a>
+                <div class="trending-group bg-randomize-3 collapse" id="people">
+                    <div class="friends-group">
+                        @foreach ($recommendedUsers as $row)
+                        <div class="card widget center p-3 ">
+                            <div class="row align-items-center">
+                                <div class="col-2">
+                                    <img class="rounded-circle" src="{{get_images_path($row->photo)}}" width="100%">
+                                </div>
+                                <div class="col p-0">
+                                    <strong>{{$row->name}}</strong>
+                                </div>
+                                <div class="col-2 no-padding">
+                                    <i class="gg-add"></i>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
         <div class="tab-content">
@@ -100,7 +157,7 @@
             </div>
         </div>
     </div>
-    <div class="card widget right col-md-3 bg-randomize-3">
+    <div class="card widget right col-md-3 bg-randomize-3 d-none d-sm-none d-md-block">
         <div class="p-3">
             <div class="d-none d-sm-none d-md-block">
                 <div class="d-flex">
@@ -129,19 +186,19 @@
                 <div class="trending-group">
                     <div class="friends-group">
                         @foreach($recommendedUsers as $row)
-                            <div class="card widget center p-3 mt-3">
-                                <div class="row align-items-center">
-                                    <div class="col-md-4">
-                                        <img class="rounded-circle" src="{{get_images_path($row->photo)}}" width="100%">
-                                    </div>
-                                    <div class="col-md-6 p-0 small">
-                                        <strong>{{$row->name}}</strong>
-                                    </div>
-                                    <div class="col-md-2 no-padding">
-                                        <i class="gg-add"></i>
-                                    </div>
+                        <div class="card widget center p-3 mt-3">
+                            <div class="row align-items-center">
+                                <div class="col-md-4">
+                                    <img class="rounded-circle" src="{{get_images_path($row->photo)}}" width="100%">
+                                </div>
+                                <div class="col-md-6 p-0 small">
+                                    <strong>{{$row->name}}</strong>
+                                </div>
+                                <div class="col-md-2 no-padding">
+                                    <i class="gg-add"></i>
                                 </div>
                             </div>
+                        </div>
                         @endforeach
                     </div>
                 </div>

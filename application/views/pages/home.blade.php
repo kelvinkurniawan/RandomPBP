@@ -38,7 +38,7 @@
 		</div>
 		<!-- Main Content -->
 		<div class="col-md-6 main-content w-100">
-			<div class="card widget bg-randomize-3 center mt-4">
+			<div class="card widget bg-randomize-3 center mt-4 collapse" id="postBox">
 				<div class="card-body">
 					<div class="row">
 						<div class="col-2 pt-2 d-none d-sm-block"><?php get_images(getUserDetail('photo')) ?></div>
@@ -76,10 +76,10 @@
 		</div>
 		<!-- Friends -->
 		<div class="col-md-3 d-none d-sm-none d-md-block">
-			<div class="card widget right bg-randomize-3" style="width: 100%">
+			<div class="card widget bg-randomize-3 sticky-top float-component" style="width: 100%; top: 3.6em;">
 				<div class="card-body">
 					<div class="d-flex align-items-center justify-content-between mb-4">
-						<h5 class="card-title">WHO TO FOLLOW</h5>
+						<h5 class="card-title text-dark">WHO TO FOLLOW</h5>
 						<a class="widget-link" href="#">ALL</a>
 					</div>
 					<div class="friends-group">
