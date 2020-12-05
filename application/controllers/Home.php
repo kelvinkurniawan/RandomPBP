@@ -22,20 +22,30 @@ class Home extends CI_Controller{
 
         foreach ($posts as $row) {
             $postAuthorParent = '';
+
             if($row->parent != 0){
                 $postAuthorParent = getPostAuthor($row->parent);
             }else{
                 $postAuthorParent= '';
             }
+
+            if($row->anonym == 1){
+                $postAuthor = "Anonymous";
+                $authorPhoto = get_images_path("anon.png");
+            }else{
+                $postAuthor = getPostAuthor($row->id);
+                $authorPhoto = get_images_path(getAuthorPhoto($row->id));
+            }
+
             $tempResult =  array(
                 'postId' => $row->id,
                 'postParent' => $row->parent,
                 'postBody' => $row->body,
                 'postDate' => $row->timestamp,
-                'postAuthor' => getPostAuthor($row->id),
+                'postAuthor' => $postAuthor,
                 'postAuthorUsername' => getPostAuthorUsername($row->id),
                 'postAuthorParent' => $postAuthorParent,
-                'authorPhoto' => get_images_path(getAuthorPhoto($row->id)),
+                'authorPhoto' => $authorPhoto,
                 'postMeta' => array(
                     'postLikes' => getLikesCount($row->id),
                     'postReplies' => getRepliesCount($row->id),
@@ -88,16 +98,22 @@ class Home extends CI_Controller{
     function friends(){
 
         $this->load->model('follow');
+        $this->load->model("users");
 
         $title = 'Friends';
         
         $followers = $this->follow->getFollowersCount($this->session->userId);
-
+        $recommendedUsers = $this->users->userList($this->session->userId);
         $following = $this->follow->getFollowingCount($this->session->userId);
-
         $followingList = $this->follow->getFollowing($this->session->userId);
 
-		return view('pages/friends', ['title' => $title, 'followers' => $followers, 'following' => $following, 'followingList' => $followingList]);
+		return view('pages/friends', [
+            'title' => $title, 
+            'followers' => $followers, 
+            'following' => $following, 
+            'followingList' => $followingList,
+            'recommendedUsers' => $recommendedUsers
+        ]);
     }
 
     function admin(){
@@ -136,7 +152,7 @@ class Home extends CI_Controller{
         $data['body'] = $this->input->post('body');
         $data['user'] = $this->session->userId;
         $data['parent'] = $this->input->post('parent');
-
+        $data['anonym'] = $this->input->post('anonym');
         $options = array(
             'cluster' => 'ap1',
             'useTLS' => true

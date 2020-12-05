@@ -50,10 +50,15 @@
 								</div>
 								<div class="form-group">
 									<div class="d-flex justify-content-between align-items-center">
-										<div class="attachment d-flex align-items-center">
-											<a href="#"><i class="gg-image"></i></a>
-											<a href="#"><i class="gg-film"></i></a>
-											<a href="#"><i class="gg-browser"></i></a>
+										<div>
+											<div class="attachment d-flex align-items-center">
+												<a href="#"><i class="gg-image"></i></a>
+												<a href="#"><i class="gg-film"></i></a>
+												<a href="#"><i class="gg-browser"></i></a>
+											</div>
+											<div class="anonym-check ml-4 mt-2">
+												<input type="checkbox" class="form-check-input input-anonym" name="anonym"> Anonymous
+											</div>
 										</div>
 										<div class="button-placement">
 											<a class="btn btn-primary btn-randomize btn-submit-post">
