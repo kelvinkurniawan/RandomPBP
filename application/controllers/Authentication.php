@@ -37,6 +37,52 @@ class Authentication extends CI_Controller {
 		redirect(base_url('/session/createaccount'));
 	}
 
+	public function perform_dummy(){
+
+		$this->load->model('users');
+		
+		for($i = 0; $i <= 20; $i++){
+
+			$names = array(
+				'Christopher',
+				'Ryan',
+				'Ethan',
+				'John',
+				'Zoey',
+				'Sarah',
+				'Michelle',
+				'Samantha',
+			);
+			
+			$surnames = array(
+				'Walker',
+				'Thompson',
+				'Anderson',
+				'Johnson',
+				'Tremblay',
+				'Peltier',
+				'Cunningham',
+				'Simpson',
+				'Mercado',
+				'Sellers'
+			);
+
+			$random_name = $names[mt_rand(0, sizeof($names) - 1)];
+			
+			$random_surname = $surnames[mt_rand(0, sizeof($surnames) - 1)];
+
+			$data['name'] = $random_name . ' ' . $random_surname;
+			$data['email'] = $random_name .'.'. $random_surname . '@mail.com';
+			$data['username'] = $random_surname .'.'. $random_name;
+			$data['password'] = password_hash('12345678', PASSWORD_DEFAULT);
+			$data['bio'] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur semper orci magna, et tempus sapien facilisis convallis. Morbi lacinia commodo sagittis";
+			$data['role'] = 0;
+
+			$this->users->insert($data);
+		}
+
+	}
+
 	public function perform_login(){
 
 		isLogin();

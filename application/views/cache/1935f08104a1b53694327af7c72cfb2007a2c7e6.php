@@ -78,45 +78,21 @@
                     </a>
                     <div class="trending-group bg-randomize-3 collapse" id="people">
                         <div class="friends-group">
-                            <div class="card widget center p-3 ">
-                                <div class="row align-items-center">
-                                    <div class="col-2">
-                                        <img class="rounded-circle" src="<?php echo e(get_images_path(getUserDetail('photo'))); ?>" width="100%">
-                                    </div>
-                                    <div class="col p-0">
-                                        <strong>Kelvin Kurniawan</strong>
-                                    </div>
-                                    <div class="col-2 no-padding">
-                                        <i class="gg-add"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card widget center p-3">
-                                <div class="row align-items-center">
-                                    <div class="col-2">
-                                        <img class="rounded-circle" src="<?php echo e(get_images_path(getUserDetail('photo'))); ?>" width="100%">
-                                    </div>
-                                    <div class="col p-0">
-                                        <strong>Kelvin Kurniawan</strong>
-                                    </div>
-                                    <div class="col-2 no-padding">
-                                        <i class="gg-add"></i>
+                            <?php $__currentLoopData = $recommendedUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <div class="card widget center p-3 ">
+                                    <div class="row align-items-center">
+                                        <div class="col-2">
+                                            <img class="rounded-circle" src="<?php echo e(get_images_path($row->photo)); ?>" width="100%">
+                                        </div>
+                                        <div class="col p-0">
+                                            <strong><?php echo e($row->name); ?></strong>
+                                        </div>
+                                        <div class="col-2 no-padding">
+                                            <i class="gg-add"></i>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card widget center p-3">
-                                <div class="row align-items-center">
-                                    <div class="col-2">
-                                        <img class="rounded-circle" src="<?php echo e(get_images_path(getUserDetail('photo'))); ?>" width="100%">
-                                    </div>
-                                    <div class="col p-0">
-                                        <strong>Kelvin Kurniawan</strong>
-                                    </div>
-                                    <div class="col-2 no-padding">
-                                        <i class="gg-add"></i>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                     </div>
                 </div>
@@ -199,45 +175,21 @@
                     </div>
                     <div class="trending-group">
                         <div class="friends-group">
-                            <div class="card widget center p-3 mt-3">
-                                <div class="row align-items-center">
-                                    <div class="col-md-4">
-                                        <img class="rounded-circle" src="http://localhost/pbp/randomApp/static/images/photo.png" width="100%">
-                                    </div>
-                                    <div class="col-md-6 p-0 small">
-                                        <strong>Kelvin Kurniawan</strong>
-                                    </div>
-                                    <div class="col-md-2 no-padding">
-                                        <i class="gg-add"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card widget center p-3 mt-3">
-                                <div class="row align-items-center">
-                                    <div class="col-md-4">
-                                        <img class="rounded-circle" src="http://localhost/pbp/randomApp/static/images/photo.png" width="100%">
-                                    </div>
-                                    <div class="col-md-6 p-0 small">
-                                        <strong>Kelvin Kurniawan</strong>
-                                    </div>
-                                    <div class="col-md-2 no-padding">
-                                        <i class="gg-add"></i>
+                            <?php $__currentLoopData = $recommendedUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <div class="card widget center p-3 mt-3">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-4">
+                                            <img class="rounded-circle" src="<?php echo e(get_images_path($row->photo)); ?>" width="100%">
+                                        </div>
+                                        <div class="col-md-6 p-0 small">
+                                            <strong><?php echo e($row->name); ?></strong>
+                                        </div>
+                                        <div class="col-md-2 no-padding">
+                                            <i class="gg-add"></i>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card widget center p-3 mt-3">
-                                <div class="row align-items-center">
-                                    <div class="col-md-4">
-                                        <img class="rounded-circle" src="http://localhost/pbp/randomApp/static/images/photo.png" width="100%">
-                                    </div>
-                                    <div class="col-md-6 p-0 small">
-                                        <strong>Kelvin Kurniawan</strong>
-                                    </div>
-                                    <div class="col-md-2 no-padding">
-                                        <i class="gg-add"></i>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                     </div>
                 </div>

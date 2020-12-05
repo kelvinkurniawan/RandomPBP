@@ -66,10 +66,12 @@ class Home extends CI_Controller{
 
         $this->load->model("posts");
         $this->load->model("follow");
+        $this->load->model("users");
 
         $title = 'Profile';
         $myPosts = $this->posts->getPostsByUserId($this->session->userId, true);
         $myPostsCount = $this->posts->getPostsByUserIdCount($this->session->userId, true);
+        $recommendedUsers = $this->users->userList($this->session->userId);
         $following = $this->follow->getFollowingCount($this->session->userId);
         $followers = $this->follow->getFollowersCount($this->session->userId);
 
@@ -78,8 +80,9 @@ class Home extends CI_Controller{
             'myPosts' => $myPosts, 
             'myPostsCount' => $myPostsCount,
             'following' => $following,
-            'followers' => $followers
-            ]);
+            'followers' => $followers,
+            'recommendedUsers' => $recommendedUsers
+        ]);
     }
 
     function friends(){

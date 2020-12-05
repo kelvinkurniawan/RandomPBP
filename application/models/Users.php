@@ -10,10 +10,27 @@ class Users extends CI_Model{
         return $this->db->get($this->table)->result();
     }
 
-    public function userList($id){
-        $this->db->where('id !=', $id);
+    public function userList($userId, $limit = 5){
+
+        $this->load->model('follow');       
+        
+        
+        $following = $this->follow->getFollowing($userId);
+        $userlist = array();
+
+        $this->db->order_by('id', 'DESC');
+
+        if(count($following) > 0){
+            foreach ($following as $row) {
+                array_push($userlist,$row->followId);
+            }
+            $this->db->or_where_not_in('id', $userlist);
+        }
+
+        $this->db->where('id !=', $userId);
+        $this->db->limit($limit);
         return $this->db->get($this->table)->result();
-    }
+    } 
 
     public function getById($id){
         $this->db->where('id', $id);
