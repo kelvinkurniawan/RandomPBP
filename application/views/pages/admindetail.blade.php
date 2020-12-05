@@ -5,7 +5,47 @@
     <a href="" class="text-danger">Log Out</a>
 </nav>
 <div class="row no-gutters">
-    <div class="col-md-3 p-3 bg-randomize-2 card widget">
+    <div class="col-md-3 bg-randomize-2 card widget left d-sm-block d-md-none d-lg-none d-xl-none">
+        <div class="container">
+            <div class="row mt-3">
+                <div class="col-3 pr-0">
+                    <img class="rounded-circle" src="{{get_images_path('default.png')}}" width="100%">
+                </div>
+                <div class="col">
+                    <div class="font-weight-bold text-light h4 mt-4">{{getUserDetail("name")}}</div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="friends mb-1">
+                        <div class="row">
+                            <div class="col-4 ml-2 d-flex justify-content-center align-items-center">
+                                <i class="gg-external"></i>
+                            </div>
+                            <div class="col text-left">
+                                <div class="small">Total Post</div>
+                                <div class="h4 font-weight-bold">200</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="friends mb-1">
+                        <div class="row">
+                            <div class="col-4 ml-2 d-flex justify-content-center align-items-center">
+                                <i class="gg-profile"></i>
+                            </div>
+                            <div class="col text-left">
+                                <div class="small">Total User</div>
+                                <div class="h4 font-weight-bold">200</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 p-3 bg-randomize-2 card widget d-none d-sm-none d-md-block">
         <div class="container text-center sticky-top float-component">
             <div class="mt-3">
                 <img class="rounded-circle" src="{{get_images_path('default.png')}}" width="50%">
