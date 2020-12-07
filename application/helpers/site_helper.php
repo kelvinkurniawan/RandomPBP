@@ -153,4 +153,28 @@ if(!function_exists('getUserById')){
         return $user[$row];
     }
 }
+
+if(!function_exists('getPostById')){
+    function getPostById($id, $row){
+        $ci =& get_instance();
+
+        $ci->load->model("posts");
+
+        $post = $ci->posts->getById($id); 
+
+        return $post[$row];
+    }
+}
+
+if(!function_exists('getHashtagCount')){
+    function getHashtagCount($id){
+        $ci =& get_instance();
+
+        $ci->load->model("hashtag");
+
+        $hashtag = $ci->posts->getById($id); 
+
+        return $post[$row];
+    }
+}
 ?>

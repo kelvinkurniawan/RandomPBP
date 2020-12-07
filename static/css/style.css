@@ -50,7 +50,8 @@
 	box-shadow: 0px 0.5px 3px rgb(167, 167, 167);
 }
 
-.navbar .nav-link {
+.navbar .nav-link,
+.profile-nav {
 	color: #000;
 }
 

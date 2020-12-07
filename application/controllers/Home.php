@@ -23,8 +23,10 @@ class Home extends CI_Controller{
         foreach ($posts as $row) {
             $postAuthorParent = '';
 
-            if($row->parent != 0){
+            if($row->parent != 0 && getPostById($row->parent, "anonym") == 0){
                 $postAuthorParent = getPostAuthor($row->parent);
+            }else if($row->parent != 0 && getPostById($row->parent, "anonym") ==1){
+                $postAuthorParent = "Anonym";
             }else{
                 $postAuthorParent= '';
             }

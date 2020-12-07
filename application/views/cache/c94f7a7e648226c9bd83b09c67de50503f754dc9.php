@@ -80,7 +80,7 @@
 				<div class="card-body">
 					<div class="d-flex align-items-center justify-content-between mb-4">
 						<h5 class="card-title">WHO TO FOLLOW</h5>
-						<a class="widget-link" href="#">ALL</a>
+						<a class="widget-link" href="<?php echo e(base_url('/friends')); ?>">ALL</a>
 					</div>
 					<div class="friends-group">
 						<?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

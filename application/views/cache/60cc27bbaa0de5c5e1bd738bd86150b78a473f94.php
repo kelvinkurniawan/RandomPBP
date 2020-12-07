@@ -47,17 +47,15 @@
 			</div>
 		</div>
 		<div class="col-md-3 d-none d-sm-none d-md-block">
-			<div class="col d-flex justify-content-between align-items-center">
+			<div class="row d-flex justify-content-between align-items-center">
 				<a href="#" class="nav-link">
 					<i class="gg-notifications"></i>
 				</a>
-				<div class="profile-nav d-flex justify-content-between align-items-center">
-					<a href="<?php echo e(base_url('/home/profile/')); ?>">
-						<?php echo e(getUserDetail("name")); ?>
+				<a href="<?php echo e(base_url('/profile/')); ?>" class="profile-nav d-flex justify-content-between align-items-center">
+					<?php echo e(getUserDetail("name")); ?>
 
-						<i class="ml-3 gg-user"></i>
-					</a>
-				</div>
+					<i class="ml-3 gg-user"></i>
+				</a>
 			</div>
 		</div>
 	</div>

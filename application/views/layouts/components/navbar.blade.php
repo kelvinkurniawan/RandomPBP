@@ -47,16 +47,14 @@
 			</div>
 		</div>
 		<div class="col-md-3 d-none d-sm-none d-md-block">
-			<div class="col d-flex justify-content-between align-items-center">
+			<div class="row d-flex justify-content-between align-items-center">
 				<a href="#" class="nav-link">
 					<i class="gg-notifications"></i>
 				</a>
-				<div class="profile-nav d-flex justify-content-between align-items-center">
-					<a href="{{base_url('/home/profile/')}}">
-						{{getUserDetail("name")}}
-						<i class="ml-3 gg-user"></i>
-					</a>
-				</div>
+				<a href="{{base_url('/profile/')}}" class="profile-nav d-flex justify-content-between align-items-center">
+					{{getUserDetail("name")}}
+					<i class="ml-3 gg-user"></i>
+				</a>
 			</div>
 		</div>
 	</div>
