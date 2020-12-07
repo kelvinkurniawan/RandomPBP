@@ -67,13 +67,13 @@ function getParentByPath() {
 	}
 }
 
-function show_status() {
+function show_status(limit = 10) {
 	parent = 0;
 	if (getParentByPath != "") {
 		parent = getParentByPath();
 	}
 	$.ajax({
-		url: url + "home/getStatus/" + parent,
+		url: url + "home/getStatus/" + parent + "?limit=" + limit,
 		type: "GET",
 		async: true,
 		dataType: "json",
@@ -145,8 +145,6 @@ function show_status() {
 					data[i].postMeta.postReplies +
 					" <div class='d-none d-sm-none d-md-block ml-1'> Replies</div></a>";
 				html +=
-					'<a href="#"><i class="gg-attribution" style="margin-right: 5px"></i> 10 <div class="d-none d-sm-none d-md-block ml-1">Retext</div></a>';
-				html +=
 					'<a href="#"><i class="gg-share" style="margin-right: 15px"></i> 10 <div class="d-none d-sm-none d-md-block ml-1"> Shares</div></a>';
 				html += "</div></div>";
 
@@ -213,5 +211,19 @@ $(document).ready(function () {
 				$(".input-body").val("");
 			},
 		});
+	});
+
+	var stickyTop = $(".main-content-post").offset().top;
+
+	var limit = 10;
+	var offset = 900;
+
+	$(window).scroll(function () {
+		var windowTop = $(window).scrollTop();
+		if (windowTop > offset) {
+			limit += 1;
+			offset += 200;
+			show_status(limit);
+		}
 	});
 });
