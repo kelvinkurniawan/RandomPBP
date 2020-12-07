@@ -69,6 +69,7 @@ class Home extends CI_Controller{
         $this->load->model('posts');
         $this->load->model('users');
         $this->load->model('hashtag');
+        $this->load->model('likes');
 
         $title = 'Timeline';
         $posts = $this->posts->getAll();
@@ -202,12 +203,20 @@ class Home extends CI_Controller{
 
     function read($postId){
         $this->load->model('posts');
+        $this->load->model('users');
+        $this->load->model('hashtag');
 
         $title = 'Timeline';
-        $post = $this->posts->getById($postId);
-        $replies = $this->posts->getReplies($postId);
+        $posts = $this->posts->getAll();
+        $users = $this->users->userList($this->session->userId);
+        $popular = $this->hashtag->getPopular();
         
-		return view('pages/single', ['title' => $title, 'post' => $post, 'replies' => $replies]);
+		return view('pages/home', [
+            'title' => $title, 
+            'posts' => $posts, 
+            'users' => $users,
+            'popular' => $popular
+            ]);
     }
 
     function performLikePost($postId){
@@ -302,6 +311,21 @@ class Home extends CI_Controller{
 
         $result['message'] = 'success';
         $pusher->trigger('status', 'insert', $result);
+    }
+
+    function getPostLikeById($id) {
+        $this->load->model('likes');
+
+        $likes = $this->likes->getByPost($id);
+        $result = array();
+        
+        foreach ($likes as $row) {
+            $user['name'] = getUserById($row->user, 'name');
+            $user['photo'] = get_images_path(getUserById($row->user, 'photo'));
+            array_push($result, $user);
+        }
+
+        echo json_encode($result);
     }
 
 }

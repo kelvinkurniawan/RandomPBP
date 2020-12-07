@@ -1,4 +1,4 @@
-@extends('layouts.master') 
+@extends('layouts.master')
 @section('content')
 @include('layouts.components.navbar')
 <div class="d-flex align-items-center justify-content-center h-100">
@@ -13,10 +13,10 @@
 					</div>
 					<div class="trending-group">
 						@foreach ($popular as $row)
-							<div class="trending">
-								<div class="list">{{$row->text}}</div>
-								<div class="sub-list">{{$row->count}} randoms</div>
-							</div>
+						<div class="trending">
+							<div class="list">{{$row->text}}</div>
+							<div class="sub-list">{{$row->count}} randoms</div>
+						</div>
 						@endforeach
 					</div>
 				</div>
@@ -105,25 +105,44 @@
 					</div>
 					<div class="friends-group">
 						@foreach ($users as $user)
-							<div class="friends">
-								<div class="row align-items-center">
-									<div class="col-md-4">
-										<?php get_images($user->photo) ?>
-									</div>
-									<div class="col-md-8">
-										<strong>{{$user->name}}</strong>
-										<?php if(isUserFollowed($user->id)) :?>
-											<a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?=$user->id?>-follow" style="display: none" onclick="follow(<?=$user->id?>)">+ Follow</a>
-											<a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?=$user->id?>-unfollow"onclick="unfollow(<?=$user->id?>)">- Unfollow</a>
-										<?php else :?>
-											<a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?=$user->id?>-follow" onclick="follow(<?=$user->id?>)">+ Follow</a>
-											<a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?=$user->id?>-unfollow" style="display: none" onclick="unfollow(<?=$user->id?>)">- Unfollow</a>
-										<?php endif;?>
-									</div>
+						<div class="friends">
+							<div class="row align-items-center">
+								<div class="col-md-4">
+									<?php get_images($user->photo) ?>
+								</div>
+								<div class="col-md-8">
+									<strong>{{$user->name}}</strong>
+									<?php if (isUserFollowed($user->id)) : ?>
+										<a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?= $user->id ?>-follow" style="display: none" onclick="follow(<?= $user->id ?>)">+ Follow</a>
+										<a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?= $user->id ?>-unfollow" onclick="unfollow(<?= $user->id ?>)">- Unfollow</a>
+									<?php else : ?>
+										<a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?= $user->id ?>-follow" onclick="follow(<?= $user->id ?>)">+ Follow</a>
+										<a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?= $user->id ?>-unfollow" style="display: none" onclick="unfollow(<?= $user->id ?>)">- Unfollow</a>
+									<?php endif; ?>
 								</div>
 							</div>
+						</div>
 						@endforeach
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="likeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header align-items-center">
+				<div class="modal-header-custom">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true" class="text-primary">&times;</span>
+					</button>
+					<h5 class="modal-title font-weight-bold ml-3" id="exampleModalLabel">Likes</h5>
+				</div>
+			</div>
+			<div class="modal-body pl-4 pr-4">
+				<div class="likepost">
+					
 				</div>
 			</div>
 		</div>
