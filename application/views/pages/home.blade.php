@@ -12,26 +12,12 @@
 						<a class="widget-link" href="#">ALL</a>
 					</div>
 					<div class="trending-group">
-						<div class="trending">
-							<div class="list">#Tinggal Kenangan</div>
-							<div class="sub-list">By anonymous</div>
-						</div>
-						<div class="trending">
-							<div class="list">#Tinggal Kenangan</div>
-							<div class="sub-list">By anonymous</div>
-						</div>
-						<div class="trending">
-							<div class="list">#Tinggal Kenangan</div>
-							<div class="sub-list">By anonymous</div>
-						</div>
-						<div class="trending">
-							<div class="list">#Tinggal Kenangan</div>
-							<div class="sub-list">By anonymous</div>
-						</div>
-						<div class="trending">
-							<div class="list">#Tinggal Kenangan</div>
-							<div class="sub-list">By anonymous</div>
-						</div>
+						@foreach ($popular as $row)
+							<div class="trending">
+								<div class="list">{{$row->text}}</div>
+								<div class="sub-list">{{$row->count}} randoms</div>
+							</div>
+						@endforeach
 					</div>
 				</div>
 			</div>
@@ -64,6 +50,7 @@
 											<a class="btn btn-primary btn-randomize btn-submit-post">
 												Random
 											</a>
+											<button type="submit">Sumbit</button>
 										</div>
 									</div>
 								</div>
@@ -113,7 +100,7 @@
 			<div class="card widget bg-randomize-3 sticky-top float-component" style="width: 100%; top: 3.6em;">
 				<div class="card-body">
 					<div class="d-flex align-items-center justify-content-between mb-4">
-						<h5 class="card-title">WHO TO FOLLOW</h5>
+						<h5 class="card-title text-dark">WHO TO FOLLOW</h5>
 						<a class="widget-link" href="{{base_url('/friends')}}">ALL</a>
 					</div>
 					<div class="friends-group">

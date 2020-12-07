@@ -12,26 +12,12 @@
 						<a class="widget-link" href="#">ALL</a>
 					</div>
 					<div class="trending-group">
-						<div class="trending">
-							<div class="list">#Tinggal Kenangan</div>
-							<div class="sub-list">By anonymous</div>
-						</div>
-						<div class="trending">
-							<div class="list">#Tinggal Kenangan</div>
-							<div class="sub-list">By anonymous</div>
-						</div>
-						<div class="trending">
-							<div class="list">#Tinggal Kenangan</div>
-							<div class="sub-list">By anonymous</div>
-						</div>
-						<div class="trending">
-							<div class="list">#Tinggal Kenangan</div>
-							<div class="sub-list">By anonymous</div>
-						</div>
-						<div class="trending">
-							<div class="list">#Tinggal Kenangan</div>
-							<div class="sub-list">By anonymous</div>
-						</div>
+						<?php $__currentLoopData = $popular; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+							<div class="trending">
+								<div class="list"><?php echo e($row->text); ?></div>
+								<div class="sub-list"><?php echo e($row->count); ?> randoms</div>
+							</div>
+						<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 					</div>
 				</div>
 			</div>
@@ -64,6 +50,7 @@
 											<a class="btn btn-primary btn-randomize btn-submit-post">
 												Random
 											</a>
+											<button type="submit">Sumbit</button>
 										</div>
 									</div>
 								</div>
@@ -113,13 +100,8 @@
 			<div class="card widget bg-randomize-3 sticky-top float-component" style="width: 100%; top: 3.6em;">
 				<div class="card-body">
 					<div class="d-flex align-items-center justify-content-between mb-4">
-<<<<<<< HEAD
-						<h5 class="card-title">WHO TO FOLLOW</h5>
-						<a class="widget-link" href="<?php echo e(base_url('/friends')); ?>">ALL</a>
-=======
 						<h5 class="card-title text-dark">WHO TO FOLLOW</h5>
-						<a class="widget-link" href="#">ALL</a>
->>>>>>> 6f03d5596aa47ec4b0e4a6336b6e077b9539f51b
+						<a class="widget-link" href="<?php echo e(base_url('/friends')); ?>">ALL</a>
 					</div>
 					<div class="friends-group">
 						<?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

@@ -66,12 +66,19 @@ class Home extends CI_Controller{
 
         $this->load->model('posts');
         $this->load->model('users');
+        $this->load->model('hashtag');
 
         $title = 'Timeline';
         $posts = $this->posts->getAll();
         $users = $this->users->userList($this->session->userId);
+        $popular = $this->hashtag->getPopular();
         
-		return view('pages/home', ['title' => $title, 'posts' => $posts, 'users' => $users]);
+		return view('pages/home', [
+            'title' => $title, 
+            'posts' => $posts, 
+            'users' => $users,
+            'popular' => $popular
+            ]);
     }
 
     function profile(){
@@ -150,11 +157,31 @@ class Home extends CI_Controller{
     function performAddPost(){
         
         $this->load->model('posts');
+        $this->load->model('hashtag');
 
         $data['body'] = $this->input->post('body');
         $data['user'] = $this->session->userId;
         $data['parent'] = $this->input->post('parent');
         $data['anonym'] = $this->input->post('anonym');
+
+        $this->posts->save($data);
+
+        $hashtag = getHashtagWidget($this->input->post('body'));
+
+        for($i = 0; $i < count($hashtag); $i++){
+            
+            $data = $hashtag[$i];
+            
+            if($this->hashtag->checkHashtag($data) > 0){
+                $this->hashtag->update($data);
+            }else{
+                $tempHash['text'] = $hashtag[$i];
+                $tempHash['count'] = 1;
+                $this->hashtag->insert($tempHash);
+            }
+
+        }
+
         $options = array(
             'cluster' => 'ap1',
             'useTLS' => true
@@ -166,8 +193,6 @@ class Home extends CI_Controller{
             '1115050',
             $options
         );
-
-        $this->posts->save($data);
  
         $result['message'] = 'success';
         $pusher->trigger('status', 'insert', $result);

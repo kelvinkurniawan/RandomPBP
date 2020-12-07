@@ -196,9 +196,9 @@ $(document).ready(function () {
 	// Event
 
 	$(".btn-submit-post").on("click", function () {
-		var body = $(".input-body").val();
+		var input_body = $(".input-body").val();
 		var parent = $(".input-parent").val();
-		var anonym;
+		var anonym = 0;
 		if ($(".input-anonym:checked").length > 0) {
 			anonym = 1;
 		} else {
@@ -207,7 +207,7 @@ $(document).ready(function () {
 		$.ajax({
 			url: url + "home/performAddPost",
 			method: "POST",
-			data: { body: body, parent: parent, anonym: anonym },
+			data: { body: input_body, parent: parent, anonym: anonym },
 			success: function () {
 				show_status();
 				$(".input-body").val("");

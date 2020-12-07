@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2020 at 05:59 PM
+-- Generation Time: Dec 07, 2020 at 10:06 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -56,7 +56,75 @@ INSERT INTO `follow` (`id`, `userId`, `followId`) VALUES
 (25, 3, 48),
 (26, 3, 47),
 (27, 3, 46),
-(28, 3, 45);
+(28, 3, 45),
+(29, 4, 48),
+(30, 4, 47),
+(31, 4, 46),
+(32, 4, 45),
+(33, 4, 44),
+(34, 4, 43),
+(35, 4, 42),
+(36, 4, 41),
+(37, 4, 40),
+(38, 4, 39),
+(39, 4, 38),
+(40, 4, 37),
+(41, 4, 36),
+(42, 4, 35),
+(43, 4, 34),
+(44, 4, 33),
+(45, 4, 32),
+(46, 4, 31),
+(47, 4, 30),
+(48, 4, 29),
+(49, 4, 28),
+(50, 4, 27),
+(51, 4, 26),
+(52, 4, 25),
+(53, 4, 24),
+(54, 4, 23),
+(55, 4, 22),
+(56, 4, 21),
+(57, 4, 20),
+(58, 4, 19),
+(59, 4, 18),
+(60, 4, 17),
+(61, 4, 16),
+(62, 4, 15),
+(63, 4, 14),
+(64, 4, 13),
+(65, 4, 12),
+(66, 4, 11),
+(67, 4, 10),
+(68, 4, 9),
+(69, 4, 8),
+(70, 4, 7),
+(71, 4, 6),
+(72, 4, 5),
+(73, 4, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hashtag`
+--
+
+CREATE TABLE `hashtag` (
+  `id` int(11) NOT NULL,
+  `text` text NOT NULL,
+  `count` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hashtag`
+--
+
+INSERT INTO `hashtag` (`id`, `text`, `count`) VALUES
+(1, '#hashtag', 1),
+(2, '#trending', 1),
+(3, '#haloGan', 1),
+(5, 'akukamudandia', 1),
+(6, 'haiiiiisyg', 3);
 
 -- --------------------------------------------------------
 
@@ -82,7 +150,12 @@ INSERT INTO `likes` (`id`, `user`, `post`) VALUES
 (35, 3, 35),
 (36, 5, 36),
 (37, 3, 36),
-(39, 3, 41);
+(39, 3, 41),
+(40, 3, 56),
+(41, 4, 64),
+(42, 4, 63),
+(43, 4, 62),
+(44, 4, 61);
 
 -- --------------------------------------------------------
 
@@ -133,7 +206,17 @@ INSERT INTO `posts` (`id`, `body`, `timestamp`, `user`, `parent`, `anonym`) VALU
 (53, 'testtt', '2020-12-05 16:50:06', 3, 0, 0),
 (54, '123', '2020-12-05 16:53:59', 3, 0, 0),
 (55, 'heheheh', '2020-12-05 16:54:24', 3, 0, 0),
-(56, 'hahahah', '2020-12-05 16:54:29', 3, 0, 1);
+(56, 'hahahah', '2020-12-05 16:54:29', 3, 0, 1),
+(57, 'ini siapa woi', '2020-12-05 17:12:08', 3, 56, 0),
+(58, 'we', '2020-12-07 08:20:20', 3, 0, 0),
+(59, '#haiiiiisyg', '2020-12-07 08:33:14', 3, 0, 0),
+(60, '#haiiiiisyg', '2020-12-07 08:34:17', 3, 0, 0),
+(61, '#haiiiiisyg', '2020-12-07 08:40:36', 4, 0, 0),
+(62, '#haiiiiisyg', '2020-12-07 08:41:04', 4, 0, 0),
+(63, '#haiiiiisyg', '2020-12-07 08:41:41', 3, 0, 0),
+(64, '#haiiiiisyg', '2020-12-07 08:42:26', 3, 0, 0),
+(65, '#haiiiiisyg', '2020-12-07 08:42:47', 4, 0, 0),
+(66, 'haloo juga', '2020-12-07 08:44:42', 4, 63, 0);
 
 -- --------------------------------------------------------
 
@@ -222,6 +305,12 @@ ALTER TABLE `follow`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `hashtag`
+--
+ALTER TABLE `hashtag`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `likes`
 --
 ALTER TABLE `likes`
@@ -253,19 +342,25 @@ ALTER TABLE `attachments`
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+
+--
+-- AUTO_INCREMENT for table `hashtag`
+--
+ALTER TABLE `hashtag`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `users`
