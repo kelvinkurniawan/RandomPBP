@@ -70,6 +70,36 @@ function getParentByPath() {
 function sharePost(id) {
 	$(".share-container.post-" + id + " .share-box").toggleClass("show");
 }
+function getPostLikes(postId) {
+	$.ajax({
+		url: url + "home/getPostLikeById/" + postId,
+		method: "GET",
+		async: true,
+		dataType: "json",
+		success: function (data) {
+			var html = "";
+
+			for (var i = 0; i < data.length; i++) {
+				html += '<div class="row">';
+				html += '<div class="col-2">';
+				html +=
+					'<img class="rounded-circle" src="' +
+					data[i].photo +
+					'" width="100%">';
+				html += "</div>";
+				html +=
+					'<div class="font-weight-bold d-flex justify-content-center align-items-center">' +
+					data[i].name +
+					"</div>";
+				html += "</div>";
+			}
+			$(".likepost").html(html);
+			$("#likeModal").modal("toggle");
+
+			console.log(data);
+		},
+	});
+}
 
 function show_status(limit = 10) {
 	parent = 0;
