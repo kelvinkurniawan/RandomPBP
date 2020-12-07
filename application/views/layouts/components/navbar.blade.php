@@ -42,7 +42,7 @@
 					<a href="#" class="nav-link">
 						<i class="gg-search"></i>
 					</a>
-					<a href="#" class="btn btn-primary btn-randomize">Create Stories</a>
+					<a data-toggle="collapse" href="#postBox" role="button" aria-expanded="false" aria-controls="postBox" class="btn btn-primary btn-randomize">Create Stories</a>
 				</div>
 			</div>
 		</div>

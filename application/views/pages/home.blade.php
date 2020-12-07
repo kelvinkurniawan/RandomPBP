@@ -38,7 +38,41 @@
 		</div>
 		<!-- Main Content -->
 		<div class="col-md-6 main-content w-100">
-			<div class="card widget bg-randomize-3 center mt-4">
+			<div class="card widget bg-randomize-3 center mt-4 collapse" id="postBox">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-2 pt-2 d-none d-sm-block"><?php get_images(getUserDetail('photo')) ?></div>
+						<div class="col">
+							<form action="<?= base_url('/home/performAddPost/home') ?>" method="POST">
+								<input type="hidden" name="parent" class="input-parent" value="0">
+								<div class="form-group">
+									<textarea name="body" id="body" cols="30" rows="3" class="form-control textarea input-body" placeholder="Whats happening ?"></textarea>
+								</div>
+								<div class="form-group">
+									<div class="d-flex justify-content-between align-items-center">
+										<div>
+											<div class="attachment d-flex align-items-center">
+												<a href="#"><i class="gg-image"></i></a>
+												<a href="#"><i class="gg-film"></i></a>
+												<a href="#"><i class="gg-browser"></i></a>
+											</div>
+											<div class="anonym-check ml-4 mt-2">
+												<input type="checkbox" class="form-check-input input-anonym" name="anonym"> Anonymous
+											</div>
+										</div>
+										<div class="button-placement">
+											<a class="btn btn-primary btn-randomize btn-submit-post">
+												Random
+											</a>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card widget bg-randomize-3 center mt-4 d-sm-block d-md-none d-lg-none d-xl-none">
 				<div class="card-body">
 					<div class="row">
 						<div class="col-2 pt-2 d-none d-sm-block"><?php get_images(getUserDetail('photo')) ?></div>
@@ -76,7 +110,7 @@
 		</div>
 		<!-- Friends -->
 		<div class="col-md-3 d-none d-sm-none d-md-block">
-			<div class="card widget right bg-randomize-3" style="width: 100%">
+			<div class="card widget bg-randomize-3 sticky-top float-component" style="width: 100%; top: 3.6em;">
 				<div class="card-body">
 					<div class="d-flex align-items-center justify-content-between mb-4">
 						<h5 class="card-title">WHO TO FOLLOW</h5>

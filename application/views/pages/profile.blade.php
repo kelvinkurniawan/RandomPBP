@@ -3,7 +3,30 @@
 @section('content')
 @include('layouts.components.navbar')
 <div class="row no-gutters">
-    <div class="col-md-3 bg-randomize-2 card widget left">
+    <div class="col-md-3 bg-randomize-2 card widget left d-sm-block d-md-none d-lg-none d-xl-none">
+        <div class="container">
+            <div class="row mt-3">
+                <div class="col-3 pr-0">
+                    <img class="rounded-circle" src="{{get_images_path(getUserDetail('photo'))}}" width="100%">
+                </div>
+                <div class="col">
+                    <div class="font-weight-bold text-light h4">{{getUserDetail("name")}}</div>
+                    <div class="font-weight-light text-light small mt-1 limit-text">
+                        {{getUserDetail("bio")}}
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <button class="btn btn-randomize btn-ghost w-100" data-toggle="modal" data-target="#exampleModal">Edit Profile</Button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-randomize btn-out w-100">Log Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 bg-randomize-2 card widget left d-none d-sm-none d-md-block">
         <div class="container text-center sticky-top float-component">
             <div class="mt-3">
                 <img class="rounded-circle" src="{{get_images_path(getUserDetail('photo'))}}" width="50%">
@@ -78,19 +101,19 @@
                     <div class="trending-group bg-randomize-3 collapse" id="people">
                         <div class="friends-group">
                             @foreach ($recommendedUsers as $row)
-                                <div class="card widget center p-3 ">
-                                    <div class="row align-items-center">
-                                        <div class="col-2">
-                                            <img class="rounded-circle" src="{{get_images_path($row->photo)}}" width="100%">
-                                        </div>
-                                        <div class="col p-0">
-                                            <strong>{{$row->name}}</strong>
-                                        </div>
-                                        <div class="col-2 no-padding">
-                                            <i class="gg-add"></i>
-                                        </div>
+                            <div class="card widget center p-3 ">
+                                <div class="row align-items-center">
+                                    <div class="col-2">
+                                        <img class="rounded-circle" src="{{get_images_path($row->photo)}}" width="100%">
+                                    </div>
+                                    <div class="col p-0">
+                                        <strong>{{$row->name}}</strong>
+                                    </div>
+                                    <div class="col-2 no-padding">
+                                        <i class="gg-add"></i>
                                     </div>
                                 </div>
+                            </div>
                             @endforeach
                         </div>
                     </div>
@@ -98,81 +121,78 @@
             </div>
             <div class="mt-5">
                 @foreach ($myPosts as $row)
-                    <div class="bg-randomize-3 card widget center mb-3 w-100">
-                        <div class="card-body">
-                            <div class="post">
-                                <div class="post-single">
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <div class="photo-profile">
-                                                {{get_images(getAuthorPhoto($row->id))}}
+                <div class="bg-randomize-3 card widget center mb-3 w-100">
+                    <div class="card-body">
+                        <div class="post">
+                            <div class="post-single">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="photo-profile">
+                                            {{get_images(getAuthorPhoto($row->id))}}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="post-author">{{getUserDetail("name")}}</div>
+                                        <div class="post-body">
+                                            {{renderPost($row->body)}}
+                                        </div>
+                                        <div class="post-control">
+                                            <div class="d-flex justify-content-between">
+                                                <a href="#"><i class="gg-heart" style="margin-right: 10px;"></i> {{getLikesCount($row->id)}}<span class="ml-1 d-none d-sm-none d-md-block">Likes</span></a>
+                                                <a href="#"><i class="gg-comment" style="margin-right: 10px;"></i> {{getRepliesCount($row->id)}}<span class="ml-1 d-none d-sm-none d-md-block">Replies</span></a>
+                                                <a href="#"><i class="gg-attribution" style="margin-right: 5px;"></i> 10<span class="ml-1 d-none d-sm-none d-md-block">Retext</span></a>
+                                                <a href="#"><i class="gg-share" style="margin-right: 15px;"></i> 10<span class="ml-1 d-none d-sm-none d-md-block">Share</span></a>
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="post-author">{{getUserDetail("name")}}</div>
-                                            <div class="post-body">
-                                                {{renderPost($row->body)}}
-                                            </div>
-                                            <div class="post-control">
-                                                <div class="d-flex justify-content-between">
-                                                    <a href="#"><i class="gg-heart" style="margin-right: 10px;"></i> {{getLikesCount($row->id)}}<span class="ml-1 d-none d-sm-none d-md-block">Likes</span></a>
-                                                    <a href="#"><i class="gg-comment" style="margin-right: 10px;"></i> {{getRepliesCount($row->id)}}<span class="ml-1 d-none d-sm-none d-md-block">Replies</span></a>
-                                                    <a href="#"><i class="gg-attribution"style="margin-right: 5px;"></i> 10<span class="ml-1 d-none d-sm-none d-md-block">Retext</span></a>
-                                                    <a href="#"><i class="gg-share" style="margin-right: 15px;"></i> 10<span class="ml-1 d-none d-sm-none d-md-block">Share</span></a>
-                                                </div>
-                                            </div>
-                                            @if(getRepliesCount($row->id) > 0)
-                                                <div class="show-all mt-3">
-                                                    <a href="#">>> Show all replies <<</a>
-                                                </div>
-                                            @endif 
-                                            @foreach(getHashtagWidget($row->body) as $hashtag)
-                                                <div class="tags mt-3">
-                                                    <a href="#" class="bg-primary px-3 py-1 text-white">{{$hashtag}}</a>
-                                                </div>
-                                            @endforeach
+                                        @if(getRepliesCount($row->id) > 0)
+                                        <div class="show-all mt-3">
+                                            <a href="#">>> Show all replies <<</a> </div> @endif @foreach(getHashtagWidget($row->body) as $hashtag)
+                                                    <div class="tags mt-3">
+                                                        <a href="#" class="bg-primary px-3 py-1 text-white">{{$hashtag}}</a>
+                                                    </div>
+                                                    @endforeach
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-3 bg-randomize-3 card widget right  d-none d-sm-none d-md-block">
-        <div class="p-3">
-            <!-- Top Stories -->
-            <div class="d-none d-sm-none d-md-block">
-                <div class="d-flex">
-                    <div class="card-title">TOP STORIES</div>
+        <div class="col-md-3 bg-randomize-3 card widget right  d-none d-sm-none d-md-block">
+            <div class="p-3">
+                <!-- Top Stories -->
+                <div class="d-none d-sm-none d-md-block">
+                    <div class="d-flex">
+                        <div class="card-title">TOP STORIES</div>
+                    </div>
+                    <div class="link trending-group">
+                        <div class="trending-dark">
+                            <div class="list">#Tinggal Kenangan</div>
+                            <div class="sub-list">By anonymous</div>
+                        </div>
+                        <div class="trending-dark">
+                            <div class="list">#Tinggal Kenangan</div>
+                            <div class="sub-list">By anonymous</div>
+                        </div>
+                        <div class="trending-dark">
+                            <div class="list">#Tinggal Kenangan</div>
+                            <div class="sub-list">By anonymous</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="link trending-group">
-                    <div class="trending-dark">
-                        <div class="list">#Tinggal Kenangan</div>
-                        <div class="sub-list">By anonymous</div>
-                    </div>
-                    <div class="trending-dark">
-                        <div class="list">#Tinggal Kenangan</div>
-                        <div class="sub-list">By anonymous</div>
-                    </div>
-                    <div class="trending-dark">
-                        <div class="list">#Tinggal Kenangan</div>
-                        <div class="sub-list">By anonymous</div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-5">
-                <!-- Follow Recommend  -->
-                <div class=" d-none d-sm-none d-md-block">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>WHO TO FOLLOW</div>
-                        <div class="text-muted">More</div>
-                    </div>
-                    <div class="trending-group">
-                        <div class="friends-group">
-                            @foreach($recommendedUsers as $row)
+                <div class="mt-5">
+                    <!-- Follow Recommend  -->
+                    <div class=" d-none d-sm-none d-md-block">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>WHO TO FOLLOW</div>
+                            <div class="text-muted">More</div>
+                        </div>
+                        <div class="trending-group">
+                            <div class="friends-group">
+                                @foreach($recommendedUsers as $row)
                                 <div class="card widget center p-3 mt-3">
                                     <div class="row align-items-center">
                                         <div class="col-md-4">
@@ -186,62 +206,63 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form action="">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-header align-items-center">
-                    <div class="modal-header-custom">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true" class="text-primary">&times;</span>
-                        </button>
-                        <h5 class="modal-title font-weight-bold ml-3" id="exampleModalLabel">Edit Profile</h5>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form action="">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header align-items-center">
+                        <div class="modal-header-custom">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true" class="text-primary">&times;</span>
+                            </button>
+                            <h5 class="modal-title font-weight-bold ml-3" id="exampleModalLabel">Edit Profile</h5>
+                        </div>
+                        <button type="submit" class="btn btn-primary rounded-pill text-white">Save</button>
                     </div>
-                    <button type="submit" class="btn btn-primary rounded-pill text-white">Save</button>
-                </div>
-                <div class="modal-body pl-4 pr-4">
-                    <div class="form-group">
-                        <label for="image" class="text-muted">Photo</label>
-                        <div id="image" class="row mb-4 align-items-center">
-                            <div class="col-md-4">
-                                <img class="rounded-circle" src="{{get_images_path(getUserDetail('photo'))}}" width="100%">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="btn btn-link"><i class="gg-more-alt"></i></div>
+                    <div class="modal-body pl-4 pr-4">
+                        <div class="form-group">
+                            <label for="image" class="text-muted">Photo</label>
+                            <div id="image" class="row mb-4 align-items-center">
+                                <div class="col-4">
+                                    <img class="rounded-circle" src="{{get_images_path(getUserDetail('photo'))}}" width="100%">
+                                </div>
+                                <div class="col">
+                                    <div class="btn btn-link"><i class="gg-more-alt"></i></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="username" class="text-muted">Username</label>
-                        <input type="username" class="form-control" id="username">
-                    </div>
-                    <div class="form-group">
-                        <label for="birth" class="text-muted">Birthday</label>
-                        <input type="date" class="form-control" id="birth">
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="text-muted">Email</label>
-                        <input type="email" class="form-control" id="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="password" class="text-muted">Password</label>
-                        <input type="password" class="form-control" id="password">
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmpassword" class="text-muted">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmpassword">
+                        <div class="form-group">
+                            <label for="username" class="text-muted">Username</label>
+                            <input type="username" class="form-control" id="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="birth" class="text-muted">Birthday</label>
+                            <input type="date" class="form-control" id="birth">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="text-muted">Email</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="text-muted">Password</label>
+                            <input type="password" class="form-control" id="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmpassword" class="text-muted">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmpassword">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
-</div>
-@endsection
+        </form>
+    </div>
+    @endsection
