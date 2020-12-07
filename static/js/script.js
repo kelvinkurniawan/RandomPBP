@@ -126,18 +126,22 @@ function show_status(limit = 10) {
 
 				if (data[i].postMeta.isLiked) {
 					html +=
-						'<a href="javascript:void(0)" onclick="unlike_post(' +
+						'<div class="d-flex justify-content-center align-items-center"><a href="javascript:void(0)" onclick="unlike_post(' +
 						data[i].postId +
-						')" class="text-success"><i class="gg-heart" style="margin-right: 10px"></i> ' +
+						')" class="text-success"><i class="gg-heart" style="margin-right: 10px"></i>' +
 						data[i].postMeta.postLikes +
-						"<div class='d-none d-sm-none d-md-block ml-1'> Likes</div></a>";
+						"</a><a class='d-none d-sm-none d-md-block ml-1' href='javascript:void(0)' onclick='getPostLikes(" +
+						data[i].postId +
+						")'> Likes</a></div>";
 				} else {
 					html +=
-						'<a href="javascript:void(0)" onclick="like_post(' +
+						'<div class="d-flex justify-content-center align-items-center"><a href="javascript:void(0)" onclick="like_post(' +
 						data[i].postId +
-						')" ><i class="gg-heart" style="margin-right: 10px"></i> ' +
+						')" ><i class="gg-heart" style="margin-right: 10px"></i>' +
 						data[i].postMeta.postLikes +
-						"<div class='d-none d-sm-none d-md-block ml-1'> Likes</div></a>";
+						"</a><a class='d-none d-sm-none d-md-block ml-1' href='javascript:void(0)' onclick='getPostLikes(" +
+						data[i].postId +
+						")'> Likes</a></div>";
 				}
 
 				html +=
