@@ -1,4 +1,4 @@
-var url = "http://localhost/random3/";
+var url = window.location.origin + "/random3/";
 
 function like_post(postId) {
 	$.ajax({
@@ -177,7 +177,7 @@ function show_status(limit = 10) {
 
 $(document).ready(function () {
 	show_status();
-	Pusher.logToConsole = true;
+	Pusher.logToConsole = false;
 
 	var pusher = new Pusher("d9a7263363532f7ffbb5", {
 		cluster: "ap1",
@@ -192,6 +192,10 @@ $(document).ready(function () {
 		}
 	});
 	// Event
+
+	$(".input-body-mobile").on("keyup", function () {
+		$(".input-body").val($(".input-body-mobile").val());
+	});
 
 	$(".btn-submit-post").on("click", function () {
 		var input_body = $(".input-body").val();
@@ -209,6 +213,7 @@ $(document).ready(function () {
 			success: function () {
 				show_status();
 				$(".input-body").val("");
+				$(".input-body-mobile").val("");
 			},
 		});
 	});

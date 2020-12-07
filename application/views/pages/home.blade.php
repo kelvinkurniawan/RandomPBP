@@ -67,7 +67,7 @@
 							<form action="<?= base_url('/home/performAddPost/home') ?>" method="POST">
 								<input type="hidden" name="parent" class="input-parent" value="0">
 								<div class="form-group">
-									<textarea name="body" id="body" cols="30" rows="3" class="form-control textarea input-body" placeholder="Whats happening ?"></textarea>
+									<textarea name="body" id="body" cols="30" rows="3" class="form-control textarea input-body-mobile" placeholder="Whats happening ?"></textarea>
 								</div>
 								<div class="form-group">
 									<div class="d-flex justify-content-between align-items-center">
