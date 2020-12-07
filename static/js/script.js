@@ -1,4 +1,4 @@
-var url = "http://localhost/random3/";
+var url = window.location.origin + "/random3/";
 
 function like_post(postId) {
 	$.ajax({
@@ -67,13 +67,13 @@ function getParentByPath() {
 	}
 }
 
-function show_status() {
+function show_status(limit = 10) {
 	parent = 0;
 	if (getParentByPath != "") {
 		parent = getParentByPath();
 	}
 	$.ajax({
-		url: url + "home/getStatus/" + parent,
+		url: url + "home/getStatus/" + parent + "?limit=" + limit,
 		type: "GET",
 		async: true,
 		dataType: "json",
@@ -145,8 +145,6 @@ function show_status() {
 					data[i].postMeta.postReplies +
 					" <div class='d-none d-sm-none d-md-block ml-1'> Replies</div></a>";
 				html +=
-					'<a href="#"><i class="gg-attribution" style="margin-right: 5px"></i> 10 <div class="d-none d-sm-none d-md-block ml-1">Retext</div></a>';
-				html +=
 					'<a href="#"><i class="gg-share" style="margin-right: 15px"></i> 10 <div class="d-none d-sm-none d-md-block ml-1"> Shares</div></a>';
 				html += "</div></div>";
 
@@ -179,7 +177,7 @@ function show_status() {
 
 $(document).ready(function () {
 	show_status();
-	Pusher.logToConsole = true;
+	Pusher.logToConsole = false;
 
 	var pusher = new Pusher("d9a7263363532f7ffbb5", {
 		cluster: "ap1",
@@ -194,6 +192,10 @@ $(document).ready(function () {
 		}
 	});
 	// Event
+
+	$(".input-body-mobile").on("keyup", function () {
+		$(".input-body").val($(".input-body-mobile").val());
+	});
 
 	$(".btn-submit-post").on("click", function () {
 		var input_body = $(".input-body").val();
@@ -211,7 +213,22 @@ $(document).ready(function () {
 			success: function () {
 				show_status();
 				$(".input-body").val("");
+				$(".input-body-mobile").val("");
 			},
 		});
+	});
+
+	var stickyTop = $(".main-content-post").offset().top;
+
+	var limit = 10;
+	var offset = 900;
+
+	$(window).scroll(function () {
+		var windowTop = $(window).scrollTop();
+		if (windowTop > offset) {
+			limit += 1;
+			offset += 200;
+			show_status(limit);
+		}
 	});
 });

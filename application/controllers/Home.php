@@ -11,11 +11,13 @@ class Home extends CI_Controller{
 
     function getStatus($parentId = 0){
         $this->load->model('posts');
+        $limit = $this->input->get('limit');
+
         if($parentId != 0){
             $posts = $this->posts->getAllByParent($parentId);
         }else{
             //$posts = $this->posts->getAll();
-            $posts = $this->posts->getPostsFeed($this->session->userId);
+            $posts = $this->posts->getPostsFeed($this->session->userId, $limit);
         }
 
         $result = array();
