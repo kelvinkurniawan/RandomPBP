@@ -67,6 +67,10 @@ function getParentByPath() {
 	}
 }
 
+function sharePost(id) {
+	$(".share-container.post-" + id + " .share-box").toggleClass("show");
+}
+
 function show_status(limit = 10) {
 	parent = 0;
 	if (getParentByPath != "") {
@@ -145,7 +149,9 @@ function show_status(limit = 10) {
 					data[i].postMeta.postReplies +
 					" <div class='d-none d-sm-none d-md-block ml-1'> Replies</div></a>";
 				html +=
-					'<a href="#"><i class="gg-share" style="margin-right: 15px"></i> 10 <div class="d-none d-sm-none d-md-block ml-1"> Shares</div></a>';
+					'<a href="javascript:void(0)" onclick="sharePost(' +
+					data[i].postId +
+					')"><i class="gg-share" style="margin-right: 15px"></i><div class="d-none d-sm-none d-md-block ml-1"> Shares</div></a>';
 				html += "</div></div>";
 
 				if (data[i].postMeta.postReplies > 0 && getParentByPath() == "home") {
@@ -161,16 +167,29 @@ function show_status(limit = 10) {
 						data[i].postMeta.postTags[j] +
 						"</a>";
 				}
+				html += "</div>" + "</div>" + "</div>" + "</div>" + "</div>" + "</div>";
 				html +=
-					"</div>" +
-					"</div>" +
-					"</div>" +
-					"</div>" +
-					"</div>" +
-					"</div>" +
-					"</div>";
+					"<div class='share-container post-" +
+					data[i].postId +
+					"'><div class='share-box hide p-2'></div></div>";
+				html += "</div>";
 			}
 			$(".main-content-post").html(html);
+
+			$(".share-box").jsSocials({
+				showLabel: false,
+				showCount: "inside",
+				shares: [
+					"email",
+					"twitter",
+					"facebook",
+					"googleplus",
+					"linkedin",
+					"pinterest",
+					"stumbleupon",
+					"whatsapp",
+				],
+			});
 		},
 	});
 }
