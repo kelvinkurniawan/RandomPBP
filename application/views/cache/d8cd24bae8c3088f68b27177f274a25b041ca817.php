@@ -18,7 +18,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col">
-                    <button class="btn btn-randomize btn-ghost w-100" data-toggle="modal" data-target="#exampleModal">Edit Profile</Button>
+                    <a href="<?php echo e(base_url('/profile?edit_profile=true')); ?>" class="btn btn-randomize btn-ghost w-100">Edit Profile</a>
                 </div>
                 <div class="col">
                     <button class="btn btn-randomize btn-out w-100">Log Out</button>
@@ -42,7 +42,9 @@
                 <?php echo e(getUserDetail("bio")); ?>
 
             </div>
-            <div><button class="btn btn-randomize btn-ghost mt-5 w-50" data-toggle="modal" data-target="#exampleModal">Edit Profile</Button></div>
+            <div class="pt-5">
+                <a href="<?php echo e(base_url('/profile?edit_profile=true')); ?>" class="btn btn-randomize btn-ghost w-50">Edit Profile</a>
+            </div>
             <div><button class="btn btn-randomize btn-out mt-3 w-50">Log Out</button></div>
         </div>
     </div>
@@ -133,7 +135,7 @@
             </div>
             <!-- Follower -->
             <div class="mt-5 tab-pane fade" id="followers">
-                <?php $__currentLoopData = $followingList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php $__currentLoopData = $followersList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="card widget center bg-white mb-3 w-100">
                     <div class="card-body">
                         <div class="post">
@@ -141,14 +143,14 @@
                                 <div class="row">
                                     <div class="col-2 ">
                                         <div class="photo-profile">
-                                            <?php echo e(get_images(getUserById($row->followId, "photo"))); ?>
+                                            <?php echo e(get_images(getUserById($row->userId, "photo"))); ?>
 
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="post-author"><?php echo e(getUserById($row->followId, "name")); ?></div>
+                                        <div class="post-author"><?php echo e(getUserById($row->userId, "name")); ?></div>
                                         <div class="post-body limit-text d-none d-sm-block">
-                                            <?php echo e(getUserById($row->followId, "bio")); ?>
+                                            <?php echo e(getUserById($row->userId, "bio")); ?>
 
                                         </div>
                                     </div>
@@ -171,18 +173,12 @@
                     <div class="card-title">TOP STORIES</div>
                 </div>
                 <div class="link trending-group">
+                    <?php $__currentLoopData = $popular; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="trending-dark">
-                        <div class="list">#Tinggal Kenangan</div>
-                        <div class="sub-list">By anonymous</div>
+                        <div class="list"><?php echo e($row->text); ?></div>
+                        <div class="sub-list"><?php echo e($row->count); ?> Randoms</div>
                     </div>
-                    <div class="trending-dark">
-                        <div class="list">#Tinggal Kenangan</div>
-                        <div class="sub-list">By anonymous</div>
-                    </div>
-                    <div class="trending-dark">
-                        <div class="list">#Tinggal Kenangan</div>
-                        <div class="sub-list">By anonymous</div>
-                    </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
             <div class="mt-5">

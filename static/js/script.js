@@ -13,6 +13,23 @@ function like_post(postId) {
 	});
 }
 
+function getUrlParameter(sParam) {
+	var sPageURL = window.location.search.substring(1),
+		sURLVariables = sPageURL.split("&"),
+		sParameterName,
+		i;
+
+	for (i = 0; i < sURLVariables.length; i++) {
+		sParameterName = sURLVariables[i].split("=");
+
+		if (sParameterName[0] === sParam) {
+			return sParameterName[1] === undefined
+				? true
+				: decodeURIComponent(sParameterName[1]);
+		}
+	}
+}
+
 function follow(followId) {
 	$.ajax({
 		url: url + "home/performFollow/" + followId,
@@ -44,7 +61,7 @@ function renderPost(post, userId) {
 	);
 	post = post.replace(
 		/(^|\s)(#[a-z\d-]+)/gi,
-		"$1<a href='" + url + "hashtag/$2'>$2</a>"
+		"$1<a href='" + url + "home/hashtag/$2'>$2</a>"
 	);
 
 	return post;
@@ -68,6 +85,11 @@ function getParentByPath() {
 	} else {
 		return path[totalPath - 1];
 	}
+}
+
+function getByHashtag() {
+	path = window.location.pathname.split("/");
+	return path[4];
 }
 
 function sharePost(id) {
@@ -97,16 +119,15 @@ function getPostLikes(postId) {
 				html += "</div>";
 			}
 			$(".likepost").html(html);
-			$("#likeModal").modal("toggle");
-
-			console.log(data);
+			$("#likeModal").modal("show");
 		},
 	});
 }
 
 function show_status(limit = 10) {
 	parent = 0;
-	if (getParentByPath != "") {
+	hashtag = "";
+	if (getParentByPath() != "") {
 		parent = getParentByPath();
 	}
 	$.ajax({
@@ -118,6 +139,8 @@ function show_status(limit = 10) {
 			var html = "";
 			var i;
 			for (i = 0; i < data.length; i++) {
+				const color = ["tags-green", "tags-cyan", "tags-pink", "tags-purple"];
+
 				html +=
 					'<div class="card widget bg-randomize-3 center mt-4" style="width: 100%">' +
 					'<div class="card-body">' +
@@ -133,7 +156,7 @@ function show_status(limit = 10) {
 						'<i class="gg-corner-up-left mr-3"></i>' +
 						"</div>" +
 						'Replied to <a href="#" class="ml-1">' +
-						data[i].postAuthorParent + 
+						data[i].postAuthorParent +
 						"</a>" +
 						"</div>" +
 						"</div>";
@@ -149,8 +172,10 @@ function show_status(limit = 10) {
 					"</div>" +
 					'<div class="col-9">' +
 					'<div class="post-author d-flex justify-content-between">' +
-					data[i].postAuthor + 
-					'<span class="small text-muted">' + data[i].postDate + '</span>' + 
+					data[i].postAuthor +
+					'<span class="small text-muted">' +
+					data[i].postDate +
+					"</span>" +
 					"</div>" +
 					'<div class="post-body">' +
 					renderPost(data[i].postBody) +
@@ -200,8 +225,15 @@ function show_status(limit = 10) {
 				}
 				html += '<div class="tags mt-3">';
 				for (let j = 0; j < data[i].postMeta.postTags.length; j++) {
+					var randomColor = Math.floor(Math.random() * color.length);
 					html +=
-						'<a href="#" class="bg-primary px-3 py-1 text-white"> ' +
+						'<a href="' +
+						url +
+						"home/hashtag/" +
+						data[i].postMeta.postTags[j] +
+						'" class="' +
+						color[randomColor] +
+						' px-3 py-1 m-1 text-white"> ' +
 						data[i].postMeta.postTags[j] +
 						"</a>";
 				}
@@ -235,6 +267,10 @@ function show_status(limit = 10) {
 $(document).ready(function () {
 	show_status();
 	Pusher.logToConsole = false;
+
+	if (getUrlParameter("edit_profile") == "true") {
+		$(".editProfile").modal("show");
+	}
 
 	var pusher = new Pusher("d9a7263363532f7ffbb5", {
 		cluster: "ap1",

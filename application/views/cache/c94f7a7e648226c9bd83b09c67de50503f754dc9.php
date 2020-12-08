@@ -137,5 +137,24 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="likeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header align-items-center">
+                <div class="modal-header-custom">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true" class="text-primary">&times;</span>
+                    </button>
+                    <h5 class="modal-title font-weight-bold ml-3" id="exampleModalLabel">Likes</h5>
+                </div>
+            </div>
+            <div class="modal-body pl-4 pr-4">
+                <div class="likepost">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\random3\application\views/pages/home.blade.php ENDPATH**/ ?>

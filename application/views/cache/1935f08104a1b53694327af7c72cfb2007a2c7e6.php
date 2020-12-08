@@ -150,11 +150,14 @@
                                         </div>
                                         <?php if(getRepliesCount($row->id) > 0): ?>
                                         <div class="show-all mt-3">
-                                            <a href="#">>> Show all replies <<</a> </div> <?php endif; ?> <?php $__currentLoopData = getHashtagWidget($row->body); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $hashtag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <div class="tags mt-3">
-                                            <a href="#" class="bg-primary px-3 py-1 text-white"><?php echo e($hashtag); ?></a>
-                                        </div>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <a href="#">>> Show all replies <<</a> </div> <?php endif; ?>
+                                            <div class="tags-box">
+                                                <?php $__currentLoopData = getHashtagWidget($row->body); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $hashtag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <div class="tags mt-3" style="display: inline-block">
+                                                        <a href="#" class="bg-primary px-3 py-1 text-white"><?php echo e($hashtag); ?></a>
+                                                    </div>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -192,7 +195,7 @@
                     <div class=" d-none d-sm-none d-md-block">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>WHO TO FOLLOW</div>
-                            <div class="text-muted">More</div>
+                            <a href="<?php echo e(base_url('/friends')); ?>" class="text-muted">More</a>
                         </div>
                         <div class="trending-group">
                             <div class="friends-group">
@@ -219,7 +222,7 @@
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade editProfile" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <form action="<?php echo e(base_url('/home/profileUpdate')); ?>" method="POST">
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
