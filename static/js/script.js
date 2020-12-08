@@ -83,7 +83,7 @@ function getPostLikes(postId) {
 			var html = "";
 
 			for (var i = 0; i < data.length; i++) {
-				html += '<div class="row">';
+				html += '<div class="row p-3">';
 				html += '<div class="col-2">';
 				html +=
 					'<img class="rounded-circle" src="' +
@@ -133,7 +133,7 @@ function show_status(limit = 10) {
 						'<i class="gg-corner-up-left mr-3"></i>' +
 						"</div>" +
 						'Replied to <a href="#" class="ml-1">' +
-						data[i].postAuthorParent +
+						data[i].postAuthorParent + 
 						"</a>" +
 						"</div>" +
 						"</div>";
@@ -148,8 +148,9 @@ function show_status(limit = 10) {
 					"</div>" +
 					"</div>" +
 					'<div class="col-9">' +
-					'<div class="post-author">' +
-					data[i].postAuthor +
+					'<div class="post-author d-flex justify-content-between">' +
+					data[i].postAuthor + 
+					'<span class="small text-muted">' + data[i].postDate + '</span>' + 
 					"</div>" +
 					'<div class="post-body">' +
 					renderPost(data[i].postBody) +

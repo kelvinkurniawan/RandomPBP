@@ -165,4 +165,49 @@ if(!function_exists('getPostById')){
         return $post[$row];
     }
 }
+
+if(!function_exists('getHashtagCount')){
+    function getHashtagCount($id){
+        $ci =& get_instance();
+
+        $ci->load->model("hashtag");
+
+        $hashtag = $ci->posts->getById($id); 
+
+        return $hashtag[$row];
+    }
+}
+
+if(!function_exists('getCurrentTimestamp')){
+    function getCurrentTimestamp($id){
+        $ci =& get_instance();
+
+        $ci->load->model("posts");
+
+        $postTime = getPostById($id, 'timestamp');
+
+        $time_difference = time() - strtotime($postTime);
+
+        if( $time_difference < 1 ) { return 'less than 1 second ago'; }
+        $condition = array( 12 * 30 * 24 * 60 * 60 =>  'year',
+                    30 * 24 * 60 * 60       =>  'month',
+                    24 * 60 * 60            =>  'day',
+                    60 * 60                 =>  'hour',
+                    60                      =>  'minute',
+                    1                       =>  'second'
+        );
+    
+        foreach( $condition as $secs => $str )
+        {
+            $d = $time_difference / $secs;
+    
+            if( $d >= 1 )
+            {
+                $t = round( $d );
+                return $t . ' ' . $str . ( $t > 1 ? 's' : '' ) . ' ago';
+            }
+        }
+        
+    }
+}
 ?>

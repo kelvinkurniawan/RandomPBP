@@ -45,7 +45,7 @@ class Home extends CI_Controller{
                 'postId' => $row->id,
                 'postParent' => $row->parent,
                 'postBody' => $row->body,
-                'postDate' => $row->timestamp,
+                'postDate' => getCurrentTimestamp($row->id),
                 'postAuthor' => $postAuthor,
                 'postAuthorUsername' => getPostAuthorUsername($row->id),
                 'postAuthorParent' => $postAuthorParent,
