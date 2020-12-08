@@ -1,11 +1,14 @@
 var url = window.location.origin + "/random3/";
+var limit = 10;
+var offset = 900;
+var top = 0;
 
 function like_post(postId) {
 	$.ajax({
 		url: url + "home/performLikePost/" + postId,
 		method: "GET",
 		success: function (data) {
-			show_status();
+			show_status(limit);
 		},
 	});
 }
@@ -52,7 +55,7 @@ function unlike_post(postId) {
 		url: url + "home/performUnlikePost/" + postId,
 		method: "GET",
 		success: function (data) {
-			show_status();
+			show_status(limit);
 		},
 	});
 }
@@ -271,11 +274,6 @@ $(document).ready(function () {
 		});
 	});
 
-	var stickyTop = $(".main-content-post").offset().top;
-
-	var limit = 10;
-	var offset = 900;
-
 	$(window).scroll(function () {
 		var windowTop = $(window).scrollTop();
 		if (windowTop > offset) {
@@ -283,5 +281,7 @@ $(document).ready(function () {
 			offset += 200;
 			show_status(limit);
 		}
+		var doc = document.documentElement;
+		top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 	});
 });

@@ -165,16 +165,4 @@ if(!function_exists('getPostById')){
         return $post[$row];
     }
 }
-
-if(!function_exists('getHashtagCount')){
-    function getHashtagCount($id){
-        $ci =& get_instance();
-
-        $ci->load->model("hashtag");
-
-        $hashtag = $ci->posts->getById($id); 
-
-        return $post[$row];
-    }
-}
 ?>
