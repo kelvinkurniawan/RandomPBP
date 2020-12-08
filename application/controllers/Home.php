@@ -75,12 +75,14 @@ class Home extends CI_Controller{
         $posts = $this->posts->getAll();
         $users = $this->users->userList($this->session->userId);
         $popular = $this->hashtag->getPopular();
+        $single = FALSE;
         
 		return view('pages/home', [
             'title' => $title, 
             'posts' => $posts, 
             'users' => $users,
-            'popular' => $popular
+            'popular' => $popular,
+            'single' => $single
             ]);
     }
 
@@ -105,6 +107,21 @@ class Home extends CI_Controller{
             'followers' => $followers,
             'recommendedUsers' => $recommendedUsers
         ]);
+    }
+
+    function profileUpdate(){
+        
+        $this->load->model("users");
+
+        $data['name'] = $this->input->post('name');
+		$data['username'] = $this->input->post('username');
+		$data['email'] = $this->input->post('email');
+		$data['bio'] = $this->input->post('email');
+        $data['birth'] = $this->input->post('email');
+        
+        $this->users->update($this->session->userId, $data);
+
+        redirect(base_url('/profile'));
     }
 
     function friends(){
@@ -210,12 +227,15 @@ class Home extends CI_Controller{
         $posts = $this->posts->getAll();
         $users = $this->users->userList($this->session->userId);
         $popular = $this->hashtag->getPopular();
+        $single = TRUE;
         
 		return view('pages/home', [
             'title' => $title, 
             'posts' => $posts, 
             'users' => $users,
-            'popular' => $popular
+            'popular' => $popular,
+            'single' => $single,
+            'parent' => $postId
             ]);
     }
 

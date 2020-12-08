@@ -41,7 +41,7 @@
                 {{getUserDetail("bio")}}
             </div>
             <div><button class="btn btn-randomize btn-ghost mt-5 w-50" data-toggle="modal" data-target="#exampleModal">Edit Profile</Button></div>
-            <div><button class="btn btn-randomize btn-out mt-3 w-50">Log Out</button></div>
+            <div><a class="btn btn-randomize btn-out mt-3 w-50" href="{{base_url('/authentication/logout')}}">Log Out</a></div>
         </div>
     </div>
     <div class="col-md-6 main-content w-100">
@@ -147,10 +147,10 @@
                                         @if(getRepliesCount($row->id) > 0)
                                         <div class="show-all mt-3">
                                             <a href="#">>> Show all replies <<</a> </div> @endif @foreach(getHashtagWidget($row->body) as $hashtag)
-                                                    <div class="tags mt-3">
-                                                        <a href="#" class="bg-primary px-3 py-1 text-white">{{$hashtag}}</a>
-                                                    </div>
-                                                    @endforeach
+                                        <div class="tags mt-3">
+                                            <a href="#" class="bg-primary px-3 py-1 text-white">{{$hashtag}}</a>
+                                        </div>
+                                        @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -216,7 +216,7 @@
     </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form action="">
+        <form action="{{base_url('/home/profileUpdate')}}" method="POST">
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header align-items-center">
@@ -241,24 +241,24 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="username" class="text-muted">Username</label>
-                            <input type="username" class="form-control" id="username">
+                            <label for="exampleInputEmail1">Bio</label>
+                            <textarea name="bio" class="form-control">{{getUserDetail('bio')}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Fullname</label>
+                            <input type="text" name="name" value="{{getUserDetail('name')}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" name="email" value='{{getUserDetail('email')}}' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Username</label>
+                            <input type="text" name="username" value='{{getUserDetail('username')}}' class="form-control" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
                             <label for="birth" class="text-muted">Birthday</label>
-                            <input type="date" class="form-control" id="birth">
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="text-muted">Email</label>
-                            <input type="email" class="form-control" id="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="text-muted">Password</label>
-                            <input type="password" class="form-control" id="password">
-                        </div>
-                        <div class="form-group">
-                            <label for="confirmpassword" class="text-muted">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirmpassword">
+                            <input type="date" name="birth" value="{{getUserDetail('birth')}}" class="form-control" id="birth">
                         </div>
                     </div>
                 </div>

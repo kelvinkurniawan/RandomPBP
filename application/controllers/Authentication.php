@@ -28,6 +28,7 @@ class Authentication extends CI_Controller {
 		$this->load->model('users');
 
 		$data['name'] = $this->input->post('name');
+		$data['username'] = $this->input->post('username');
 		$data['email'] = $this->input->post('email');
 		$data['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 		$data['role'] = 0;

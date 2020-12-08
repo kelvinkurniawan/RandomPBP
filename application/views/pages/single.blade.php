@@ -29,7 +29,7 @@
 						<div class="col-2 pt-2 d-none d-sm-block"><?php get_images(getUserDetail('photo')) ?></div>
 						<div class="col">
 							<form action="<?= base_url('/home/performAddPost/home') ?>" method="POST">
-								<input type="hidden" name="parent" class="input-parent" value="0">
+								<input type="hidden" name="parent" class="input-parent" value="{{$post['id']}}">
 								<div class="form-group">
 									<textarea name="body" id="body" cols="30" rows="3" class="form-control textarea input-body" placeholder="Whats happening ?"></textarea>
 								</div>
@@ -64,7 +64,7 @@
 						<div class="col-2 pt-2 d-none d-sm-block"><?php get_images(getUserDetail('photo')) ?></div>
 						<div class="col">
 							<form action="<?= base_url('/home/performAddPost/home') ?>" method="POST">
-								<input type="hidden" name="parent" class="input-parent" value="0">
+								<input type="hidden" name="parent" class="input-parent" value="{{$post['id']}}">
 								<div class="form-group">
 									<textarea name="body" id="body" cols="30" rows="3" class="form-control textarea input-body-mobile" placeholder="Whats happening ?"></textarea>
 								</div>
