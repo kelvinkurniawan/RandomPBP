@@ -14,13 +14,13 @@
 	<div class="collapse navbar-collapse" id="navbarSupportedContent" style="flex-grow: 0;">
 		<ul class="navbar-nav d-md-none d-lg-none d-xl-none">
 			<li class="nav-item">
-				<a class="nav-link primary" href="#">Discover <span class="sr-only">(current)</span></a>
+				<a class="nav-link primary" href="<?php echo e(base_url('/home/')); ?>">Discover <span class="sr-only">(current)</span></a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="#">Top Stories</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Profile</a>
+				<a class="nav-link" href="<?php echo e(base_url('/profile/')); ?>">Profile</a>
 			</li>
 		</ul>
 	</div>

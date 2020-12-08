@@ -4,12 +4,12 @@
 <div class="d-flex align-items-center justify-content-center h-100">
 	<div class="row no-gutters w-100">
 		<!-- Top Stories -->
-		<div class="col-sm-3 d-none d-sm-none d-md-block">
-			<div class="card widget bg-randomize left" style="width: 100%">
-				<div class="card-body">
+		<div class="col-sm-3 d-none d-sm-none d-md-block bg-randomize">
+			<div class="card widget bg-randomize sticky-top float-component" style="width: 100%">
+				<div class="card-body ">
 					<div class="d-flex align-items-center justify-content-between mb-4">
 						<h5 class="card-title">TOP STORIES</h5>
-						<a class="widget-link" href="#">ALL</a>
+						<a class="widget-link text-light" href="#">ALL</a>
 					</div>
 					<div class="trending-group">
 						@foreach ($popular as $row)
@@ -96,7 +96,7 @@
 			<div class="main-content-post"></div>
 		</div>
 		<!-- Friends -->
-		<div class="col-md-3 d-none d-sm-none d-md-block">
+		<div class="col-md-3 d-none d-sm-none d-md-block bg-randomize-3">
 			<div class="card widget bg-randomize-3 sticky-top float-component" style="width: 100%; top: 3.6em;">
 				<div class="card-body">
 					<div class="d-flex align-items-center justify-content-between mb-4">
