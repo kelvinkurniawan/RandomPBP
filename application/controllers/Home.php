@@ -9,15 +9,38 @@ class Home extends CI_Controller{
         isNotLogin();
     }
 
+    function hashtag($hash){
+
+        $this->load->model('posts');
+        $this->load->model('users');
+        $this->load->model('hashtag');
+        $this->load->model('likes');
+
+        $title = 'Timeline';
+        $posts = $this->posts->getAll();
+        $users = $this->users->userList($this->session->userId);
+        $popular = $this->hashtag->getPopular();
+        $single = FALSE;
+        
+		return view('pages/home', [
+            'title' => $title, 
+            'posts' => $posts, 
+            'users' => $users,
+            'popular' => $popular,
+            'single' => $single
+            ]);
+    }
+
     function getStatus($parentId = 0){
         $this->load->model('posts');
         $limit = $this->input->get('limit');
+        $hashtag = $this->input->get('hashtag');
 
         if($parentId != 0){
             $posts = $this->posts->getAllByParent($parentId);
         }else{
             //$posts = $this->posts->getAll();
-            $posts = $this->posts->getPostsFeed($this->session->userId, $limit);
+            $posts = $this->posts->getPostsFeed($this->session->userId, $limit, $hashtag);
         }
 
         $result = array();
@@ -128,6 +151,7 @@ class Home extends CI_Controller{
 
         $this->load->model('follow');
         $this->load->model("users");
+        $this->load->model("hashtag");
 
         $title = 'Friends';
         
@@ -135,13 +159,17 @@ class Home extends CI_Controller{
         $recommendedUsers = $this->users->userList($this->session->userId);
         $following = $this->follow->getFollowingCount($this->session->userId);
         $followingList = $this->follow->getFollowing($this->session->userId);
+        $followersList = $this->follow->getFollowers($this->session->userId);
+        $popular = $this->hashtag->getPopular();
 
 		return view('pages/friends', [
             'title' => $title, 
             'followers' => $followers, 
             'following' => $following, 
             'followingList' => $followingList,
-            'recommendedUsers' => $recommendedUsers
+            'followersList' => $followersList,
+            'recommendedUsers' => $recommendedUsers,
+            'popular'=> $popular
         ]);
     }
 

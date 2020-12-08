@@ -17,7 +17,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col">
-                    <button class="btn btn-randomize btn-ghost w-100" data-toggle="modal" data-target="#exampleModal">Edit Profile</Button>
+                    <a href="{{base_url('/profile?edit_profile=true')}}" class="btn btn-randomize btn-ghost w-100">Edit Profile</a>
                 </div>
                 <div class="col">
                     <button class="btn btn-randomize btn-out w-100">Log Out</button>
@@ -39,7 +39,9 @@
             <div class="font-weight-light text-light small mt-1">
                 {{getUserDetail("bio")}}
             </div>
-            <div><button class="btn btn-randomize btn-ghost mt-5 w-50" data-toggle="modal" data-target="#exampleModal">Edit Profile</Button></div>
+            <div class="pt-5">
+                <a href="{{base_url('/profile?edit_profile=true')}}" class="btn btn-randomize btn-ghost w-50">Edit Profile</a>
+            </div>
             <div><button class="btn btn-randomize btn-out mt-3 w-50">Log Out</button></div>
         </div>
     </div>
@@ -128,7 +130,7 @@
             </div>
             <!-- Follower -->
             <div class="mt-5 tab-pane fade" id="followers">
-                @foreach ($followingList as $row)
+                @foreach ($followersList as $row)
                 <div class="card widget center bg-white mb-3 w-100">
                     <div class="card-body">
                         <div class="post">
@@ -136,13 +138,13 @@
                                 <div class="row">
                                     <div class="col-2 ">
                                         <div class="photo-profile">
-                                            {{get_images(getUserById($row->followId, "photo"))}}
+                                            {{get_images(getUserById($row->userId, "photo"))}}
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="post-author">{{getUserById($row->followId, "name")}}</div>
+                                        <div class="post-author">{{getUserById($row->userId, "name")}}</div>
                                         <div class="post-body limit-text d-none d-sm-block">
-                                            {{getUserById($row->followId, "bio")}}
+                                            {{getUserById($row->userId, "bio")}}
                                         </div>
                                     </div>
                                     <div class="col-3 d-none d-sm-block">
@@ -164,18 +166,12 @@
                     <div class="card-title">TOP STORIES</div>
                 </div>
                 <div class="link trending-group">
+                    @foreach($popular as $row)
                     <div class="trending-dark">
-                        <div class="list">#Tinggal Kenangan</div>
-                        <div class="sub-list">By anonymous</div>
+                        <div class="list">{{$row->text}}</div>
+                        <div class="sub-list">{{$row->count}} Randoms</div>
                     </div>
-                    <div class="trending-dark">
-                        <div class="list">#Tinggal Kenangan</div>
-                        <div class="sub-list">By anonymous</div>
-                    </div>
-                    <div class="trending-dark">
-                        <div class="list">#Tinggal Kenangan</div>
-                        <div class="sub-list">By anonymous</div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="mt-5">

@@ -188,7 +188,7 @@ if(!function_exists('getCurrentTimestamp')){
 
         $time_difference = time() - strtotime($postTime);
 
-        if( $time_difference < 1 ) { return 'less than 1 second ago'; }
+        if( $time_difference < 1 ) { return 'less than 1 hours ago'; }
         $condition = array( 12 * 30 * 24 * 60 * 60 =>  'year',
                     30 * 24 * 60 * 60       =>  'month',
                     24 * 60 * 60            =>  'day',
@@ -197,8 +197,7 @@ if(!function_exists('getCurrentTimestamp')){
                     1                       =>  'second'
         );
     
-        foreach( $condition as $secs => $str )
-        {
+        foreach( $condition as $secs => $str ){
             $d = $time_difference / $secs;
     
             if( $d >= 1 )

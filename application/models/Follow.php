@@ -36,4 +36,9 @@ class Follow extends CI_Model{
         $this->db->where("userId", $userId);
         return $this->db->get($this->table)->result();
     }
+
+    public function getFollowers($userId){
+        $this->db->where("followId", $userId);
+        return $this->db->get($this->table)->result();
+    }
 }

@@ -205,19 +205,55 @@
 }
 .share-container {
 	position: relative;
+	left: 130px;
+	z-index: 1021;
+	top: 15px;
 }
-.share-box.hide {
-	opacity: 0;
-	position: absolute;
-	transition: all 0.5s;
-}
-.share-box.show {
-	opacity: 1;
+.share-box {
 	position: absolute;
 	top: -75px;
 	left: 365px;
+}
+.share-box {
+	opacity: 0;
 	transition: all 0.5s;
+}
+.share-box::before {
+	position: absolute;
+	top: -10px;
+	content: "";
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid #fff;
+}
+.share-box.show {
+	opacity: 1;
+	transition: all 0.5s;
+	background: #fff;
+	border-radius: 5px;
+	-webkit-box-shadow: 1px 0px 3px 0px rgba(224, 224, 224, 1);
+	-moz-box-shadow: 1px 0px 3px 0px rgba(224, 224, 224, 1);
+	box-shadow: 1px 0px 3px 0px rgba(224, 224, 224, 1);
 }
 .jssocials-shares {
 	margin: 0;
+}
+
+/* Tags Color */
+.tags-green {
+	background-color: #00b894;
+}
+
+.tags-cyan {
+	background-color: #00cec9;
+}
+
+.tags-pink {
+	background-color: #ff7675;
+}
+
+.tags-purple {
+	background-color: #6c5ce7;
 }

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-randomize-3 sticky-top">
 	<div class="row">
 		<div class="col d-flex justify-content-between align-items-center d-md-none d-lg-none d-xl-none">
-			<a class="navbar-brand " href="#">Randomize</a>
+			<a class="navbar-brand " href="<?php echo e(base_url()); ?>">Randomize</a>
 			<a href="#" class="nav-link">
 				<i class="gg-search"></i>
 			</a>
@@ -27,8 +27,8 @@
 	<div class="row col-md-12 ml-3">
 		<div class="col-md-3 d-none d-sm-none d-md-block">
 			<div class="col d-flex justify-content-between align-items-center">
-				<a class="navbar-brand" href="#">Randomize</a>
-				<a href="#" class="nav-link">
+				<a class="navbar-brand" href="<?php echo e(base_url()); ?>">Randomize</a>
+				<a href="<?php echo e(base_url('/home')); ?>" class="nav-link">
 					<i class="gg-home-alt"></i>
 				</a>
 			</div>
@@ -36,7 +36,7 @@
 		<div class="col-md-6 d-none d-sm-none d-md-block">
 			<div class="col d-flex justify-content-between align-items-center">
 				<div class="left">
-					<a href="#" class="nav-link primary">Discover</a>
+					<a href="<?php echo e(base_url('/home')); ?>" class="nav-link primary">Discover</a>
 				</div>
 				<div class="right d-flex justify-content-between align-items-center">
 					<a href="#" class="nav-link">

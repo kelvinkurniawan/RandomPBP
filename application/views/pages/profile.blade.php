@@ -146,11 +146,14 @@
                                         </div>
                                         @if(getRepliesCount($row->id) > 0)
                                         <div class="show-all mt-3">
-                                            <a href="#">>> Show all replies <<</a> </div> @endif @foreach(getHashtagWidget($row->body) as $hashtag)
-                                        <div class="tags mt-3">
-                                            <a href="#" class="bg-primary px-3 py-1 text-white">{{$hashtag}}</a>
-                                        </div>
-                                        @endforeach
+                                            <a href="#">>> Show all replies <<</a> </div> @endif
+                                            <div class="tags-box">
+                                                @foreach(getHashtagWidget($row->body) as $hashtag)
+                                                    <div class="tags mt-3" style="display: inline-block">
+                                                        <a href="#" class="bg-primary px-3 py-1 text-white">{{$hashtag}}</a>
+                                                    </div>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -188,7 +191,7 @@
                     <div class=" d-none d-sm-none d-md-block">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>WHO TO FOLLOW</div>
-                            <div class="text-muted">More</div>
+                            <a href="{{base_url('/friends')}}" class="text-muted">More</a>
                         </div>
                         <div class="trending-group">
                             <div class="friends-group">
@@ -215,7 +218,7 @@
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade editProfile" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <form action="{{base_url('/home/profileUpdate')}}" method="POST">
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
