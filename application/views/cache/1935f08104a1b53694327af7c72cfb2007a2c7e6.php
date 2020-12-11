@@ -150,7 +150,7 @@
                                             <a href="#">>> Show all replies <<</a> </div> <?php endif; ?> <div class="tags-box">
                                                 <?php
                                                     $color = array("tags-green", "tags-cyan", "tags-pink", "tags-purple");
-                                                    $randomColor = rand(0,count($color))
+                                                    $randomColor = rand(0,count($color)-1)
                                                 ?>
                                                     <?php $__currentLoopData = getHashtagWidget($row->body); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $hashtag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <div class="tags mt-3" style="display: inline-block">

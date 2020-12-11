@@ -146,7 +146,7 @@
                                             <a href="#">>> Show all replies <<</a> </div> @endif <div class="tags-box">
                                                 @php
                                                     $color = array("tags-green", "tags-cyan", "tags-pink", "tags-purple");
-                                                    $randomColor = rand(0,count($color))
+                                                    $randomColor = rand(0,count($color)-1)
                                                 @endphp
                                                     @foreach(getHashtagWidget($row->body) as $hashtag)
                                                     <div class="tags mt-3" style="display: inline-block">
