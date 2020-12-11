@@ -15,7 +15,7 @@ class Users extends CI_Model{
         $this->db->update($this->table, $data);
     }
 
-    public function userList($userId, $limit = 5){
+    public function userList($userId, $limit = 10){
 
         $this->load->model('follow');       
         

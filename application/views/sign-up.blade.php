@@ -41,7 +41,7 @@
                 <div class="w-100 d-flex flex-column justify-content-center align-items-center px-2">
                     <h2 class="mb-3 text-center text-white">Welcome, dude!</h2>
                     <p class="lead text-white text-center">Enter your personal details, and start journey with us</p>
-                    <a href="/register" class="btn btn-randomize btn-ghost">Sign In</a>
+                    <a href="{{base_url('/session/new')}}" class="btn btn-randomize btn-ghost">Sign In</a>
                 </div>
             </div>
         </div>
