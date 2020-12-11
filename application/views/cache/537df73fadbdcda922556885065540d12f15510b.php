@@ -24,7 +24,7 @@
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/css.gg/icons/all.css'>
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-minima.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <script src="https://kit.fontawesome.com/4ddf6b30b0.js" crossorigin="anonymous"></script>
     <?php
         get_css('style.css');
         get_css('fonts.css');

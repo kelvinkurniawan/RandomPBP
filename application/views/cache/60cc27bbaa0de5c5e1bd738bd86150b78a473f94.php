@@ -62,7 +62,12 @@
 	<div class="search-box p-4 col-md-6 shadow">
 		<div class="row">
 			<div class="search-input col-md-12">
-				<input type="text" class="form-control" name="q" id="search-q">
+				<div class="form-group">
+					<div class="icon-input">
+						<i class="gg-search icon"></i>
+					</div>
+					<input type="text" class="form-control pl-5" placeholder="Search Anything" name="q" id="search-q" />
+				</div>
 			</div>
 		</div>
 		<div class="row">
@@ -75,7 +80,7 @@
 				<hr class="w-100">
 				<div class="single-result w-100 result-hashtag"">
 					<h4>Hashtag</h4>
-					<a href="#" class="search-result">Kelvin Kurniawan</a>
+					<a href=" #" class="search-result">Kelvin Kurniawan</a>
 					<a href="#" class="search-result">Kelvin Kurniawan</a>
 				</div>
 			</div>

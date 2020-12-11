@@ -23,21 +23,21 @@ function search(key) {
 		method: "GET",
 		dataType: "JSON",
 		success: function (data) {
-			var resUser = "<h4>Users</h4>";
-			var resHashtag = "<h4>Hashtag</h4>";
+			var resUser = "<h6 class='text-muted'>Users</h6>";
+			var resHashtag = "<h6 class='text-muted'>Hashtag</h6>";
 			for (i = 0; i < data.user.length; i++) {
 				resUser +=
 					'<a href="' +
 					url +
 					"profile/" +
 					data.user[i].username +
-					'" class="search-result">' +
+					'" class="search-result text-dark p-2 text-decoration-none"><i class="fas fa-poo mr-3"></i>' +
 					data.user[i].name +
 					"</a>";
 			}
 			for (i = 0; i < data.hashtag.length; i++) {
 				resHashtag +=
-					'<a href="#" class="search-result">' +
+					'<a href="#" class="search-result text-dark p-2 text-decoration-none"><i class="fab fa-slack-hash mr-3"></i>' +
 					data.hashtag[i].hashtag +
 					"</a>";
 			}
@@ -331,8 +331,8 @@ $(document).ready(function () {
 		}
 
 		if ($(this).val() == "") {
-			$(".result-user").html("<h4>Users</h4>");
-			$(".result-hashtag").html("<h4>Hashtag</h4>");
+			$(".result-user").html("<h6 class='text-muted'>Users</h6>");
+			$(".result-hashtag").html("<h6 class='text-muted'>Hashtag</h6>");
 		}
 	});
 
