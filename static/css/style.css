@@ -257,3 +257,20 @@
 .tags-purple {
 	background-color: #6c5ce7;
 }
+.search-box {
+	position: fixed;
+	top: -300px;
+	background: #fff;
+	left: 315px;
+	transition: all 0.5s;
+	opacity: 0;
+	z-index: 99;
+}
+.search-box.show {
+	top: 55px;
+	transition: all 0.5s;
+	opacity: 1;
+}
+.search-result {
+	display: block;
+}
