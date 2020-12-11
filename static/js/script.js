@@ -27,7 +27,13 @@ function search(key) {
 			var resHashtag = "<h4>Hashtag</h4>";
 			for (i = 0; i < data.user.length; i++) {
 				resUser +=
-					'<a href="#" class="search-result">' + data.user[i].name + "</a>";
+					'<a href="' +
+					url +
+					"profile/" +
+					data.user[i].username +
+					'" class="search-result">' +
+					data.user[i].name +
+					"</a>";
 			}
 			for (i = 0; i < data.hashtag.length; i++) {
 				resHashtag +=

@@ -59,3 +59,4 @@ $route['profile'] = 'home/profile';
 $route['friends'] = 'home/friends';
 $route['admin'] = 'home/admin';
 $route['admin/detail'] = 'home/admindetail';
+$route['profile/(:any)'] = 'home/profile/$1';
