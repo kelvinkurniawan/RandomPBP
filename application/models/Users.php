@@ -15,6 +15,11 @@ class Users extends CI_Model{
         $this->db->update($this->table, $data);
     }
 
+    public function getByUsername($username){
+        $this->db->where('username', $username);
+        return $this->db->get($this->table)->row_array();
+    }
+
     public function userList($userId, $limit = 10){
 
         $this->load->model('follow');       

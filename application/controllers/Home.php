@@ -133,21 +133,32 @@ class Home extends CI_Controller{
             ]);
     }
 
-    function profile(){
+    function profile($username = null){
 
         $this->load->model("posts");
         $this->load->model("follow");
         $this->load->model("users");
         $this->load->model('hashtag');
 
-        $title = 'Profile';
-        $myPosts = $this->posts->getPostsByUserId($this->session->userId, true);
-        $myPostsCount = $this->posts->getPostsByUserIdCount($this->session->userId, true);
-        $recommendedUsers = $this->users->userList($this->session->userId);
-        $following = $this->follow->getFollowingCount($this->session->userId);
-        $followers = $this->follow->getFollowersCount($this->session->userId);
-        $popular = $this->hashtag->getPopular();
 
+        $title = 'Profile';
+        $profile = $this->users->getByUsername($username);
+        $popular = $this->hashtag->getPopular();
+        $myId = $this->session->userId;
+        
+        if($username == null){
+            $tempId = $this->session->userId;
+        }else{
+            $tempId = $profile['id'];
+        }
+
+        $myPosts = $this->posts->getPostsByUserId($tempId , true);
+        $myPostsCount = $this->posts->getPostsByUserIdCount($tempId , true);
+        $following = $this->follow->getFollowingCount($tempId);
+        $followers = $this->follow->getFollowersCount($tempId);
+        $recommendedUsers = $this->users->userList($tempId);
+        $userId = $tempId;
+        
 		return view('pages/profile', [
             'title' => $title, 
             'myPosts' => $myPosts, 
@@ -156,6 +167,9 @@ class Home extends CI_Controller{
             'followers' => $followers,
             'recommendedUsers' => $recommendedUsers,
             'popular' => $popular,
+            'profile' => $profile,
+            'userId' => $userId,
+            'myId' => $myId
         ]);
     }
 

@@ -7,15 +7,16 @@
         <div class="container">
             <div class="row mt-3">
                 <div class="col-3 pr-0">
-                    <img class="rounded-circle" src="{{get_images_path(getUserDetail('photo'))}}" width="100%">
+                    <img class="rounded-circle" src="{{get_images_path(getUserById($userId, 'photo'))}}" width="100%">
                 </div>
                 <div class="col">
-                    <div class="font-weight-bold text-light h4">{{getUserDetail("name")}}</div>
+                    <div class="font-weight-bold text-light h4">{{getUserById($userId, "name")}}</div>
                     <div class="font-weight-light text-light small mt-1 limit-text">
-                        {{getUserDetail("bio")}}
+                        {{getUserById($userId,"bio")}}
                     </div>
                 </div>
             </div>
+            @if($myId == $userId)
             <div class="row mt-4">
                 <div class="col">
                     <button class="btn btn-randomize btn-ghost w-100" data-toggle="modal" data-target="#exampleModal">Edit Profile</Button>
@@ -24,24 +25,34 @@
                     <button class="btn btn-randomize btn-out w-100">Log Out</button>
                 </div>
             </div>
+            @endif
         </div>
     </div>
     <div class="col-md-3 bg-randomize-2 card widget left d-none d-sm-none d-md-block">
         <div class="container text-center sticky-top float-component">
             <div class="mt-3">
-                <img class="rounded-circle" src="{{get_images_path(getUserDetail('photo'))}}" width="50%">
+                <img class="rounded-circle" src="{{get_images_path(getUserById($userId, 'photo'))}}" width="50%">
             </div>
-            <div class="font-weight-bold mt-3 text-light">{{getUserDetail("name")}}</div>
+            <div class="font-weight-bold mt-3 text-light">{{getUserById($userId, "name")}}</div>
             <div class="mt-1 mb-3 text-white d-flex justify-content-center align-items-center small">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5354 2.87868C16.3638 1.70711 14.4644 1.70711 13.2928 2.87868L11.8786 4.29289C11.8183 4.35317 11.7611 4.41538 11.707 4.47931C11.653 4.41539 11.5958 4.3532 11.5355 4.29293L10.1213 2.87871C8.94975 1.70714 7.05025 1.70714 5.87868 2.87871C4.70711 4.05029 4.70711 5.94978 5.87868 7.12136L6.75732 8H1V14H3V22H21V14H23V8H16.6567L17.5354 7.12132C18.707 5.94975 18.707 4.05025 17.5354 2.87868ZM14.707 7.12132L16.1212 5.70711C16.5117 5.31658 16.5117 4.68342 16.1212 4.29289C15.7307 3.90237 15.0975 3.90237 14.707 4.29289L13.2928 5.70711C12.9023 6.09763 12.9023 6.7308 13.2928 7.12132C13.6833 7.51184 14.3165 7.51184 14.707 7.12132ZM10.1213 5.70714L8.70711 4.29293C8.31658 3.9024 7.68342 3.9024 7.29289 4.29293C6.90237 4.68345 6.90237 5.31662 7.29289 5.70714L8.70711 7.12136C9.09763 7.51188 9.7308 7.51188 10.1213 7.12136C10.5118 6.73083 10.5118 6.09767 10.1213 5.70714ZM21 10V12H3V10H21ZM12.9167 14H19V20H12.9167V14ZM11.0834 14V20H5V14H11.0834Z" fill="currentColor" /></svg>
-                <div class="ml-1"><em>{{getUserDetail("birth")}}</em></div>
+                <div class="ml-1"><em>{{getUserById($userId, "birth")}}</em></div>
             </div>
             <div class="font-weight-light text-light small mt-1">
-                {{getUserDetail("bio")}}
+                {{getUserById($userId, "bio")}}
             </div>
+            @if($myId == $userId)
             <div><button class="btn btn-randomize btn-ghost mt-5 w-50" data-toggle="modal" data-target="#exampleModal">Edit Profile</Button></div>
             <div><a class="btn btn-randomize btn-out mt-3 w-50" href="{{base_url('/authentication/logout')}}">Log Out</a></div>
+            @endif
+            @if($myId != $userId)
+                @if(isUserFollowed($userId))
+                    <div><a class="btn btn-randomize btn-out mt-3 w-50" href="javascript:void(0)" onclick="unfollow({{$userId}})">Unfollow</a></div>
+                @else
+                    <div><a class="btn btn-randomize btn-out mt-3 w-50" href="javascript:void(0)" onclick="follow({{$userId}})">Follow</a></div>
+                @endif
+            @endif
         </div>
     </div>
     <div class="col-md-6 main-content w-100">
@@ -240,7 +251,7 @@
                         <label for="image" class="text-muted">Photo</label>
                         <div id="image" class="row mb-4 align-items-center">
                             <div class="col-4">
-                                <img class="rounded-circle" src="{{get_images_path(getUserDetail('photo'))}}" width="100%">
+                                <img class="rounded-circle" src="{{get_images_path(getUserById($userId, 'photo'))}}" width="100%">
                             </div>
                             <div class="col">
                                 <div class="btn btn-link"><i class="gg-more-alt"></i></div>
@@ -249,23 +260,23 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Bio</label>
-                        <textarea name="bio" class="form-control">{{getUserDetail('bio')}}</textarea>
+                        <textarea name="bio" class="form-control">{{getUserById($userId, 'bio')}}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Fullname</label>
-                        <input type="text" name="name" value="{{getUserDetail('name')}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" name="name" value="{{getUserById($userId, 'name')}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" name="email" value='{{getUserDetail('email')}}' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="email" name="email" value='{{getUserById($userId, 'email')}}' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Username</label>
-                        <input type="text" name="username" value='{{getUserDetail('username')}}' class="form-control" aria-describedby="emailHelp">
+                        <input type="text" name="username" value='{{getUserById($userId, 'username')}}' class="form-control" aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
                         <label for="birth" class="text-muted">Birthday</label>
-                        <input type="date" name="birth" value="{{getUserDetail('birth')}}" class="form-control" id="birth">
+                        <input type="date" name="birth" value="{{getUserById($userId, 'birth')}}" class="form-control" id="birth">
                     </div>
                 </div>
             </div>
