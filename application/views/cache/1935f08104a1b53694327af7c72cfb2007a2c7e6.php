@@ -76,18 +76,12 @@
                         </div>
                     </a>
                     <div class="link bg-randomize-3 p-3 trending-group collapse" id="stories">
-                        <div class="trending-dark">
-                            <div class="list">#Tinggal Kenangan</div>
-                            <div class="sub-list">By anonymous</div>
+                        <?php $__currentLoopData = $popular; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="trending">
+                            <div class="list"><?php echo e($row->text); ?></div>
+                            <div class="sub-list"><?php echo e($row->count); ?> randoms</div>
                         </div>
-                        <div class="trending-dark">
-                            <div class="list">#Tinggal Kenangan</div>
-                            <div class="sub-list">By anonymous</div>
-                        </div>
-                        <div class="trending-dark">
-                            <div class="list">#Tinggal Kenangan</div>
-                            <div class="sub-list">By anonymous</div>
-                        </div>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                     <a data-toggle="collapse" href="#people" role="button" aria-expanded="false" aria-controls="personal" class="text-dark text-decoration-none">
                         <div class="bg-randomize-3 p-3 card widget center">
@@ -142,135 +136,158 @@
                                         </div>
                                         <div class="post-control">
                                             <div class="d-flex justify-content-between">
-                                                <a href="#"><i class="gg-heart" style="margin-right: 10px;"></i> <?php echo e(getLikesCount($row->id)); ?><span class="ml-1 d-none d-sm-none d-md-block">Likes</span></a>
-                                                <a href="#"><i class="gg-comment" style="margin-right: 10px;"></i> <?php echo e(getRepliesCount($row->id)); ?><span class="ml-1 d-none d-sm-none d-md-block">Replies</span></a>
-                                                <a href="#"><i class="gg-attribution" style="margin-right: 5px;"></i> 10<span class="ml-1 d-none d-sm-none d-md-block">Retext</span></a>
-                                                <a href="#"><i class="gg-share" style="margin-right: 15px;"></i> 10<span class="ml-1 d-none d-sm-none d-md-block">Share</span></a>
+                                                <?php if(isPostLiked($row->id)): ?>
+                                                <div class="d-flex justify-content-center align-items-center"><a href="javascript:void(0)" onclick="unlike_post(<?php echo e($row->id); ?>)"><i class="gg-heart text-success" style="margin-right: 10px;"></i></a><a class="d-none d-sm-none d-md-block ml-1" href="javascript:void(0)" onclick="getPostLikes(<?php echo e($row->id); ?>)"> <?php echo e(getLikesCount($row->id)); ?> Likes</a></div>
+                                                <?php else: ?>
+                                                <div class="d-flex justify-content-center align-items-center"><a href="javascript:void(0)" onclick="like_post(<?php echo e($row->id); ?>)"><i class="gg-heart" style="margin-right: 10px;"></i></a><a class="d-none d-sm-none d-md-block ml-1" href="javascript:void(0)" onclick="getPostLikes(<?php echo e($row->id); ?>)"> <?php echo e(getLikesCount($row->id)); ?> Likes</a></div>
+                                                <?php endif; ?>
+                                                <a href="<?php echo e(base_url('home/read/'.$row->id)); ?>"><i class="gg-comment" style="margin-right: 10px;"></i> <?php echo e(getRepliesCount($row->id)); ?><span class="ml-1 d-none d-sm-none d-md-block">Replies</span></a>
+                                                <a href="javascript:void(0)" onclick="sharePost(<?php echo e($row->id); ?>)"><i class="gg-share" style="margin-right: 15px;"></i> <span class="ml-1 d-none d-sm-none d-md-block">Shares</span></a>
                                             </div>
                                         </div>
                                         <?php if(getRepliesCount($row->id) > 0): ?>
                                         <div class="show-all mt-3">
-                                            <a href="#">>> Show all replies <<</a> </div> <?php endif; ?>
-                                            <div class="tags-box">
-                                                <?php $__currentLoopData = getHashtagWidget($row->body); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $hashtag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <a href="#">>> Show all replies <<</a> </div> <?php endif; ?> <div class="tags-box">
+                                                <?php
+                                                    $color = array("tags-green", "tags-cyan", "tags-pink", "tags-purple");
+                                                    $randomColor = rand(0,count($color))
+                                                ?>
+                                                    <?php $__currentLoopData = getHashtagWidget($row->body); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $hashtag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <div class="tags mt-3" style="display: inline-block">
-                                                        <a href="#" class="bg-primary px-3 py-1 text-white"><?php echo e($hashtag); ?></a>
+                                                        <a href="#" class="<?php echo e($color[$randomColor]); ?> px-3 py-1 text-white"><?php echo e($hashtag); ?></a>
                                                     </div>
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            </div>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="share-container post-<?php echo e($row->id); ?>">
+                    <div class="share-box hide p-2">
+                    </div>
+                </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 bg-randomize-3 card widget right  d-none d-sm-none d-md-block">
+        <div class="p-3">
+            <!-- Top Stories -->
+            <div class="d-none d-sm-none d-md-block">
+                <div class="d-flex">
+                    <div class="card-title">TOP STORIES</div>
+                </div>
+                <div class="link trending-group">
+                    <?php $__currentLoopData = $popular; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="trending-dark">
+                        <div class="list"><?php echo e($row->text); ?></div>
+                        <div class="sub-list"><?php echo e($row->count); ?> randoms</div>
                     </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3 bg-randomize-3 card widget right  d-none d-sm-none d-md-block">
-            <div class="p-3">
-                <!-- Top Stories -->
-                <div class="d-none d-sm-none d-md-block">
-                    <div class="d-flex">
-                        <div class="card-title">TOP STORIES</div>
+            <div class="mt-5">
+                <!-- Follow Recommend  -->
+                <div class=" d-none d-sm-none d-md-block">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>WHO TO FOLLOW</div>
+                        <a href="<?php echo e(base_url('/friends')); ?>" class="text-muted">More</a>
                     </div>
-                    <div class="link trending-group">
-                        <div class="trending-dark">
-                            <div class="list">#Tinggal Kenangan</div>
-                            <div class="sub-list">By anonymous</div>
-                        </div>
-                        <div class="trending-dark">
-                            <div class="list">#Tinggal Kenangan</div>
-                            <div class="sub-list">By anonymous</div>
-                        </div>
-                        <div class="trending-dark">
-                            <div class="list">#Tinggal Kenangan</div>
-                            <div class="sub-list">By anonymous</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-5">
-                    <!-- Follow Recommend  -->
-                    <div class=" d-none d-sm-none d-md-block">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div>WHO TO FOLLOW</div>
-                            <a href="<?php echo e(base_url('/friends')); ?>" class="text-muted">More</a>
-                        </div>
-                        <div class="trending-group">
-                            <div class="friends-group">
-                                <?php $__currentLoopData = $recommendedUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <div class="card widget center p-3 mt-3">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-4">
-                                            <img class="rounded-circle" src="<?php echo e(get_images_path($row->photo)); ?>" width="100%">
-                                        </div>
-                                        <div class="col-md-6 p-0 small">
-                                            <strong><?php echo e($row->name); ?></strong>
-                                        </div>
-                                        <div class="col-md-2 no-padding">
-                                            <i class="gg-add"></i>
-                                        </div>
+                    <div class="trending-group">
+                        <div class="friends-group">
+                            <?php $__currentLoopData = $recommendedUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="card widget center p-3 mt-3">
+                                <div class="row align-items-center">
+                                    <div class="col-md-4">
+                                        <img class="rounded-circle" src="<?php echo e(get_images_path($row->photo)); ?>" width="100%">
+                                    </div>
+                                    <div class="col-md-6 p-0 small">
+                                        <strong><?php echo e($row->name); ?></strong>
+                                    </div>
+                                    <div class="col-md-2 no-padding">
+                                        <i class="gg-add"></i>
                                     </div>
                                 </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade editProfile" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form action="<?php echo e(base_url('/home/profileUpdate')); ?>" method="POST">
-            <div class="modal-dialog modal-dialog-scrollable" role="document">
-                <div class="modal-content">
-                    <div class="modal-header align-items-center">
-                        <div class="modal-header-custom">
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span aria-hidden="true" class="text-primary">&times;</span>
-                            </button>
-                            <h5 class="modal-title font-weight-bold ml-3" id="exampleModalLabel">Edit Profile</h5>
-                        </div>
-                        <button type="submit" class="btn btn-primary rounded-pill text-white">Save</button>
+</div>
+<!-- Modal -->
+<div class="modal fade editProfile" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form action="<?php echo e(base_url('/home/profileUpdate')); ?>" method="POST">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header align-items-center">
+                    <div class="modal-header-custom">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true" class="text-primary">&times;</span>
+                        </button>
+                        <h5 class="modal-title font-weight-bold ml-3" id="exampleModalLabel">Edit Profile</h5>
                     </div>
-                    <div class="modal-body pl-4 pr-4">
-                        <div class="form-group">
-                            <label for="image" class="text-muted">Photo</label>
-                            <div id="image" class="row mb-4 align-items-center">
-                                <div class="col-4">
-                                    <img class="rounded-circle" src="<?php echo e(get_images_path(getUserDetail('photo'))); ?>" width="100%">
-                                </div>
-                                <div class="col">
-                                    <div class="btn btn-link"><i class="gg-more-alt"></i></div>
-                                </div>
+                    <button type="submit" class="btn btn-primary rounded-pill text-white">Save</button>
+                </div>
+                <div class="modal-body pl-4 pr-4">
+                    <div class="form-group">
+                        <label for="image" class="text-muted">Photo</label>
+                        <div id="image" class="row mb-4 align-items-center">
+                            <div class="col-4">
+                                <img class="rounded-circle" src="<?php echo e(get_images_path(getUserDetail('photo'))); ?>" width="100%">
+                            </div>
+                            <div class="col">
+                                <div class="btn btn-link"><i class="gg-more-alt"></i></div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Bio</label>
-                            <textarea name="bio" class="form-control"><?php echo e(getUserDetail('bio')); ?></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Fullname</label>
-                            <input type="text" name="name" value="<?php echo e(getUserDetail('name')); ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" name="email" value='<?php echo e(getUserDetail('email')); ?>' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Username</label>
-                            <input type="text" name="username" value='<?php echo e(getUserDetail('username')); ?>' class="form-control" aria-describedby="emailHelp">
-                        </div>
-                        <div class="form-group">
-                            <label for="birth" class="text-muted">Birthday</label>
-                            <input type="date" name="birth" value="<?php echo e(getUserDetail('birth')); ?>" class="form-control" id="birth">
-                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Bio</label>
+                        <textarea name="bio" class="form-control"><?php echo e(getUserDetail('bio')); ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Fullname</label>
+                        <input type="text" name="name" value="<?php echo e(getUserDetail('name')); ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" name="email" value='<?php echo e(getUserDetail('email')); ?>' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Username</label>
+                        <input type="text" name="username" value='<?php echo e(getUserDetail('username')); ?>' class="form-control" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="birth" class="text-muted">Birthday</label>
+                        <input type="date" name="birth" value="<?php echo e(getUserDetail('birth')); ?>" class="form-control" id="birth">
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
+    </form>
+</div>
+<div class="modal fade" id="likeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header align-items-center">
+                <div class="modal-header-custom">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true" class="text-primary">&times;</span>
+                    </button>
+                    <h5 class="modal-title font-weight-bold ml-3" id="exampleModalLabel">Likes</h5>
+                </div>
+            </div>
+            <div class="modal-body pl-4 pr-4">
+                <div class="likepost">
+
+                </div>
+            </div>
+        </div>
     </div>
-    <?php $__env->stopSection(); ?>
+</div>
+<?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\random3\application\views/pages/profile.blade.php ENDPATH**/ ?>

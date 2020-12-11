@@ -138,6 +138,7 @@ class Home extends CI_Controller{
         $this->load->model("posts");
         $this->load->model("follow");
         $this->load->model("users");
+        $this->load->model('hashtag');
 
         $title = 'Profile';
         $myPosts = $this->posts->getPostsByUserId($this->session->userId, true);
@@ -145,6 +146,7 @@ class Home extends CI_Controller{
         $recommendedUsers = $this->users->userList($this->session->userId);
         $following = $this->follow->getFollowingCount($this->session->userId);
         $followers = $this->follow->getFollowersCount($this->session->userId);
+        $popular = $this->hashtag->getPopular();
 
 		return view('pages/profile', [
             'title' => $title, 
@@ -152,7 +154,8 @@ class Home extends CI_Controller{
             'myPostsCount' => $myPostsCount,
             'following' => $following,
             'followers' => $followers,
-            'recommendedUsers' => $recommendedUsers
+            'recommendedUsers' => $recommendedUsers,
+            'popular' => $popular,
         ]);
     }
 
