@@ -49,11 +49,11 @@
             <div><a class="btn btn-randomize btn-out mt-3 w-50" href="<?php echo e(base_url('/authentication/logout')); ?>">Log Out</a></div>
             <?php endif; ?>
             <?php if($myId != $userId): ?>
-                <?php if(isUserFollowed($userId)): ?>
-                    <div><a class="btn btn-randomize btn-out mt-3 w-50" href="javascript:void(0)" onclick="unfollow(<?php echo e($userId); ?>)">Unfollow</a></div>
-                <?php else: ?>
-                    <div><a class="btn btn-randomize btn-out mt-3 w-50" href="javascript:void(0)" onclick="follow(<?php echo e($userId); ?>)">Follow</a></div>
-                <?php endif; ?>
+            <?php if(isUserFollowed($userId)): ?>
+            <div><a class="btn btn-randomize btn-out mt-3 w-50" href="javascript:void(0)" onclick="unfollow(<?php echo e($userId); ?>)">Unfollow</a></div>
+            <?php else: ?>
+            <div><a class="btn btn-randomize btn-out mt-3 w-50" href="javascript:void(0)" onclick="follow(<?php echo e($userId); ?>)">Follow</a></div>
+            <?php endif; ?>
             <?php endif; ?>
         </div>
     </div>
@@ -140,7 +140,17 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="post-author"><?php echo e(getUserDetail("name")); ?></div>
+                                        <div class="d-flex justify-content-between">
+                                            <div class="post-author" style="margin-bottom: 0px;"><?php echo e(getUserDetail("name")); ?></div>
+                                            <span>
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </span>
+                                        </div>
                                         <div class="post-body">
                                             <?php echo e(renderPost($row->body)); ?>
 
@@ -159,10 +169,10 @@
                                         <?php if(getRepliesCount($row->id) > 0): ?>
                                         <div class="show-all mt-3">
                                             <a href="#">>> Show all replies <<</a> </div> <?php endif; ?> <div class="tags-box">
-                                                <?php
+                                                    <?php
                                                     $color = array("tags-green", "tags-cyan", "tags-pink", "tags-purple");
                                                     $randomColor = rand(0,count($color)-1)
-                                                ?>
+                                                    ?>
                                                     <?php $__currentLoopData = getHashtagWidget($row->body); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $hashtag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <div class="tags mt-3" style="display: inline-block">
                                                         <a href="#" class="<?php echo e($color[$randomColor]); ?> px-3 py-1 text-white"><?php echo e($hashtag); ?></a>
@@ -218,13 +228,13 @@
                                         <strong><?php echo e($row->name); ?></strong>
                                     </div>
                                     <div class="col no-padding">
-                                    <?php if(isUserFollowed($row->id)): ?>
-                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" style="display: none" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
-                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" onclick="unfollow(<?php echo e($row->id); ?>)">- Unfollow</a>
-                                    <?php else: ?>
-                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
-                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" style="display: none" onclick="unfollow(<?php echo e($row->id); ?>)">- Unfollow</a>
-                                    <?php endif; ?>
+                                        <?php if(isUserFollowed($row->id)): ?>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" style="display: none" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" onclick="unfollow(<?php echo e($row->id); ?>)">- Unfollow</a>
+                                        <?php else: ?>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" style="display: none" onclick="unfollow(<?php echo e($row->id); ?>)">- Unfollow</a>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>

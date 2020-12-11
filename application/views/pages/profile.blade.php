@@ -47,11 +47,11 @@
             <div><a class="btn btn-randomize btn-out mt-3 w-50" href="{{base_url('/authentication/logout')}}">Log Out</a></div>
             @endif
             @if($myId != $userId)
-                @if(isUserFollowed($userId))
-                    <div><a class="btn btn-randomize btn-out mt-3 w-50" href="javascript:void(0)" onclick="unfollow({{$userId}})">Unfollow</a></div>
-                @else
-                    <div><a class="btn btn-randomize btn-out mt-3 w-50" href="javascript:void(0)" onclick="follow({{$userId}})">Follow</a></div>
-                @endif
+            @if(isUserFollowed($userId))
+            <div><a class="btn btn-randomize btn-out mt-3 w-50" href="javascript:void(0)" onclick="unfollow({{$userId}})">Unfollow</a></div>
+            @else
+            <div><a class="btn btn-randomize btn-out mt-3 w-50" href="javascript:void(0)" onclick="follow({{$userId}})">Follow</a></div>
+            @endif
             @endif
         </div>
     </div>
@@ -137,7 +137,17 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="post-author">{{getUserDetail("name")}}</div>
+                                        <div class="d-flex justify-content-between">
+                                            <div class="post-author" style="margin-bottom: 0px;">{{getUserDetail("name")}}</div>
+                                            <span>
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </span>
+                                        </div>
                                         <div class="post-body">
                                             {{renderPost($row->body)}}
                                         </div>
@@ -155,10 +165,10 @@
                                         @if(getRepliesCount($row->id) > 0)
                                         <div class="show-all mt-3">
                                             <a href="#">>> Show all replies <<</a> </div> @endif <div class="tags-box">
-                                                @php
+                                                    @php
                                                     $color = array("tags-green", "tags-cyan", "tags-pink", "tags-purple");
                                                     $randomColor = rand(0,count($color)-1)
-                                                @endphp
+                                                    @endphp
                                                     @foreach(getHashtagWidget($row->body) as $hashtag)
                                                     <div class="tags mt-3" style="display: inline-block">
                                                         <a href="#" class="{{$color[$randomColor]}} px-3 py-1 text-white">{{$hashtag}}</a>
@@ -214,13 +224,13 @@
                                         <strong>{{$row->name}}</strong>
                                     </div>
                                     <div class="col no-padding">
-                                    @if(isUserFollowed($row->id))
-                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" style="display: none" onclick="follow({{$row->id}})">+ Follow</a>
-                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" onclick="unfollow({{$row->id}})">- Unfollow</a>
-                                    @else
-                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" onclick="follow({{$row->id}})">+ Follow</a>
-                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" style="display: none" onclick="unfollow({{$row->id}})">- Unfollow</a>
-                                    @endif
+                                        @if(isUserFollowed($row->id))
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" style="display: none" onclick="follow({{$row->id}})">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" onclick="unfollow({{$row->id}})">- Unfollow</a>
+                                        @else
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" onclick="follow({{$row->id}})">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" style="display: none" onclick="unfollow({{$row->id}})">- Unfollow</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
