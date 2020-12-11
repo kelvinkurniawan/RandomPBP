@@ -11,6 +11,11 @@ class Posts extends CI_Model{
         return $this->db->get($this->table)->result();
     }    
 
+    public function getTotalPost(){
+        $this->db->order_by('id', 'DESC');
+        return $this->db->get($this->table)->num_rows();
+    }    
+
     public function getPostsFeed($userId, $limit = 10){
         $this->load->model('follow');
         
@@ -74,6 +79,11 @@ class Posts extends CI_Model{
         $this->db->where('user', $id);
         if($parentOnly) $this->db->where('parent', 0);
         return $this->db->get($this->table)->num_rows();
+    }
+
+    public function delete($id){
+        $this->db->where("id", $id);
+        return $this->db->delete($this->table);
     }
 }
 

@@ -64,7 +64,7 @@ class Home extends CI_Controller{
             $posts = $this->posts->getAllByParent($parentId);
         }else{
             //$posts = $this->posts->getAll();
-            $posts = $this->posts->getPostsFeed($this->session->userId, $limit, $hashtag);
+            $posts = $this->posts->getPostsFeed(3, $limit, $hashtag);
         }
 
         $result = array();
@@ -158,7 +158,7 @@ class Home extends CI_Controller{
         $followers = $this->follow->getFollowersCount($tempId);
         $recommendedUsers = $this->users->userList($tempId);
         $userId = $tempId;
-        
+
 		return view('pages/profile', [
             'title' => $title, 
             'myPosts' => $myPosts, 
@@ -212,35 +212,6 @@ class Home extends CI_Controller{
             'recommendedUsers' => $recommendedUsers,
             'popular'=> $popular
         ]);
-    }
-
-    function admin(){
-
-        $this->load->model('follow');
-
-        $title = 'Admin';
-
-        $followers = $this->follow->getFollowersCount($this->session->userId);
-        $following = $this->follow->getFollowingCount($this->session->userId);
-        $followingList = $this->follow->getFollowing($this->session->userId);
-
-		return view('pages/admin', ['title' => $title, 'followers' => $followers, 'following' => $following, 'followingList' => $followingList]);
-    }
-
-    function adminDetail(){
-
-        $this->load->model('follow');
-        $this->load->model("posts");
-
-        $title = 'Admin Detail';
-
-        $followers = $this->follow->getFollowersCount($this->session->userId);
-        $following = $this->follow->getFollowingCount($this->session->userId);
-        $followingList = $this->follow->getFollowing($this->session->userId);
-        $myPosts = $this->posts->getPostsByUserId($this->session->userId, true);
-        $myPostsCount = $this->posts->getPostsByUserIdCount($this->session->userId, true);
-
-		return view('pages/admindetail', ['title' => $title, 'followers' => $followers, 'following' => $following, 'followingList' => $followingList, 'myPosts' => $myPosts, 'myPostsCount' => $myPostsCount]);
     }
 
     function performAddPost(){

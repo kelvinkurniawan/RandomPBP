@@ -274,3 +274,7 @@
 .search-result {
 	display: block;
 }
+.card-as-link {
+	text-decoration: none !important;
+	cursor: pointer;
+}
