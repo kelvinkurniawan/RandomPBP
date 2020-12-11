@@ -124,7 +124,13 @@
                                         </div>
                                     </div>
                                     <div class="col-3 d-none d-sm-block">
-                                        <a href="#" class="btn bg-randomize-2 rounded-pill text-white small">Following</a>
+                                        <?php if(isUserFollowed($row->id)): ?>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" style="display: none" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" onclick="unfollow(<?php echo e($row->id); ?>)">- Unfollow</a>
+                                        <?php else: ?>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" style="display: none" onclick="unfollow(<?php echo e($row->id); ?>">- Unfollow</a>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>

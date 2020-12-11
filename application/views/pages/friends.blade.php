@@ -119,7 +119,13 @@
                                         </div>
                                     </div>
                                     <div class="col-3 d-none d-sm-block">
-                                        <a href="#" class="btn bg-randomize-2 rounded-pill text-white small">Following</a>
+                                        @if(isUserFollowed($row->id))
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" style="display: none" onclick="follow({{$row->id}})">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" onclick="unfollow({{$row->id}})">- Unfollow</a>
+                                        @else
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" onclick="follow({{$row->id}})">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" style="display: none" onclick="unfollow({{$row->id}}">- Unfollow</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
