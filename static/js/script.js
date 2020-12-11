@@ -13,6 +13,34 @@ function like_post(postId) {
 	});
 }
 
+function openSearch() {
+	$(".search-box").toggleClass("show");
+}
+
+function search(key) {
+	$.ajax({
+		url: url + "home/searchQuery?q=" + key,
+		method: "GET",
+		dataType: "JSON",
+		success: function (data) {
+			var resUser = "<h4>Users</h4>";
+			var resHashtag = "<h4>Hashtag</h4>";
+			for (i = 0; i < data.user.length; i++) {
+				resUser +=
+					'<a href="#" class="search-result">' + data.user[i].name + "</a>";
+			}
+			for (i = 0; i < data.hashtag.length; i++) {
+				resHashtag +=
+					'<a href="#" class="search-result">' +
+					data.hashtag[i].hashtag +
+					"</a>";
+			}
+			$(".result-user").html(resUser);
+			$(".result-hashtag").html(resHashtag);
+		},
+	});
+}
+
 function getUrlParameter(sParam) {
 	var sPageURL = window.location.search.substring(1),
 		sURLVariables = sPageURL.split("&"),
@@ -265,6 +293,7 @@ function show_status(limit = 10) {
 }
 
 $(document).ready(function () {
+	search();
 	show_status();
 	Pusher.logToConsole = false;
 
@@ -288,6 +317,17 @@ $(document).ready(function () {
 
 	$(".input-body-mobile").on("keyup", function () {
 		$(".input-body").val($(".input-body-mobile").val());
+	});
+
+	$("#search-q").on("keyup", function () {
+		if ($(this).val() != "") {
+			search($(this).val());
+		}
+
+		if ($(this).val() == "") {
+			$(".result-user").html("<h4>Users</h4>");
+			$(".result-hashtag").html("<h4>Hashtag</h4>");
+		}
 	});
 
 	$(".btn-submit-post").on("click", function () {

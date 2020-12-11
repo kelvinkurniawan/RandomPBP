@@ -39,7 +39,7 @@
 					<a href="{{base_url('/home')}}" class="nav-link primary">Discover</a>
 				</div>
 				<div class="right d-flex justify-content-between align-items-center">
-					<a href="#" class="nav-link">
+					<a href="javascript:void(0)" class="nav-link" onclick="openSearch()">
 						<i class="gg-search"></i>
 					</a>
 					<a data-toggle="collapse" href="#postBox" role="button" aria-expanded="false" aria-controls="postBox" class="btn btn-primary btn-randomize">Create Stories</a>
@@ -55,6 +55,28 @@
 					{{getUserDetail("name")}}
 					<i class="ml-3 gg-user"></i>
 				</a>
+			</div>
+		</div>
+	</div>
+	<div class="search-box p-4 col-md-6 shadow">
+		<div class="row">
+			<div class="search-input col-md-12">
+				<input type="text" class="form-control" name="q" id="search-q">
+			</div>
+		</div>
+		<div class="row">
+			<div class="search-result px-3 pt-3 w-100">
+				<div class="single-result w-100 result-user">
+					<h4>Users</h4>
+					<a href="#" class="search-result">Kelvin Kurniawan</a>
+					<a href="#" class="search-result">Kelvin Kurniawan</a>
+				</div>
+				<hr class="w-100">
+				<div class="single-result w-100 result-hashtag"">
+					<h4>Hashtag</h4>
+					<a href="#" class="search-result">Kelvin Kurniawan</a>
+					<a href="#" class="search-result">Kelvin Kurniawan</a>
+				</div>
 			</div>
 		</div>
 	</div>

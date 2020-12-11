@@ -9,6 +9,30 @@ class Home extends CI_Controller{
         isNotLogin();
     }
 
+    function searchQuery(){
+        $key = $this->input->get("q");
+
+        $this->load->model('search');
+
+        $users = $this->search->getUser($key);
+        $hashtag = $this->search->getHashtag($key);
+        $result['user'] = array();
+        $result['hashtag'] = array();
+
+        foreach($users as $user){
+            $tempUser['username'] = $user->username;
+            $tempUser['name'] = $user->name;
+
+            array_push($result['user'], $tempUser);
+        }
+        foreach($hashtag as $hash){
+            $tempHash['hashtag'] = $hash->text;
+
+            array_push($result['hashtag'], $tempHash);
+        }
+        echo json_encode($result);
+    }
+
     function hashtag($hash){
 
         $this->load->model('posts');
