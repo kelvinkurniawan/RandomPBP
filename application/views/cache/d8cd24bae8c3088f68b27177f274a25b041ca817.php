@@ -136,7 +136,7 @@
             <!-- Follower -->
             <div class="mt-5 tab-pane fade" id="followers">
                 <?php $__currentLoopData = $followersList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="card widget center bg-white mb-3 w-100">
+                <div class="card widget center bg-randomize-3 mb-3 w-100">
                     <div class="card-body">
                         <div class="post">
                             <div class="post-single">
@@ -155,7 +155,13 @@
                                         </div>
                                     </div>
                                     <div class="col-3 d-none d-sm-block">
-                                        <a href="#" class="btn bg-randomize-2 rounded-pill text-white small">Following</a>
+                                        <?php if(isUserFollowed($row->id)): ?>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" style="display: none" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" onclick="unfollow(<?php echo e($row->id); ?>)">- Unfollow</a>
+                                        <?php else: ?>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" style="display: none" onclick="unfollow(<?php echo e($row->id); ?>">- Unfollow</a>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -194,11 +200,17 @@
                                 <div class="col-md-4">
                                     <img class="rounded-circle" src="<?php echo e(get_images_path($row->photo)); ?>" width="100%">
                                 </div>
-                                <div class="col-md-6 p-0 small">
+                                <div class="col p-0 small">
                                     <strong><?php echo e($row->name); ?></strong>
                                 </div>
-                                <div class="col-md-2 no-padding">
-                                    <i class="gg-add"></i>
+                                <div class="col no-padding">
+                                    <?php if(isUserFollowed($row->id)): ?>
+                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" style="display: none" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
+                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" onclick="unfollow(<?php echo e($row->id); ?>)">- Unfollow</a>
+                                    <?php else: ?>
+                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
+                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" style="display: none" onclick="unfollow(<?php echo e($row->id); ?>">- Unfollow</a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>

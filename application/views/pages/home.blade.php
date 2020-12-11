@@ -85,7 +85,7 @@
 												<a href="#"><i class="gg-film"></i></a>
 												<a href="#"><i class="gg-browser"></i></a>
 											</div>
-											<div class="anonym-check ml-4 mt-2">
+											<div class="anonym-check ml-3 mt-2">
 												<input type="checkbox" class="form-check-input input-anonym" name="anonym"> Anonymous
 											</div>
 										</div>
