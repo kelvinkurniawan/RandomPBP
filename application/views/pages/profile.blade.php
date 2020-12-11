@@ -199,11 +199,17 @@
                                     <div class="col-md-4">
                                         <img class="rounded-circle" src="{{get_images_path($row->photo)}}" width="100%">
                                     </div>
-                                    <div class="col-md-6 p-0 small">
+                                    <div class="col p-0 small">
                                         <strong>{{$row->name}}</strong>
                                     </div>
-                                    <div class="col-md-2 no-padding">
-                                        <i class="gg-add"></i>
+                                    <div class="col no-padding">
+                                    @if(isUserFollowed($row->id))
+                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" style="display: none" onclick="follow({{$row->id}})">+ Follow</a>
+                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" onclick="unfollow({{$row->id}})">- Unfollow</a>
+                                    @else
+                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" onclick="follow({{$row->id}})">+ Follow</a>
+                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" style="display: none" onclick="unfollow({{$row->id}})">- Unfollow</a>
+                                    @endif
                                     </div>
                                 </div>
                             </div>
@@ -266,7 +272,7 @@
         </div>
     </form>
 </div>
-<div class="modal fade" id="likeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-lg fade" id="likeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header align-items-center">

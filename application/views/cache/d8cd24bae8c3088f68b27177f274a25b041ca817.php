@@ -45,7 +45,7 @@
             <div class="pt-5">
                 <a href="<?php echo e(base_url('/profile?edit_profile=true')); ?>" class="btn btn-randomize btn-ghost w-50">Edit Profile</a>
             </div>
-            <div><button class="btn btn-randomize btn-out mt-3 w-50">Log Out</button></div>
+            <div><a class="btn btn-randomize btn-out mt-3 w-50" href="<?php echo e(base_url('/authentication/logout')); ?>">Log Out</a></div>
         </div>
     </div>
     <div class="col-md-6 no-gutters pt-3 pl-4 pr-4">
@@ -125,11 +125,11 @@
                                     </div>
                                     <div class="col-3 d-none d-sm-block">
                                         <?php if(isUserFollowed($row->id)): ?>
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" style="display: none" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
-                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" onclick="unfollow(<?php echo e($row->id); ?>)">- Unfollow</a>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->followId); ?>-follow" onclick="follow(<?php echo e($row->followId); ?>)">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->followId); ?>-unfollow" style="display: none" onclick="unfollow(<?php echo e($row->followId); ?>)">- Unfollow</a>
                                         <?php else: ?>
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
-                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" style="display: none" onclick="unfollow(<?php echo e($row->id); ?>">- Unfollow</a>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->followId); ?>-follow" style="display: none" onclick="follow(<?php echo e($row->followId); ?>)">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->followId); ?>-unfollow" onclick="unfollow(<?php echo e($row->followId); ?>)">- Unfollow</a>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -162,11 +162,11 @@
                                     </div>
                                     <div class="col-3 d-none d-sm-block">
                                         <?php if(isUserFollowed($row->id)): ?>
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" style="display: none" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
-                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" onclick="unfollow(<?php echo e($row->id); ?>)">- Unfollow</a>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->userId); ?>-follow" style="display: none" onclick="follow(<?php echo e($row->userId); ?>)">+ Follow< Back/a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->userId); ?>-unfollow" onclick="unfollow(<?php echo e($row->userId); ?>)">- Unfollow</a>
                                         <?php else: ?>
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
-                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" style="display: none" onclick="unfollow(<?php echo e($row->id); ?>">- Unfollow</a>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->userId); ?>-follow" onclick="follow(<?php echo e($row->userId); ?>)">+ Follow Back</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->userId); ?>-unfollow" style="display: none" onclick="unfollow(<?php echo e($row->userId); ?>)">- Unfollow</a>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -215,7 +215,7 @@
                                     <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" onclick="unfollow(<?php echo e($row->id); ?>)">- Unfollow</a>
                                     <?php else: ?>
                                     <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
-                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" style="display: none" onclick="unfollow(<?php echo e($row->id); ?>">- Unfollow</a>
+                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" style="display: none" onclick="unfollow(<?php echo e($row->id); ?>)">- Unfollow</a>
                                     <?php endif; ?>
                                 </div>
                             </div>

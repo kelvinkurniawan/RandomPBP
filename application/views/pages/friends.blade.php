@@ -42,7 +42,7 @@
             <div class="pt-5">
                 <a href="{{base_url('/profile?edit_profile=true')}}" class="btn btn-randomize btn-ghost w-50">Edit Profile</a>
             </div>
-            <div><button class="btn btn-randomize btn-out mt-3 w-50">Log Out</button></div>
+            <div><a class="btn btn-randomize btn-out mt-3 w-50" href="{{base_url('/authentication/logout')}}">Log Out</a></div>
         </div>
     </div>
     <div class="col-md-6 no-gutters pt-3 pl-4 pr-4">
@@ -120,11 +120,11 @@
                                     </div>
                                     <div class="col-3 d-none d-sm-block">
                                         @if(isUserFollowed($row->id))
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" style="display: none" onclick="follow({{$row->id}})">+ Follow</a>
-                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" onclick="unfollow({{$row->id}})">- Unfollow</a>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->followId}}-follow" onclick="follow({{$row->followId}})">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->followId}}-unfollow" style="display: none" onclick="unfollow({{$row->followId}})">- Unfollow</a>
                                         @else
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" onclick="follow({{$row->id}})">+ Follow</a>
-                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" style="display: none" onclick="unfollow({{$row->id}}">- Unfollow</a>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->followId}}-follow" style="display: none" onclick="follow({{$row->followId}})">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->followId}}-unfollow" onclick="unfollow({{$row->followId}})">- Unfollow</a>
                                         @endif
                                     </div>
                                 </div>
@@ -155,11 +155,11 @@
                                     </div>
                                     <div class="col-3 d-none d-sm-block">
                                         @if(isUserFollowed($row->id))
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" style="display: none" onclick="follow({{$row->id}})">+ Follow</a>
-                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" onclick="unfollow({{$row->id}})">- Unfollow</a>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->userId}}-follow" style="display: none" onclick="follow({{$row->userId}})">+ Follow< Back/a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->userId}}-unfollow" onclick="unfollow({{$row->userId}})">- Unfollow</a>
                                         @else
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" onclick="follow({{$row->id}})">+ Follow</a>
-                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" style="display: none" onclick="unfollow({{$row->id}}">- Unfollow</a>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->userId}}-follow" onclick="follow({{$row->userId}})">+ Follow Back</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->userId}}-unfollow" style="display: none" onclick="unfollow({{$row->userId}})">- Unfollow</a>
                                         @endif
                                     </div>
                                 </div>
@@ -208,7 +208,7 @@
                                     <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" onclick="unfollow({{$row->id}})">- Unfollow</a>
                                     @else
                                     <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" onclick="follow({{$row->id}})">+ Follow</a>
-                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" style="display: none" onclick="unfollow({{$row->id}}">- Unfollow</a>
+                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" style="display: none" onclick="unfollow({{$row->id}})">- Unfollow</a>
                                     @endif
                                 </div>
                             </div>
