@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col d-flex justify-content-between align-items-center d-md-none d-lg-none d-xl-none">
 			<a class="navbar-brand " href="{{base_url()}}">Randomize</a>
-			<a href="#" class="nav-link">
+			<a href="javascript:void(0)" class="nav-link" onclick="openSearch()">
 				<i class="gg-search"></i>
 			</a>
 		</div>

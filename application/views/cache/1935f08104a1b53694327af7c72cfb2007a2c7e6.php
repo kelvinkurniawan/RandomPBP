@@ -66,11 +66,11 @@
                         <div class="font-weight-bold"><?php echo e($myPostsCount); ?></div>
                     </div>
                     <div class="col-4">
-                        <div class="text-black-50 small">FOLLOWING</div>
+                        <div class="text-black-50 small"><a href="<?php echo e(base_url('/friends')); ?>" class="text-black-50">FOLLOWING</a></div>
                         <div class="font-weight-bold"><?php echo e($following); ?></div>
                     </div>
                     <div class="col-4">
-                        <div class="text-black-50 small">FOLLOWERS</div>
+                        <div class="text-black-50 small"><a href="<?php echo e(base_url('/friends')); ?>" class="text-black-50">FOLLOWERS</a></div>
                         <div class="font-weight-bold"><?php echo e($followers); ?></div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                     </a>
                     <div class="link bg-randomize-3 p-3 trending-group collapse" id="stories">
                         <?php $__currentLoopData = $popular; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="trending">
+                        <div class="trending-dark">
                             <div class="list"><?php echo e($row->text); ?></div>
                             <div class="sub-list"><?php echo e($row->count); ?> randoms</div>
                         </div>
@@ -108,16 +108,22 @@
                     <div class="trending-group bg-randomize-3 collapse" id="people">
                         <div class="friends-group">
                             <?php $__currentLoopData = $recommendedUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="card widget center p-3 ">
+                            <div class="card bg-randomize-3 widget center p-3 mt-3">
                                 <div class="row align-items-center">
-                                    <div class="col-2">
+                                    <div class="col-4">
                                         <img class="rounded-circle" src="<?php echo e(get_images_path($row->photo)); ?>" width="100%">
                                     </div>
                                     <div class="col p-0">
                                         <strong><?php echo e($row->name); ?></strong>
                                     </div>
-                                    <div class="col-2 no-padding">
-                                        <i class="gg-add"></i>
+                                    <div class="col-3 no-padding">
+                                        <?php if(isUserFollowed($row->id)): ?>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" style="display: none" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" onclick="unfollow(<?php echo e($row->id); ?>)">- Unfollow</a>
+                                        <?php else: ?>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" style="display: none" onclick="unfollow(<?php echo e($row->id); ?>)">- Unfollow</a>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
