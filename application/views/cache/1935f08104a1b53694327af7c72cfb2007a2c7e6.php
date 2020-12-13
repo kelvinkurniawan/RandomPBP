@@ -23,7 +23,7 @@
                     <button class="btn btn-randomize btn-ghost w-100" data-toggle="modal" data-target="#exampleModal">Edit Profile</Button>
                 </div>
                 <div class="col">
-                    <button class="btn btn-randomize btn-out w-100">Log Out</button>
+                <div><a class="btn btn-randomize btn-out w-100" href="<?php echo e(base_url('/authentication/logout')); ?>">Log Out</a></div>
                 </div>
             </div>
             <?php endif; ?>
@@ -111,7 +111,7 @@
                             <div class="card bg-randomize-3 widget center p-3 mt-3">
                                 <div class="row align-items-center">
                                     <div class="col-4">
-                                        <img class="rounded-circle" src="<?php echo e(get_images_path($row->photo)); ?>" width="100%">
+                                        <img class="rounded-circle" src="<?php echo e(get_images_path($row->photo)); ?>" width="50%">
                                     </div>
                                     <div class="col p-0">
                                         <strong><?php echo e($row->name); ?></strong>
@@ -152,7 +152,7 @@
                                                 <div class="dropdown">
                                                     <button class="btn dropdown-toggle p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                        <a class="dropdown-item text-danger" href="<?php echo e(base_url('home/deletePost/'.$row->id)); ?>">Delete</a>
                                                     </div>
                                                 </div>
                                             </span>

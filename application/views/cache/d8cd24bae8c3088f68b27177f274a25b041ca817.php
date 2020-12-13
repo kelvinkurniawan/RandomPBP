@@ -167,8 +167,9 @@
                                         </div>
                                     </div>
                                     <div class="col-3 d-none d-sm-block">
-                                        <?php if(isUserFollowed($row->id)): ?>
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->userId); ?>-follow" style="display: none" onclick="follow(<?php echo e($row->userId); ?>)">+ Follow< Back/a> <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->userId); ?>-unfollow" onclick="unfollow(<?php echo e($row->userId); ?>)">- Unfollow</a>
+                                        <?php if(isUserFollowed($row->userId)): ?>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->userId); ?>-follow" style="display: none" onclick="follow(<?php echo e($row->userId); ?>)">+ Follow Back</a> 
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->userId); ?>-unfollow" onclick="unfollow(<?php echo e($row->userId); ?>)">- Unfollow</a>
                                         <?php else: ?>
                                         <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->userId); ?>-follow" onclick="follow(<?php echo e($row->userId); ?>)">+ Follow Back</a>
                                         <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->userId); ?>-unfollow" style="display: none" onclick="unfollow(<?php echo e($row->userId); ?>)">- Unfollow</a>

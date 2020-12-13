@@ -160,8 +160,9 @@
                                         </div>
                                     </div>
                                     <div class="col-3 d-none d-sm-block">
-                                        @if(isUserFollowed($row->id))
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->userId}}-follow" style="display: none" onclick="follow({{$row->userId}})">+ Follow< Back/a> <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->userId}}-unfollow" onclick="unfollow({{$row->userId}})">- Unfollow</a>
+                                        @if(isUserFollowed($row->userId))
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->userId}}-follow" style="display: none" onclick="follow({{$row->userId}})">+ Follow Back</a> 
+                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->userId}}-unfollow" onclick="unfollow({{$row->userId}})">- Unfollow</a>
                                         @else
                                         <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->userId}}-follow" onclick="follow({{$row->userId}})">+ Follow Back</a>
                                         <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->userId}}-unfollow" style="display: none" onclick="unfollow({{$row->userId}})">- Unfollow</a>
