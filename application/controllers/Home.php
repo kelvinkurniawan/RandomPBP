@@ -388,4 +388,10 @@ class Home extends CI_Controller{
         echo json_encode($result);
     }
 
+    function deletePost($id) {
+        $this->load->model('posts');
+        $this->posts->delete($id);
+        redirect('/profile/');
+    }
+
 }

@@ -118,8 +118,10 @@
 									<div class="col-md-4">
 										<?php get_images($user->photo) ?>
 									</div>
-									<div class="col-md-8">
+									<div class="col p-0 small">
 										<strong>{{$user->name}}</strong>
+									</div>
+									<div class="col no-padding">
 										<?php if(isUserFollowed($user->id)) :?>
 											<a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?=$user->id?>-follow" style="display: none" onclick="follow(<?=$user->id?>)">+ Follow</a>
 											<a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?=$user->id?>-unfollow"onclick="unfollow(<?=$user->id?>)">- Unfollow</a>

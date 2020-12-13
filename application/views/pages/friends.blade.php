@@ -80,16 +80,22 @@
                 <div class="trending-group bg-randomize-3 collapse" id="people">
                     <div class="friends-group">
                         @foreach ($recommendedUsers as $row)
-                        <div class="card widget center p-3 ">
+                        <div class="card bg-randomize-3 widget center p-3 mt-3">
                             <div class="row align-items-center">
-                                <div class="col-2">
+                                <div class="col-4">
                                     <img class="rounded-circle" src="{{get_images_path($row->photo)}}" width="100%">
                                 </div>
                                 <div class="col p-0">
                                     <strong>{{$row->name}}</strong>
                                 </div>
-                                <div class="col-2 no-padding">
-                                    <i class="gg-add"></i>
+                                <div class="col-3 no-padding">
+                                    @if(isUserFollowed($row->id))
+                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" style="display: none" onclick="follow({{$row->id}})">+ Follow</a>
+                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" onclick="unfollow({{$row->id}})">- Unfollow</a>
+                                    @else
+                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" onclick="follow({{$row->id}})">+ Follow</a>
+                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" style="display: none" onclick="unfollow({{$row->id}})">- Unfollow</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -154,8 +160,8 @@
                                         </div>
                                     </div>
                                     <div class="col-3 d-none d-sm-block">
-                                        @if(isUserFollowed($row->id))
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->userId}}-follow" style="display: none" onclick="follow({{$row->userId}})">+ Follow< Back/a>
+                                        @if(isUserFollowed($row->userId))
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->userId}}-follow" style="display: none" onclick="follow({{$row->userId}})">+ Follow Back</a> 
                                         <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->userId}}-unfollow" onclick="unfollow({{$row->userId}})">- Unfollow</a>
                                         @else
                                         <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->userId}}-follow" onclick="follow({{$row->userId}})">+ Follow Back</a>
