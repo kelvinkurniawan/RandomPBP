@@ -9,6 +9,9 @@ class Users extends CI_Model{
     public function getAll(){
         return $this->db->get($this->table)->result();
     }
+    public function getTotalUser(){
+        return $this->db->get($this->table)->num_rows();
+    }
 
     public function update($id, $data){
         $this->db->where('id', $id);
@@ -49,6 +52,10 @@ class Users extends CI_Model{
 
     public function insert($data){
         $this->db->insert($this->table, $data);
+    }
+    public function delete($id){
+        $this->db->where("id", $id);
+        return $this->db->delete($this->table);
     }
 
     public function getByEmailAndPassword($email, $password){

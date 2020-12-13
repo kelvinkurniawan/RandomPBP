@@ -292,3 +292,7 @@
 	position: relative;
     margin-left: 1em;
 }
+.card-as-link {
+	text-decoration: none !important;
+	cursor: pointer;
+}
