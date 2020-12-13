@@ -74,7 +74,7 @@ class Authentication extends CI_Controller {
 
 			$data['name'] = $random_name . ' ' . $random_surname;
 			$data['email'] = $random_name .'.'. $random_surname . '@mail.com';
-			$data['username'] = $random_surname .'.'. $random_name;
+			$data['username'] = $random_surname .'.'. ($i+99);
 			$data['password'] = password_hash('12345678', PASSWORD_DEFAULT);
 			$data['bio'] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur semper orci magna, et tempus sapien facilisis convallis. Morbi lacinia commodo sagittis";
 			$data['role'] = 0;

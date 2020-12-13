@@ -3,11 +3,12 @@
 }
 
 .bg-randomize {
-	background: #80a8cc;
+	background: #f2f2f5;
+	color: #333 !important;
 }
 
 .bg-randomize-light {
-	background-color: #f2eee8;
+	background-color: #f7f8f9;
 }
 
 .bg-randomize-2 {
@@ -15,7 +16,7 @@
 }
 
 .bg-randomize-3 {
-	background-color: #fffbf5;
+	background-color: #ffffff;
 }
 
 .btn-randomize {
@@ -107,7 +108,7 @@
 .trending .list {
 	font-weight: 700;
 	font-size: 14px;
-	color: #fff;
+	color: #333;
 }
 .trending .sub-list {
 	color: #718096;
@@ -282,7 +283,7 @@
 
 .icon-input {
 	position: absolute;
-    height: calc(40px + (5px * 2));
+	height: calc(40px + (5px * 2));
 	z-index: 100;
 	display: flex;
 	align-items: center;
@@ -290,7 +291,7 @@
 
 .search-box .icon-input > .icon {
 	position: relative;
-    margin-left: 1em;
+	margin-left: 1em;
 }
 .card-as-link {
 	text-decoration: none !important;
