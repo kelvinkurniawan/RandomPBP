@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-randomize-3 shadow-sm sticky-top" style="z-index: 9999;">
+<nav class="navbar navbar-expand-md navbar-light bg-randomize-3 shadow-sm sticky-top" style="z-index: 999;">
 	<div class="row">
 		<div class="col d-flex justify-content-between align-items-center d-md-none d-lg-none d-xl-none">
 			<a class="navbar-brand " href="<?php echo e(base_url()); ?>">Randomize</a>

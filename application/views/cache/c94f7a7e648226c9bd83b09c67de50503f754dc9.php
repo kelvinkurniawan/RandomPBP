@@ -151,8 +151,16 @@
 										class="d-flex justify-content-between align-items-center"
 									>
 										<div>
-											<div class="attachment d-flex align-items-center">
-												<a href="#"><i class="gg-image"></i> Photos/videos</a>
+										<div class="attachment d-flex align-items-center">
+												<a
+													href="#"
+													class="d-flex justify-content-center align-items-center"
+													data-toggle="modal"
+													data-target="#attachmentModal"
+													onclick="openStoryModalWithAttachment()"
+												>
+													<i class="gg-image mr-3"></i> Photos/videos
+												</a>
 											</div>
 											<div class="anonym-check ml-3 mt-2">
 												<input

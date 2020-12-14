@@ -18,11 +18,16 @@
             </div>
             @if($myId == $userId)
             <div class="row mt-4">
+                @if(getUserById($userId, "role") == 1)
+                <div class="col">
+                    <button class="btn btn-randomize btn-ghost w-100">Admin Page</Button>
+                </div>
+                @endif
                 <div class="col">
                     <button class="btn btn-randomize btn-ghost w-100" data-toggle="modal" data-target="#exampleModal">Edit Profile</Button>
                 </div>
                 <div class="col">
-                <div><a class="btn btn-randomize btn-out w-100" href="{{base_url('/authentication/logout')}}">Log Out</a></div>
+                    <div><a class="btn btn-randomize btn-out w-100" href="{{base_url('/authentication/logout')}}">Log Out</a></div>
                 </div>
             </div>
             @endif
@@ -44,6 +49,11 @@
             </div>
             @if($myId == $userId)
             <div><button class="btn btn-randomize btn-ghost mt-5 w-50" data-toggle="modal" data-target="#exampleModal">Edit Profile</Button></div>
+            @if(getUserById($userId, "role") == 1)
+            <div>
+                <a href="{{base_url('/admin/')}}" class="btn btn-randomize btn-ghost mt-3 w-50">Admin Page</a>
+            </div>
+            @endif
             <div><a class="btn btn-randomize btn-out mt-3 w-50" href="{{base_url('/authentication/logout')}}">Log Out</a></div>
             @endif
             @if($myId != $userId)
@@ -137,25 +147,41 @@
                         <div class="post">
                             <div class="post-single">
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col">
                                         <div class="photo-profile">
                                             {{get_images(getAuthorPhoto($row->id))}}
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-10">
                                         <div class="d-flex justify-content-between">
                                             <div class="post-author" style="margin-bottom: 0px;">{{getUserDetail("name")}}</div>
                                             <span>
                                                 <div class="dropdown">
                                                     <button class="btn dropdown-toggle p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" style="z-index: 100;" aria-labelledby="dropdownMenuButton">
                                                         <a class="dropdown-item text-danger" href="{{base_url('home/deletePost/'.$row->id)}}">Delete</a>
                                                     </div>
                                                 </div>
                                             </span>
                                         </div>
-                                        <div class="post-body">
+                                        <div class="post-body pb-3">
                                             {{renderPost($row->body)}}
+                                            @if($row->have_attachment == 1)
+                                            @php
+                                            $fileName = $row->files;
+                                            $ext = explode(".",$fileName);
+                                            @endphp
+                                            @if($ext[1] == "png" || $ext[1] == "jpg" || $ext[1] == "gif")
+                                            <div class="post-attachment mt-3">
+                                                <img src="{{base_url('/uploads/'.$row->files)}}" width="80%" style="border-radius: 10px;" alt="">
+                                            </div>
+                                            @else
+                                            <video width="80%" style="border-radius: 10px; margin-top: 1rem" controls>
+                                                <source src="{{base_url('/uploads/'.$row->files)}}" type="video/mp4">
+                                                Your browser does not support HTML video.
+                                            </video>
+                                            @endif
+                                            @endif
                                         </div>
                                         <div class="post-control">
                                             <div class="d-flex justify-content-between">

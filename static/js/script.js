@@ -242,7 +242,7 @@ function show_status(limit = 10) {
 							'" width="80%" style="border-radius: 10px"></div>';
 					} else {
 						html +=
-							'<video width="400" controls>' +
+							'<video width="80%" style="border-radius: 10px" controls>' +
 							'<source src="' +
 							url +
 							"/uploads/" +
