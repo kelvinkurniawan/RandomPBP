@@ -329,6 +329,13 @@
 .card.widget.onProfile {
 	border: 0;
 }
+.notif-read {
+	background-color: rgb(238, 238, 238) !important;
+	color: rgb(128, 128, 128) !important;
+}
+.notif-active {
+	font-weight: 700;
+}
 
 @media only screen and (max-width: 756px) {
 	.search-box {
