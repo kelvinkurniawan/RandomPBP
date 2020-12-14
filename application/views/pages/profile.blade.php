@@ -20,7 +20,7 @@
             <div class="row mt-4">
                 @if(getUserById($userId, "role") == 1)
                 <div class="col">
-                    <button class="btn btn-randomize btn-ghost w-100">Admin Page</Button>
+                    <a href="{{base_url('/admin')}}" class="btn btn-randomize btn-ghost w-100">Admin Page</a>
                 </div>
                 @endif
                 <div class="col">
@@ -66,7 +66,7 @@
         </div>
     </div>
     <div class="col-md-6 main-content w-100">
-        <div class="card widget bg-randomize-light pt-4">
+        <div class="card widget onProfile bg-randomize-light pt-4">
             <div class="bg-randomize-3 p-3 card widget center">
                 <div class="row text-center">
                     <div class="col-4">
@@ -142,7 +142,7 @@
             </div>
             <div class="mt-5">
                 @foreach ($myPosts as $row)
-                <div class="bg-randomize-3 card widget center mb-3 w-100">
+                <div class="bg-randomize-3 card widget center onProfile mb-3 w-100">
                     <div class="card-body">
                         <div class="post">
                             <div class="post-single">

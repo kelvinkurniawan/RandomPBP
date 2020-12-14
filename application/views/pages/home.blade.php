@@ -18,9 +18,14 @@
 					</div>
 					<div class="trending-group">
 						@foreach ($popular as $row)
-						<div class="trending">
-							<div class="list">{{$row->text}}</div>
-							<div class="sub-list">{{$row->count}} randoms</div>
+						<div class="d-flex align-items-center">
+							<div class="trending-icons" style="padding: 15px 0;">
+								<i class="fab fa-slack-hash fa-2x mr-3"></i>
+							</div>
+							<div class="trending">
+								<div class="list">{{$row->text}}</div>
+								<div class="sub-list">{{$row->count}} randoms</div>
+							</div>
 						</div>
 						@endforeach
 					</div>
@@ -113,7 +118,7 @@
 			>
 				<div class="card-body">
 					<div class="row">
-						<div class="col-2 pt-2 d-none d-sm-block">
+						<div class="col-2 pt-5 d-none d-sm-block">
 							<?php get_images(getUserDetail('photo')) ?>
 						</div>
 						<div class="col">
@@ -121,6 +126,14 @@
 								action="<?= base_url('/home/performAddPost/home') ?>"
 								method="POST"
 							>
+								<div class="anonym-check mt-2 text-right mb-3">
+									<input
+										type="checkbox"
+										class="form-check-input input-anonym"
+										name="anonym"
+									/>
+									Anonymous
+								</div>
 								@if($single)
 								<input
 									type="hidden"
@@ -161,14 +174,6 @@
 												>
 													<i class="gg-image mr-3"></i> Photos/videos
 												</a>
-											</div>
-											<div class="anonym-check ml-3 mt-2">
-												<input
-													type="checkbox"
-													class="form-check-input input-anonym"
-													name="anonym"
-												/>
-												Anonymous
 											</div>
 										</div>
 										<div class="button-placement">

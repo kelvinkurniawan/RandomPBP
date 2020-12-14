@@ -314,6 +314,10 @@
 	transition: 0.3s all;
 }
 
+.card.widget.onProfile {
+	border: 0;
+}
+
 @media only screen and (max-width: 756px) {
 	.search-box {
 		left: 0px;

@@ -188,8 +188,8 @@ class Home extends CI_Controller{
         $data['name'] = $this->input->post('name');
 		$data['username'] = $this->input->post('username');
 		$data['email'] = $this->input->post('email');
-		$data['bio'] = $this->input->post('email');
-        $data['birth'] = $this->input->post('email');
+		$data['bio'] = $this->input->post('bio');
+        $data['birth'] = $this->input->post('birth');
         
         $this->users->update($this->session->userId, $data);
 
