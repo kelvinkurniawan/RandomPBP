@@ -2,6 +2,23 @@ var url = window.location.origin + "/random3/";
 var limit = 10;
 var offset = 900;
 var top = 0;
+var openModal = false;
+
+function openStoryModal() {
+	openModal = !openModal;
+}
+
+function openStoryModalWithAttachment() {
+	openModal = false;
+	$(".fade-background").removeClass("show");
+	$("#postBox").removeClass("show");
+}
+
+function closeStoryModal() {
+	openModal = false;
+	$(".fade-background").removeClass("show");
+	$("#postBox").removeClass("show");
+}
 
 function like_post(postId) {
 	$.ajax({
@@ -201,20 +218,42 @@ function show_status(limit = 10) {
 					'<div class="photo-profile mb-3">' +
 					'<img src="' +
 					data[i].authorPhoto +
-					'" class="w-100" />' +
+					'" class="w-100 rounded-circle" />' +
 					"</div>" +
 					"</div>" +
-					'<div class="col-9">' +
+					'<div class="col-10">' +
 					'<div class="post-author d-flex justify-content-between">' +
 					data[i].postAuthor +
 					'<span class="small text-muted">' +
 					data[i].postDate +
 					"</span>" +
 					"</div>" +
-					'<div class="post-body">' +
+					'<div class="post-body pb-3">' +
 					renderPost(data[i].postBody) +
-					"</div>" +
-					'<div class="post-control">' +
+					"</div>";
+				if (data[i].haveAttachment == 1) {
+					var ext = data[i].file.split(".")[1];
+					if (ext == "png" || ext == "jpg" || ext == "gif") {
+						html +=
+							'<div class="post-attachment"><img src="' +
+							url +
+							"/uploads/" +
+							data[i].file +
+							'" width="80%" style="border-radius: 10px"></div>';
+					} else {
+						html +=
+							'<video width="400" controls>' +
+							'<source src="' +
+							url +
+							"/uploads/" +
+							data[i].file +
+							'" type="video/mp4">' +
+							"Your browser does not support HTML video." +
+							"</video>";
+					}
+				}
+				html +=
+					'<div class="post-control mt-3">' +
 					'<div class="d-flex justify-content-between">';
 
 				if (data[i].postMeta.isLiked) {
@@ -321,6 +360,22 @@ $(document).ready(function () {
 	});
 	// Event
 
+	$(window).scroll(function () {
+		if ($(this).scrollTop() > 100) {
+			if (openModal == true) {
+				$(".fade-background").addClass("show");
+			}
+		} else {
+			if (openModal == true) {
+				$(".fade-background").removeClass("show");
+			}
+		}
+	});
+
+	$(window).scroll(function () {
+		$(".search-box").removeClass("show");
+	});
+
 	$(".input-body-mobile").on("keyup", function () {
 		$(".input-body").val($(".input-body-mobile").val());
 	});
@@ -348,7 +403,12 @@ $(document).ready(function () {
 		$.ajax({
 			url: url + "home/performAddPost",
 			method: "POST",
-			data: { body: input_body, parent: parent, anonym: anonym },
+			data: {
+				body: input_body,
+				parent: parent,
+				anonym: anonym,
+				withAttachment: 0,
+			},
 			success: function () {
 				show_status();
 				$(".input-body").val("");

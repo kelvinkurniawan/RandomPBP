@@ -23,7 +23,7 @@ class Users extends CI_Model{
         return $this->db->get($this->table)->row_array();
     }
 
-    public function userList($userId, $limit = 10){
+    public function userList($userId, $limit = 5){
 
         $this->load->model('follow');       
         

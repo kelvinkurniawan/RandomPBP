@@ -1,6 +1,17 @@
 <?php
 
 class Admin extends CI_Controller{
+
+    public function __construct(){
+        parent::__construct();
+
+        isNotLogin();
+
+        if(getUserDetail('role') != 1){
+            redirect('/');
+        }
+    }
+
     function index(){
         $this->load->model('follow');
         $this->load->model('users');

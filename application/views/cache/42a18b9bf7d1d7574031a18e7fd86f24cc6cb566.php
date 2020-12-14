@@ -2,7 +2,7 @@
 <?php $__env->startSection('content'); ?>
 <nav class="navbar navbar-expand-md navbar-light bg-randomize-3 sticky-top">
     <a href="<?php echo e(base_url('admin/')); ?>" class="navbar-brand mb-0 h1 mr-auto text-decoration-none">Randomize Dashboard</a>
-    <a href="" class="text-danger">Log Out</a>
+    <a href="<?php echo e(base_url('/authentication/logout')); ?>" class="text-danger">Log Out</a>
 </nav>
 <div class="row no-gutters">
     <div class="col-md-3 bg-randomize-2 card widget left d-sm-block d-md-none d-lg-none d-xl-none">

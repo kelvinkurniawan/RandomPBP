@@ -88,6 +88,12 @@ class Home extends CI_Controller{
                 $authorPhoto = get_images_path(getAuthorPhoto($row->id));
             }
 
+            if($row->have_attachment == 1){
+                $file = $row->files;
+            }else{
+                $file = "";
+            }
+
             $tempResult =  array(
                 'postId' => $row->id,
                 'postParent' => $row->parent,
@@ -97,6 +103,8 @@ class Home extends CI_Controller{
                 'postAuthorUsername' => getPostAuthorUsername($row->id),
                 'postAuthorParent' => $postAuthorParent,
                 'authorPhoto' => $authorPhoto,
+                'haveAttachment' => $row->have_attachment,
+                'file' => $file,
                 'postMeta' => array(
                     'postLikes' => getLikesCount($row->id),
                     'postReplies' => getRepliesCount($row->id),
@@ -219,10 +227,27 @@ class Home extends CI_Controller{
         $this->load->model('posts');
         $this->load->model('hashtag');
 
+        $withAttachment = $this->input->post('withAttachment');
+
         $data['body'] = $this->input->post('body');
         $data['user'] = $this->session->userId;
         $data['parent'] = $this->input->post('parent');
         $data['anonym'] = $this->input->post('anonym');
+        $data['have_attachment'] = $this->input->post('withAttachment');
+
+        if($withAttachment == 1){
+            $config['upload_path']          = './uploads/';
+            $config['allowed_types']        = 'gif|jpg|png|mp4|3gp|mkv';
+            $config['file_name']            = getUserDetail('name') .'-'. date("Y/m/d");
+            $config['overwrite']			= true;
+            $config['max_size']             = 8500;
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('file')) {
+                $data['files'] = $this->upload->data("file_name");
+            }
+        }
 
         $this->posts->save($data);
 
@@ -256,6 +281,10 @@ class Home extends CI_Controller{
  
         $result['message'] = 'success';
         $pusher->trigger('status', 'insert', $result);
+
+        if($withAttachment == 1){
+            redirect(base_url());
+        }
     }
 
     function read($postId){

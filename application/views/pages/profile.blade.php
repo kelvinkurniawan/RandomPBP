@@ -80,7 +80,7 @@
                             <div class="row d-flex justify-content-center align-items-center pl-5 pr-5">
                                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.41421 16.4322L0 15.018L7.07107 7.94693L13.435 14.3109L17.6777 10.0682L15.9353 8.32587L22.6274 6.53271L20.8343 13.2248L19.0919 11.4825L13.435 17.1393L7.07107 10.7754L1.41421 16.4322Z" fill="currentColor" /></svg>
-                                <div class="ml-3">TOP STORIES</div>
+                                <div class="ml-3 text-dark">TOP STORIES</div>
                             </div>
                         </div>
                     </a>
@@ -200,7 +200,7 @@
             <!-- Top Stories -->
             <div class="d-none d-sm-none d-md-block">
                 <div class="d-flex">
-                    <div class="card-title">TOP STORIES</div>
+                    <div class="card-title  text-dark">TOP STORIES</div>
                 </div>
                 <div class="link trending-group">
                     @foreach ($popular as $row)
@@ -299,7 +299,7 @@
         </div>
     </form>
 </div>
-<div class="modal-lg fade" id="likeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="likeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header align-items-center">

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-randomize-3 sticky-top">
+<nav class="navbar navbar-expand-md navbar-light bg-randomize-3 shadow-sm sticky-top" style="z-index: 9999;">
 	<div class="row">
 		<div class="col d-flex justify-content-between align-items-center d-md-none d-lg-none d-xl-none">
 			<a class="navbar-brand " href="{{base_url()}}">Randomize</a>
@@ -42,7 +42,7 @@
 					<a href="javascript:void(0)" class="nav-link" onclick="openSearch()">
 						<i class="gg-search"></i>
 					</a>
-					<a data-toggle="collapse" href="#postBox" role="button" aria-expanded="false" aria-controls="postBox" class="btn btn-primary btn-randomize">Create Stories</a>
+					<a data-toggle="collapse" href="#postBox" role="button" aria-expanded="false" aria-controls="postBox" onClick="openStoryModal()" class="btn btn-primary btn-randomize">Create Stories</a>
 				</div>
 			</div>
 		</div>
