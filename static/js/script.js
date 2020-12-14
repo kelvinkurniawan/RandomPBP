@@ -361,9 +361,38 @@ function show_status(limit = 10) {
 	});
 }
 
+function loadNotification() {
+	$.ajax({
+		url: url + "home/loadNotification",
+		method: "GET",
+		async: true,
+		dataType: "json",
+		success: function (data) {
+			console.log(data);
+			html = "";
+			for (i = 0; i < data.length; i++) {
+				if (data[i].status == 1) {
+					html +=
+						'<a type="button" class="list-group-item list-group-item-action notif-read">';
+				} else {
+					html +=
+						'<a type="button" class="list-group-item list-group-item-action notif-active">';
+				}
+				html += '<i class="far fa-comment mr-3"></i>';
+				html += data[i].from + " " + data[i].message + " ";
+				html += "<sub>" + moment(data[i].time).fromNow() + "</sub>";
+				html += "</a>";
+			}
+
+			$(".notification-container").html(html);
+		},
+	});
+}
+
 $(document).ready(function () {
 	search();
 	show_status();
+	loadNotification();
 	Pusher.logToConsole = false;
 
 	if (getUrlParameter("edit_profile") == "true") {

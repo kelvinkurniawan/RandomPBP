@@ -9,6 +9,28 @@ class Home extends CI_Controller{
         isNotLogin();
     }
 
+    function loadNotification(){
+        $id = $this->session->userId;
+
+        $this->load->model('notifications');
+
+        $notif = $this->notifications->getByUserId($id);
+
+        $result = array();
+
+        foreach($notif as $row){
+            $temp['id'] = $row->id;
+            $temp['message'] = $row->notification;
+            $temp['from'] = getUserById($row->user_from, "name");
+            $temp['time'] = $row->timestamp;
+            $temp['status'] = $row->read_status;
+
+            array_push($result, $temp);
+        };
+
+        echo json_encode($result);
+    }
+
     function createNotification($notification, $userId, $userFrom, $postId = null){
         $this->load->model('notifications');
 
