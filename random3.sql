@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2020 at 03:12 AM
+-- Generation Time: Dec 14, 2020 at 08:06 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -58,7 +58,9 @@ INSERT INTO `follow` (`id`, `userId`, `followId`) VALUES
 (80, 4, 89),
 (81, 4, 88),
 (82, 4, 87),
-(83, 4, 86);
+(83, 4, 86),
+(85, 3, 5),
+(86, 3, 91);
 
 -- --------------------------------------------------------
 
@@ -82,14 +84,18 @@ INSERT INTO `hashtag` (`id`, `text`, `count`) VALUES
 (3, '#haloGan', 1),
 (5, 'akukamudandia', 1),
 (6, 'haiiiiisyg', 3),
-(7, 'cuk', 5),
+(7, 'cuk', 6),
 (8, 'heheh', 4),
 (9, 'ini', 1),
 (10, 'contoh', 1),
 (11, 'hashtag', 1),
 (12, 'kelvin', 1),
 (13, 'ardian', 1),
-(14, 'kezia', 1);
+(14, 'kezia', 1),
+(15, 'world', 1),
+(16, 'halo', 1),
+(17, 'dunia', 1),
+(18, 'ku', 1);
 
 -- --------------------------------------------------------
 
@@ -122,7 +128,34 @@ INSERT INTO `likes` (`id`, `user`, `post`) VALUES
 (72, 3, 4),
 (73, 4, 6),
 (74, 3, 12),
-(75, 3, 15);
+(75, 3, 15),
+(77, 3, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` int(11) NOT NULL,
+  `notification` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `user_from` int(11) NOT NULL,
+  `post` int(11) DEFAULT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `read_status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `notification`, `user_id`, `user_from`, `post`, `timestamp`, `read_status`) VALUES
+(1, 'started following you', 5, 3, NULL, '2020-12-14 17:44:50', 0),
+(3, 'started following you', 91, 3, NULL, '2020-12-14 17:44:50', 0),
+(4, 'liked your post', 4, 3, 6, '2020-12-14 17:44:50', 0),
+(5, 'reply to your post', 4, 3, 12, '2020-12-14 17:47:39', 0);
 
 -- --------------------------------------------------------
 
@@ -153,7 +186,12 @@ INSERT INTO `posts` (`id`, `body`, `timestamp`, `user`, `parent`, `anonym`, `hav
 (12, 'ini aku teman teman salam kenal', '2020-12-13 19:05:07', 4, 0, 0, 1, 'Ardian_Pramudya-20201213.png'),
 (13, 'tesss', '2020-12-13 19:22:17', 3, 0, 0, 0, NULL),
 (14, 'anjayy', '2020-12-13 19:22:28', 3, 12, 0, 0, NULL),
-(15, 'Kesimpulan dari tugas bahasa indonesia kemarin', '2020-12-13 19:25:35', 3, 0, 0, 1, 'Kelvin_Kurniawan-20201213.mp4');
+(15, 'Kesimpulan dari tugas bahasa indonesia kemarin', '2020-12-13 19:25:35', 3, 0, 0, 1, 'Kelvin_Kurniawan-20201213.mp4'),
+(16, '#cuk', '2020-12-14 16:47:33', 3, 0, 0, 0, NULL),
+(17, 'Hellooo #world', '2020-12-14 17:10:17', 3, 0, 0, 0, NULL),
+(18, '#halo #dunia #ku', '2020-12-14 17:12:40', 3, 0, 0, 0, NULL),
+(19, 'uwauu', '2020-12-14 17:47:39', 3, 12, 0, 0, NULL),
+(20, 'test', '2020-12-14 19:02:07', 3, 0, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -178,7 +216,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `username`, `password`, `bio`, `birth`, `photo`, `role`) VALUES
-(3, 'Kelvin Kurniawan', 'tepinnko@gmail.com', 'kelvink', '$2y$10$9qGzPwFbRkaEjW6wZPfrJODz5UC94Np9LHR8YHPW0usc9/2SS8V0.', 'aku memang pencinta wanita, namun ku bukan buaya', NULL, 'photo.png', 1),
+(3, 'Kelvin Kurniawan', 'tepinnko@gmail.com', 'kelvink', '$2y$10$9qGzPwFbRkaEjW6wZPfrJODz5UC94Np9LHR8YHPW0usc9/2SS8V0.', 'Aku memang pencinta wanita namun ku bukan buaya', '1999-10-16', 'photo.png', 1),
 (4, 'Ardian Pramudya', 'ardianpramudya81@gmail.com', 'ardianp', '$2y$10$lDniUB9857sz13Pg3pzqkOaZyRKB73N4tElF4Z1/d.Cfm2Qk9Z2Ru', 'wanita memanggilku buaya namun aku hanya lah se ekor kadal yang mencoba menjadi buaya', NULL, 'cio.png', 0),
 (5, 'Bambang', 'user100@mail.com', 'bambank', '$2y$10$rtT9nlprkqCN4udnPWmdyezYvCnSL8di1JXYmg95RjYEaanVLwC1q', NULL, NULL, 'default.png', 0),
 (71, 'John Sellers', 'John.Sellers@mail.com', 'Sellers.99', '$2y$10$TSoUCzbkx7grIMX5XImnWuE3B/oVyQml4tX6TmIcamTNtcsz9AK.e', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur semper orci magna, et tempus sapien facilisis convallis. Morbi lacinia commodo sagittis', NULL, 'default.png', 0),
@@ -232,6 +270,12 @@ ALTER TABLE `likes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
@@ -257,25 +301,31 @@ ALTER TABLE `attachments`
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `hashtag`
 --
 ALTER TABLE `hashtag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `users`
