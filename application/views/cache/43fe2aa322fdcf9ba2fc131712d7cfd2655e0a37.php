@@ -5,6 +5,15 @@
 			<a href="javascript:void(0)" class="nav-link" onclick="openSearch()">
 				<i class="gg-search"></i>
 			</a>
+			<div class="dropdown">
+				<a href="#" class="text-decoration-none text-dark" role="button" id="notifMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="gg-notifications" ></i>
+				</a>
+				<div class="dropdown-menu mt-3" aria-labelledby="notifMenu">
+					<div class="list-group notification-container" style="width: 300px;">
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
