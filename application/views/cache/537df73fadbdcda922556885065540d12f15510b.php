@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="manifest" href="<?php echo e(base_url('/manifest.json')); ?>" />
     <title><?php echo e($title); ?> - Randomize</title>  
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <script>
@@ -33,6 +34,15 @@
 <body class="bg-randomize-light">
     <?php echo $__env->yieldContent('content'); ?>
     
+    <div class="alert alert-info alert-dismissible fade alert-install" role="alert" style="z-index: 999999;position: fixed;bottom: 10px;right: 20px;">
+        <strong>Install App!</strong> <br>For more better experience, <br>please install hazardReportApplication<br>
+        <button type="button" class="btn btn-dark install-app mt-5">
+            Install
+        </button>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     

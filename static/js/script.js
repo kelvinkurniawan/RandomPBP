@@ -1,4 +1,4 @@
-var url = window.location.origin + "/random3/";
+var url = window.location.origin + "/";
 var limit = 10;
 var offset = 900;
 var top = 0;
@@ -110,10 +110,17 @@ function renderPost(post, userId) {
 		/(^|\s)(@[a-z\d-]+)/gi,
 		"$1<a href='" + url + "profile/$2'>$2</a>"
 	);
-	post = post.replace(
-		/(^|\s)(#[a-z\d-]+)/gi,
-		"$1<a href='" + url + "home/hashtag/$2'>$2</a>"
-	);
+	post = post.replace(/(^|\s)(#[a-z\d-]+)/gi, function (x) {
+		return (
+			" <a href='" +
+			url +
+			"home/hashtag/?q=" +
+			x.split("#")[1] +
+			"'>" +
+			x +
+			"</a>"
+		);
+	});
 
 	return post;
 }
@@ -176,13 +183,30 @@ function getPostLikes(postId) {
 }
 
 function show_status(limit = 10) {
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
 	parent = 0;
-	hashtag = "";
+	type = 0;
+	hashtag = urlParams.get("q");
+	if (hashtag == null) {
+		type = 0;
+	} else {
+		type = 1;
+	}
 	if (getParentByPath() != "") {
 		parent = getParentByPath();
 	}
 	$.ajax({
-		url: url + "home/getStatus/" + parent + "?limit=" + limit,
+		url:
+			url +
+			"home/getStatus/" +
+			parent +
+			"/" +
+			type +
+			"?limit=" +
+			limit +
+			"&hashtag=" +
+			hashtag,
 		type: "GET",
 		async: true,
 		dataType: "json",
@@ -302,7 +326,7 @@ function show_status(limit = 10) {
 					html +=
 						'<a href="' +
 						url +
-						"home/hashtag/" +
+						"home/hashtag/?q=" +
 						data[i].postMeta.postTags[j] +
 						'" class="' +
 						color[randomColor] +
@@ -428,9 +452,47 @@ $(document).ready(function () {
 		top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 	});
 
-	$(window).on('load', function() {
-		var recommendedFriendHeight = $('.recommended-friend').height();
+	$(window).on("load", function () {
+		var recommendedFriendHeight = $(".recommended-friend").height();
 		//$('.recommended-friend').css('height', recommendedFriendHeight);
-		$('.rf-container').css('height', $(window).height());
-	})
+		$(".rf-container").css("height", $(window).height());
+	});
+
+	// Service Worker ~ PWA
+
+	if ("serviceWorker" in navigator) {
+		window.addEventListener("load", () => {
+			navigator.serviceWorker
+				.register("/serviceWorker.js", { scope: "/" })
+				.then(() => {
+					console.log("Service Worker Registered");
+				});
+		});
+	}
+
+	var deferredPrompt;
+
+	window.addEventListener("beforeinstallprompt", function (e) {
+		console.log("please install application");
+
+		$(".alert-install").addClass("show");
+		setTimeout(function () {
+			$(".alert-install").removeClass("show");
+		}, 5000);
+
+		e.preventDefault();
+		deferredPrompt = e;
+	});
+
+	$(".install-app").on("click", (e) => {
+		deferredPrompt.prompt();
+		deferredPrompt.userChoice.then((choiceResult) => {
+			if (choiceResult.outcome === "accepted") {
+				console.log("User accepted the A2HS prompt");
+			} else {
+				console.log("User dismissed the A2HS prompt");
+			}
+			deferredPrompt = null;
+		});
+	});
 });

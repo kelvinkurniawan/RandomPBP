@@ -17,7 +17,7 @@
 							<div class="trending-icons" style="padding: 15px 0;">
 								<i class="fab fa-slack-hash fa-2x mr-3"></i>
 							</div>
-							<div class="trending">
+							<div class="trending w-100">
 								<div class="list"><?php echo e($row->text); ?></div>
 								<div class="sub-list"><?php echo e($row->count); ?> randoms</div>
 							</div>

@@ -1,0 +1,25 @@
+{
+    "name": "Random",
+    "short_name": "Random",
+    "icons": [
+        {
+            "src": "static/icons/icon-72.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "static/icons/xxhdpi.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "static/icons/xhdpi.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/home",
+    "display": "standalone",
+    "background_color": "#000",
+    "theme_color": "#2c3e50"
+}

@@ -9,6 +9,26 @@ class Home extends CI_Controller{
         isNotLogin();
     }
 
+    function createNotification($notification, $userId, $userFrom, $postId = null){
+        $this->load->model('notifications');
+
+        $data['notification'] = $notification;
+        $data['user_id'] = $userId;
+        $data['user_from'] = $userFrom;
+        $data['post'] = $postId;
+        $data['read_status'] = 0;
+
+        $this->notifications->insert($data);
+    }
+
+    function openNotification($id, $url){
+        $this->load->model('notifications');
+
+        $this->notifications->setStatus($id);
+
+        redirect($url);
+    }
+
     function searchQuery(){
         $key = $this->input->get("q");
 
@@ -33,7 +53,7 @@ class Home extends CI_Controller{
         echo json_encode($result);
     }
 
-    function hashtag($hash){
+    function hashtag(){
 
         $this->load->model('posts');
         $this->load->model('users');
@@ -55,7 +75,7 @@ class Home extends CI_Controller{
             ]);
     }
 
-    function getStatus($parentId = 0){
+    function getStatus($parentId = 0, $type = 0){
         $this->load->model('posts');
         $limit = $this->input->get('limit');
         $hashtag = $this->input->get('hashtag');
@@ -64,8 +84,13 @@ class Home extends CI_Controller{
             $posts = $this->posts->getAllByParent($parentId);
         }else{
             //$posts = $this->posts->getAll();
-            $posts = $this->posts->getPostsFeed(3, $limit, $hashtag);
+            if($type == 0){
+                $posts = $this->posts->getPostsFeed(3, $limit, $hashtag);
+            }else{
+                $posts = $this->posts->getPostsByHashtag($hashtag, $limit);
+            }
         }
+        
 
         $result = array();
 
@@ -235,6 +260,10 @@ class Home extends CI_Controller{
         $data['anonym'] = $this->input->post('anonym');
         $data['have_attachment'] = $this->input->post('withAttachment');
 
+        if($data['parent'] != 0){
+            $this->createNotification("reply to your post", getPostById($data['parent'], 'user'), $this->session->userId, $data['parent']);
+        }
+
         if($withAttachment == 1){
             $config['upload_path']          = './uploads/';
             $config['allowed_types']        = 'gif|jpg|png|mp4|3gp|mkv';
@@ -315,6 +344,8 @@ class Home extends CI_Controller{
         $data['post'] = $postId;
         $data['user'] = $this->session->userId;
 
+        $this->createNotification("liked your post", getPostById($postId, "user"), $this->session->userId, $postId);
+
         $this->likes->save($data);
 
         $options = array(
@@ -361,6 +392,8 @@ class Home extends CI_Controller{
         $data['userId'] = $this->session->userId;
         $data['followId'] = $followId;
     
+        $this->createNotification("started following you", $followId, $this->session->userId);
+
         $this->follow->insert($data);
 
         $options = array(

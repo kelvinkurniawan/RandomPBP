@@ -37,6 +37,12 @@ class Posts extends CI_Model{
         return $this->db->get($this->table)->result();
     }
 
+    public function getPostsByHashtag($hash, $limit = 10){
+        $this->db->like('body', $hash);
+        $this->db->limit($limit);
+        return $this->db->get($this->table)->result();
+    }
+
     public function getAllByParent($parentId){
         $this->db->where('id', $parentId);
         $this->db->or_where('parent', $parentId);
