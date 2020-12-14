@@ -1,6 +1,6 @@
 @extends('layouts.master') 
 @section('content')
-@include('layouts.components.navbar')
+@include('layouts.components.navbarHome')
 <div class="d-flex align-items-center justify-content-center h-100">
 	<div class="row no-gutters w-100">
 		<!-- Top Stories -->

@@ -1,6 +1,6 @@
  
 <?php $__env->startSection('content'); ?>
-<?php echo $__env->make('layouts.components.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('layouts.components.navbarHome', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <div class="d-flex align-items-center justify-content-center h-100">
 	<div class="row no-gutters w-100">
 		<!-- Top Stories -->

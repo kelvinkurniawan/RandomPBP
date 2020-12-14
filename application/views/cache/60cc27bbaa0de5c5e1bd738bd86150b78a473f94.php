@@ -42,7 +42,6 @@
 					<a href="javascript:void(0)" class="nav-link" onclick="openSearch()">
 						<i class="gg-search"></i>
 					</a>
-					<a data-toggle="collapse" href="#postBox" role="button" aria-expanded="false" aria-controls="postBox" onClick="openStoryModal()" class="btn btn-primary btn-randomize">Create Stories</a>
 				</div>
 			</div>
 		</div>
