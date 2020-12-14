@@ -48,9 +48,17 @@
 		</div>
 		<div class="col-md-3 d-none d-sm-none d-md-block">
 			<div class="row d-flex justify-content-between align-items-center">
-				<a href="#" class="nav-link">
-					<i class="gg-notifications"></i>
-				</a>
+				<div class="dropdown" style="margin-top: 15px;">
+					<a href="#" class="text-decoration-none text-dark" role="button" id="notifMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="gg-notifications" ></i>
+					</a>
+					<div class="dropdown-menu mt-3" aria-labelledby="notifMenu">
+						<div class="list-group" style="width: 300px;">
+							<a type="button" class="list-group-item list-group-item-action notif-active"><i class="far fa-comment mr-3"></i>Cras justo odio <sub>Timestamp</sub></a>
+							<a type="button" class="list-group-item list-group-item-action notif-read"><i class="far fa-comment mr-3"></i>Dapibus ac facilisis in <sub>Timestamp</sub></a>
+						</div>
+					</div>
+				</div>
 				<a href="<?php echo e(base_url('/profile/')); ?>" class="profile-nav d-flex justify-content-between align-items-center">
 					<?php echo e(getUserDetail("name")); ?>
 
