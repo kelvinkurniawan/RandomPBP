@@ -427,4 +427,10 @@ $(document).ready(function () {
 		var doc = document.documentElement;
 		top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 	});
+
+	$(window).on('load', function() {
+		var recommendedFriendHeight = $('.recommended-friend').height();
+		//$('.recommended-friend').css('height', recommendedFriendHeight);
+		$('.rf-container').css('height', $(window).height());
+	})
 });
