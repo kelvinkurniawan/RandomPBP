@@ -243,6 +243,27 @@ class Home extends CI_Controller{
         redirect(base_url('/profile'));
     }
 
+    function photoUpdate(){
+        
+        $this->load->model("users");
+        $data = array();
+        $config['upload_path']          = './static/images/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['file_name']            = getUserDetail('name') .'-'. date("Y/m/d");
+        $config['overwrite']			= true;
+        $config['max_size']             = 8500;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('photo')) {
+            $data['photo'] = $this->upload->data("file_name");
+        }
+
+        $this->users->update($this->session->userId, $data);
+
+        redirect(base_url('/profile'));
+    }
+
     function friends(){
 
         $this->load->model('follow');

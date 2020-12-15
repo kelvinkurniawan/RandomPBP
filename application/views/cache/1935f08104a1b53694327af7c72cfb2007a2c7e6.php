@@ -300,7 +300,7 @@
                                 <img class="rounded-circle" src="<?php echo e(get_images_path(getUserById($userId, 'photo'))); ?>" width="100%">
                             </div>
                             <div class="col">
-                                <div class="btn btn-link"><i class="gg-more-alt"></i></div>
+                                <div class="btn btn-link" data-toggle="modal" data-target="#updatePhotoModal" onclick="openSelectPhotoModal()"><i class="gg-more-alt"></i></div>
                             </div>
                         </div>
                     </div>
@@ -323,6 +323,40 @@
                     <div class="form-group">
                         <label for="birth" class="text-muted">Birthday</label>
                         <input type="date" name="birth" value="<?php echo e(getUserById($userId, 'birth')); ?>" class="form-control" id="birth">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal fade updatePhoto" id="updatePhotoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form action="<?php echo e(base_url('/home/photoUpdate')); ?>" method="POST" enctype='multipart/form-data'>
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header align-items-center">
+                    <div class="modal-header-custom">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true" class="text-primary">&times;</span>
+                        </button>
+                        <h5 class="modal-title font-weight-bold ml-3" id="exampleModalLabel">Edit Profile</h5>
+                    </div>
+                    <button type="submit" class="btn btn-primary rounded-pill text-white">Save</button>
+                </div>
+                <div class="modal-body pl-4 pr-4">
+                    <div class="row">
+                        <div class="offset-md-4 col-md-4 photo-profile">
+                            <?php echo e(get_images(getUserDetail('photo'), 'rounded-circle')); ?>
+
+                        </div>
+                    </div>
+                    <div class="input-group mb-3 mt-5">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Photo</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01" name="photo">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
                     </div>
                 </div>
             </div>
