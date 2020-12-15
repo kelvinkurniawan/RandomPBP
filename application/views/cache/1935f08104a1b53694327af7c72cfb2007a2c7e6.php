@@ -300,6 +300,9 @@
                                 <img class="rounded-circle" src="<?php echo e(get_images_path(getUserById($userId, 'photo'))); ?>" width="100%">
                             </div>
                             <div class="col">
+                                <div class="form-group">
+                                    <input type="file" class="form-control-file " id="exampleFormControlFile1" name="photo" />
+                                </div>
                                 <div class="btn btn-link"><i class="gg-more-alt"></i></div>
                             </div>
                         </div>

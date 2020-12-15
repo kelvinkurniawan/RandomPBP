@@ -409,6 +409,7 @@ $(document).ready(function () {
 	channel.bind("insert", function (data) {
 		if (data.message === "success") {
 			show_status();
+			loadNotification();
 		}
 	});
 	// Event
