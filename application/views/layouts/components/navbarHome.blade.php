@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-randomize-3 shadow-sm sticky-top" style="z-index: 9999;">
+<nav class="navbar navbar-expand-md navbar-light bg-randomize-3 shadow-sm sticky-top" style="z-index: 999999;">
 	<div class="row">
 		<div class="col d-flex justify-content-between align-items-center d-md-none d-lg-none d-xl-none">
 			<a class="navbar-brand " href="{{base_url()}}">Randomize</a>
@@ -7,10 +7,10 @@
 			</a>
 			<div class="dropdown">
 				<a href="#" class="text-decoration-none text-dark" role="button" id="notifMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<i class="gg-notifications" ></i>
+					<i class="gg-notifications"></i>
 				</a>
-				<div class="dropdown-menu mt-3" aria-labelledby="notifMenu">
-					<div class="list-group notification-container" style="width: 300px;">
+				<div class="dropdown-menu dropdown-notif mt-3" aria-labelledby="notifMenu">
+					<div class="list-group notification-container" style="width: 100%;">
 					</div>
 				</div>
 			</div>
@@ -25,9 +25,9 @@
 			<li class="nav-item">
 				<a class="nav-link primary" href="{{base_url('/home/')}}">Discover <span class="sr-only">(current)</span></a>
 			</li>
-			<li class="nav-item">
+			<!-- <li class="nav-item">
 				<a class="nav-link" href="#">Top Stories</a>
-			</li>
+			</li> -->
 			<li class="nav-item">
 				<a class="nav-link" href="{{base_url('/profile/')}}">Profile</a>
 			</li>
@@ -51,7 +51,7 @@
 					<a href="javascript:void(0)" class="nav-link" onclick="openSearch()">
 						<i class="gg-search"></i>
 					</a>
-					<a data-toggle="collapse" href="#postBox" role="button" aria-expanded="false" aria-controls="postBox" onClick="openStoryModal()" class="btn btn-primary btn-randomize">Create Stories</a>
+					<a data-toggle="collapse" href="#postBox" role="button" aria-expanded="false" aria-controls="postBox" onClick="openStoryModal()" class="btn btn-primary btn-randomize create-story">Create Stories</a>
 				</div>
 			</div>
 		</div>
@@ -59,9 +59,9 @@
 			<div class="row d-flex justify-content-between align-items-center">
 				<div class="dropdown" style="margin-top: 15px;">
 					<a href="#" class="text-decoration-none text-dark" role="button" id="notifMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="gg-notifications" ></i>
+						<i class="gg-notifications"></i>
 					</a>
-					<div class="dropdown-menu mt-3" aria-labelledby="notifMenu">
+					<div class="dropdown-menu dropdown-notif mt-3" aria-labelledby="notifMenu">
 						<div class="list-group notification-container" style="width: 300px;">
 							<a type="button" class="list-group-item list-group-item-action notif-active"><i class="far fa-comment mr-3"></i>Cras justo odio <sub>Timestamp</sub></a>
 							<a type="button" class="list-group-item list-group-item-action notif-read"><i class="far fa-comment mr-3"></i>Dapibus ac facilisis in <sub>Timestamp</sub></a>

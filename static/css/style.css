@@ -373,4 +373,10 @@
 		right: 75px !important;
 		font-size: 12px !important;
 	}
+	.dropdown-menu.dropdown-notif {
+		position: fixed;
+		top: 40px;
+		left: 0;
+		width: 100%;
+	}
 }

@@ -17,10 +17,12 @@
 							<div class="trending-icons" style="padding: 15px 0;">
 								<i class="fab fa-slack-hash fa-2x mr-3"></i>
 							</div>
-							<div class="trending w-100">
-								<div class="list">{{$row->text}}</div>
-								<div class="sub-list">{{$row->count}} randoms</div>
-							</div>
+							<a href="{{base_url('home/hashtag/?q='.$row->text)}}" class="w-100 text-decoration-none">
+								<div class="trending">
+									<div class="list">{{$row->text}}</div>
+									<div class="sub-list">{{$row->count}} randoms</div>
+								</div>
+							</a>
 						</div>
 						@endforeach
 					</div>
@@ -79,16 +81,9 @@
 							<?php get_images(getUserDetail('photo')) ?>
 						</div>
 						<div class="col">
-							<form
-								action="<?= base_url('/home/performAddPost/home') ?>"
-								method="POST"
-							>
+							<form action="<?= base_url('/home/performAddPost/home') ?>" method="POST">
 								<div class="anonym-check mt-2 text-right mb-3">
-									<input
-										type="checkbox"
-										class="form-check-input input-anonym"
-										name="anonym"
-									/>
+									<input type="checkbox" class="form-check-input input-anonym" name="anonym" />
 									Anonymous
 								</div>
 								@if($single)

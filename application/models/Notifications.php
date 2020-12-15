@@ -8,6 +8,7 @@ class Notifications extends CI_Model{
 
     public function getByUserId($id){
         $this->db->where('user_id', $id);
+        $this->db->where('user_from !=', $id);
         return $this->db->get($this->table)->result();
     }
 

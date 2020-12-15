@@ -115,11 +115,11 @@
                                 <div class="row">
                                     <div class="col-2 ">
                                         <div class="photo-profile">
-                                            {{get_images(getUserById($row->followId, "photo"))}}
+                                            <img class="rounded-circle" src="{{get_images_path(getUserById($row->followId, 'photo'))}}" width="100%">
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="post-author">{{getUserById($row->followId, "name")}}</div>
+                                        <div class="post-author"><a href="{{base_url('/profile/'.getUserById($row->followId, 'username'))}}" class="text-decoration-none text-dark">{{getUserById($row->followId, "name")}}</a></div>
                                         <div class="post-body limit-text d-none d-sm-block">
                                             {{getUserById($row->followId, "bio")}}
                                         </div>
@@ -150,18 +150,18 @@
                                 <div class="row">
                                     <div class="col-2 ">
                                         <div class="photo-profile">
-                                            {{get_images(getUserById($row->userId, "photo"))}}
+                                            <img class="rounded-circle" src="{{get_images_path(getUserById($row->userId, 'photo'))}}" width="100%">
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="post-author">{{getUserById($row->userId, "name")}}</div>
+                                        <div class="post-author"><a href="{{base_url('/profile/'.getUserById($row->userId, 'username'))}}" class="text-decoration-none text-dark">{{getUserById($row->userId, "name")}}</a></div>
                                         <div class="post-body limit-text d-none d-sm-block">
                                             {{getUserById($row->userId, "bio")}}
                                         </div>
                                     </div>
                                     <div class="col-3 d-none d-sm-block">
                                         @if(isUserFollowed($row->userId))
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->userId}}-follow" style="display: none" onclick="follow({{$row->userId}})">+ Follow Back</a> 
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->userId}}-follow" style="display: none" onclick="follow({{$row->userId}})">+ Follow Back</a>
                                         <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->userId}}-unfollow" onclick="unfollow({{$row->userId}})">- Unfollow</a>
                                         @else
                                         <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->userId}}-follow" onclick="follow({{$row->userId}})">+ Follow Back</a>
@@ -177,49 +177,61 @@
             </div>
         </div>
     </div>
-    <div class="card widget right col-md-3 bg-randomize-3 d-none d-sm-none d-md-block">
-        <div class="p-3">
-            <div class="d-none d-sm-none d-md-block">
-                <div class="d-flex">
-                    <div class="card-title">TOP STORIES</div>
-                </div>
-                <div class="link trending-group">
-                    @foreach($popular as $row)
-                    <div class="trending-dark">
-                        <div class="list">{{$row->text}}</div>
-                        <div class="sub-list">{{$row->count}} Randoms</div>
+    <div class="col-md-3 bg-randomize-3 d-none d-sm-none d-md-block">
+        <div class="card widget sticky-top float-component rf-container" style="top: 3.6em; z-index: 99;">
+            <div class="card-body recommended-friend">
+                <!-- Top Stories -->
+                <div class="d-none d-sm-none d-md-block">
+                    <div class="d-flex">
+                        <div class="card-title  text-dark">TOP STORIES</div>
                     </div>
-                    @endforeach
+                    <div class="link trending-group">
+                        @foreach ($popular as $row)
+                        <a href="{{base_url('home/hashtag/?q='.$row->text)}}" class="w-100 text-decoration-none">
+                            <div class="trending">
+                                <div class="list">{{$row->text}}</div>
+                                <div class="sub-list">{{$row->count}} randoms</div>
+                            </div>
+                        </a>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-            <div class="mt-5">
-                <div class="d-flex align-items-center justify-content-between">
-                    <div>WHO TO FOLLOW</div>
-                    <div class="text-muted">More</div>
-                </div>
-                <div class="trending-group">
-                    <div class="friends-group">
-                        @foreach($recommendedUsers as $row)
-                        <div class="card widget center p-3 mt-3">
-                            <div class="row align-items-center">
-                                <div class="col-md-4">
-                                    <img class="rounded-circle" src="{{get_images_path($row->photo)}}" width="100%">
+                <div class="mt-5">
+                    <!-- Follow Recommend  -->
+                    <div class=" d-none d-sm-none d-md-block">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>WHO TO FOLLOW</div>
+                            <a href="{{base_url('/friends')}}" class="text-muted">More</a>
+                        </div>
+                        <div class="trending-group">
+                            <div class="friends-group mt-3">
+                                @foreach ($recommendedUsers as $user)
+                                <div class="friends pl-3 pt-3">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <img class="rounded" src="{{get_images_path(getUserById($user->id, 'photo'))}}" width="100%">
+                                        </div>
+                                        <div class="col-9 no-padding">
+                                            <strong>{{$user->name}}</strong>
+                                        </div>
+                                    </div>
+                                    <div class="limit-text small pt-2">{{$user->bio}}</div>
+                                    <div class="text-right">
+                                        <div class="pt-3 pr-3">
+                                            <?php if (isUserFollowed($user->id)) : ?>
+                                                <a href="javascript:void(0)" class="btn-follow small text-primary  text-decoration-none" id="user-<?= $user->id ?>-follow" style="display: none" onclick="follow(<?= $user->id ?>)">+ Follow</a>
+                                                <a href="javascript:void(0)" class="btn-unfollow small text-danger text-decoration-none" id="user-<?= $user->id ?>-unfollow" onclick="unfollow(<?= $user->id ?>)">- Unfollow</a>
+                                            <?php else : ?>
+                                                <a href="javascript:void(0)" class="btn-follow small text-primary  text-decoration-none" id="user-<?= $user->id ?>-follow" onclick="follow(<?= $user->id ?>)">+ Follow
+                                                </a>
+                                                <a href="javascript:void(0)" class="btn-unfollow small text-danger text-decoration-none" id="user-<?= $user->id ?>-unfollow" style="display: none" onclick="unfollow(<?= $user->id ?>)">- Unfollow</a>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col p-0 small">
-                                    <strong>{{$row->name}}</strong>
-                                </div>
-                                <div class="col no-padding">
-                                    @if(isUserFollowed($row->id))
-                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" style="display: none" onclick="follow({{$row->id}})">+ Follow</a>
-                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" onclick="unfollow({{$row->id}})">- Unfollow</a>
-                                    @else
-                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" onclick="follow({{$row->id}})">+ Follow</a>
-                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" style="display: none" onclick="unfollow({{$row->id}})">- Unfollow</a>
-                                    @endif
-                                </div>
+                                @endforeach
                             </div>
                         </div>
-                        @endforeach
                     </div>
                 </div>
             </div>

@@ -24,6 +24,7 @@ class Home extends CI_Controller{
             $temp['from'] = getUserById($row->user_from, "name");
             $temp['time'] = $row->timestamp;
             $temp['status'] = $row->read_status;
+            $temp['post'] = $row->post;
 
             array_push($result, $temp);
         };
@@ -43,12 +44,12 @@ class Home extends CI_Controller{
         $this->notifications->insert($data);
     }
 
-    function openNotification($id, $url){
+    function openNotification($id){
         $this->load->model('notifications');
 
         $this->notifications->setStatus($id);
 
-        redirect($url);
+        redirect($this->input->get("url"));
     }
 
     function searchQuery(){

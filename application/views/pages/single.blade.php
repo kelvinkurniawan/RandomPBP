@@ -10,14 +10,12 @@
 						<h5 class="card-title">TOP STORIES</h5>
 						<a class="widget-link" href="#">ALL</a>
 					</div>
-					<div class="trending-group">
-						@foreach ($popular as $row)
-							<div class="trending">
-								<div class="list">{{$row->text}}</div>
-								<div class="sub-list">{{$row->count}} randoms</div>
-							</div>
-						@endforeach
-					</div>
+					<a href="{{base_url('home/hashtag/?q='.$row->text)}}" class="w-100 text-decoration-none">
+						<div class="trending">
+							<div class="list">{{$row->text}}</div>
+							<div class="sub-list">{{$row->count}} randoms</div>
+						</div>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -104,23 +102,23 @@
 					</div>
 					<div class="friends-group">
 						@foreach ($users as $user)
-							<div class="friends">
-								<div class="row align-items-center">
-									<div class="col-md-4">
-										<?php get_images($user->photo) ?>
-									</div>
-									<div class="col-md-8">
-										<strong>{{$user->name}}</strong>
-										<?php if(isUserFollowed($user->id)) :?>
-											<a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?=$user->id?>-follow" style="display: none" onclick="follow(<?=$user->id?>)">+ Follow</a>
-											<a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?=$user->id?>-unfollow"onclick="unfollow(<?=$user->id?>)">- Unfollow</a>
-										<?php else :?>
-											<a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?=$user->id?>-follow" onclick="follow(<?=$user->id?>)">+ Follow</a>
-											<a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?=$user->id?>-unfollow" style="display: none" onclick="unfollow(<?=$user->id?>)">- Unfollow</a>
-										<?php endif;?>
-									</div>
+						<div class="friends">
+							<div class="row align-items-center">
+								<div class="col-md-4">
+									<?php get_images($user->photo) ?>
+								</div>
+								<div class="col-md-8">
+									<strong>{{$user->name}}</strong>
+									<?php if (isUserFollowed($user->id)) : ?>
+										<a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?= $user->id ?>-follow" style="display: none" onclick="follow(<?= $user->id ?>)">+ Follow</a>
+										<a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?= $user->id ?>-unfollow" onclick="unfollow(<?= $user->id ?>)">- Unfollow</a>
+									<?php else : ?>
+										<a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?= $user->id ?>-follow" onclick="follow(<?= $user->id ?>)">+ Follow</a>
+										<a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?= $user->id ?>-unfollow" style="display: none" onclick="unfollow(<?= $user->id ?>)">- Unfollow</a>
+									<?php endif; ?>
 								</div>
 							</div>
+						</div>
 						@endforeach
 					</div>
 				</div>

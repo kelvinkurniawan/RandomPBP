@@ -9,8 +9,8 @@
 				<a href="#" class="text-decoration-none text-dark" role="button" id="notifMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="gg-notifications" ></i>
 				</a>
-				<div class="dropdown-menu mt-3" aria-labelledby="notifMenu">
-					<div class="list-group notification-container" style="width: 300px;">
+				<div class="dropdown-menu dropdown-notif mt-3" aria-labelledby="notifMenu">
+					<div class="list-group notification-container" style="width: 100%;">
 					</div>
 				</div>
 			</div>
@@ -25,9 +25,9 @@
 			<li class="nav-item">
 				<a class="nav-link primary" href="<?php echo e(base_url('/home/')); ?>">Discover <span class="sr-only">(current)</span></a>
 			</li>
-			<li class="nav-item">
+			<!-- <li class="nav-item">
 				<a class="nav-link" href="#">Top Stories</a>
-			</li>
+			</li> -->
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo e(base_url('/profile/')); ?>">Profile</a>
 			</li>

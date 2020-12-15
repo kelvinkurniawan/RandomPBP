@@ -31,7 +31,7 @@ if (workbox) {
      */
 	workbox.routing.registerRoute(
 		// cache js, css, scc files
-		/.*\.(?:css|js|scss|)/,
+		/.*\.(?:css|scss|)/,
 		// use cache but update in the background ASAP
 		new workbox.strategies.StaleWhileRevalidate({
 			// use a custom cache name

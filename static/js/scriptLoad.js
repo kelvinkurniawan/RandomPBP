@@ -63,7 +63,13 @@ function show_status(limit = 10) {
 					"</div>" +
 					'<div class="col-10">' +
 					'<div class="post-author d-flex justify-content-between">' +
+					"<a href='" +
+					url +
+					"profile/" +
+					data[i].postAuthorUsername +
+					"' class='text-decoration-none text-dark'>" +
 					data[i].postAuthor +
+					"</a>" +
 					'<span class="small text-muted">' +
 					data[i].postDate +
 					"</span>" +
@@ -180,10 +186,22 @@ function loadNotification() {
 			for (i = 0; i < data.length; i++) {
 				if (data[i].status == 1) {
 					html +=
-						'<a type="button" class="list-group-item list-group-item-action notif-read">';
+						'<a href="' +
+						url +
+						"/home/openNotification/" +
+						data[i].id +
+						"?url=home/read/" +
+						data[i].post +
+						'" type="button" class="list-group-item list-group-item-action notif-read">';
 				} else {
 					html +=
-						'<a type="button" class="list-group-item list-group-item-action notif-active">';
+						'<a href="' +
+						url +
+						"/home/openNotification/" +
+						data[i].id +
+						"?url=home/read/" +
+						data[i].post +
+						'" type="button" class="list-group-item list-group-item-action notif-active">';
 				}
 				html += '<i class="far fa-comment mr-3"></i>';
 				html += data[i].from + " " + data[i].message + " ";

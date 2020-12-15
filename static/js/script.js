@@ -54,7 +54,11 @@ function search(key) {
 			}
 			for (i = 0; i < data.hashtag.length; i++) {
 				resHashtag +=
-					'<a href="#" class="search-result text-dark p-2 text-decoration-none"><i class="fab fa-slack-hash mr-3"></i>' +
+					'<a href="' +
+					url +
+					"home/hashtag/?q=" +
+					data.hashtag[i].hashtag +
+					'" class="search-result text-dark p-2 text-decoration-none"><i class="fab fa-slack-hash mr-3"></i>' +
 					data.hashtag[i].hashtag +
 					"</a>";
 			}
@@ -191,6 +195,13 @@ $(document).ready(function () {
 	search();
 	show_status();
 	loadNotification();
+
+	var currentPath = window.location.pathname;
+
+	if (currentPath.split("/")[2] == "read") {
+		$(".create-story").html("Add Reply");
+	}
+
 	Pusher.logToConsole = false;
 
 	if (getUrlParameter("edit_profile") == "true") {
@@ -216,6 +227,8 @@ $(document).ready(function () {
 		if ($(this).scrollTop() > 100) {
 			if (openModal == true) {
 				$(".fade-background").addClass("show");
+				$(".fade-background").css('z-index', 9999999);
+				$("#postBox").css('z-index',99999999);
 			}
 		} else {
 			if (openModal == true) {

@@ -35,7 +35,7 @@
     @yield('content')
     
     <div class="alert alert-info alert-dismissible fade alert-install" role="alert" style="z-index: 999999;position: fixed;bottom: 10px;right: 20px;">
-        <strong>Install App!</strong> <br>For more better experience, <br>please install hazardReportApplication<br>
+        <strong>Install App!</strong> <br>For more better experience, <br>please install Randomize<br>
         <button type="button" class="btn btn-dark install-app mt-3">
             Install
         </button>
