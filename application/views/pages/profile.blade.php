@@ -96,10 +96,12 @@
                     </a>
                     <div class="link bg-randomize-3 p-3 trending-group collapse" id="stories">
                         @foreach ($popular as $row)
-                        <div class="trending-dark">
-                            <div class="list">{{$row->text}}</div>
-                            <div class="sub-list">{{$row->count}} randoms</div>
-                        </div>
+                        <a href="{{base_url('home/hashtag/?q='.$row->text)}}">
+                            <div class="trending-dark">
+                                <div class="list">{{$row->text}}</div>
+                                <div class="sub-list">{{$row->count}} posts</div>
+                            </div>
+                        </a>
                         @endforeach
                     </div>
                     <a data-toggle="collapse" href="#people" role="button" aria-expanded="false" aria-controls="personal" class="text-dark text-decoration-none">
@@ -116,21 +118,21 @@
                     <div class="trending-group bg-randomize-3 collapse" id="people">
                         <div class="friends-group">
                             @foreach ($recommendedUsers as $row)
-                            <div class="card bg-randomize-3 widget center p-3 mt-3">
+                            <div class=" bg-randomize-3 friends p-3 mt-3">
                                 <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <img class="rounded-circle" src="{{get_images_path($row->photo)}}" width="50%">
+                                    <div class="col-2">
+                                        <img class="rounded-circle" src="{{get_images_path($row->photo)}}" width="100%">
                                     </div>
-                                    <div class="col p-0">
-                                        <strong>{{$row->name}}</strong>
+                                    <div class="col">
+                                        <strong><a href="{{base_url('/home/profile/'.$row->username)}}" class="text-decoration-none text-dark">{{$row->name}}</a></strong>
                                     </div>
                                     <div class="col-3 no-padding">
                                         @if(isUserFollowed($row->id))
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" style="display: none" onclick="follow({{$row->id}})">+ Follow</a>
-                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" onclick="unfollow({{$row->id}})">- Unfollow</a>
+                                        <a href="javascript:void(0)" class="btn-follow small text-primary text-decoration-none" id="user-{{$row->id}}-follow" style="display: none" onclick="follow({{$row->id}})">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn-unfollow small text-danger  text-decoration-none" id="user-{{$row->id}}-unfollow" onclick="unfollow({{$row->id}})">- Unfollow</a>
                                         @else
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-{{$row->id}}-follow" onclick="follow({{$row->id}})">+ Follow</a>
-                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-{{$row->id}}-unfollow" style="display: none" onclick="unfollow({{$row->id}})">- Unfollow</a>
+                                        <a href="javascript:void(0)" class="btn-follow small text-primary  text-decoration-none" id="user-{{$row->id}}-follow" onclick="follow({{$row->id}})">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn-unfollow small text-danger  text-decoration-none" id="user-{{$row->id}}-unfollow" style="display: none" onclick="unfollow({{$row->id}})">- Unfollow</a>
                                         @endif
                                     </div>
                                 </div>
@@ -234,7 +236,7 @@
                         <a href="{{base_url('home/hashtag/?q='.$row->text)}}" class="w-100 text-decoration-none">
                             <div class="trending">
                                 <div class="list">{{$row->text}}</div>
-                                <div class="sub-list">{{$row->count}} randoms</div>
+                                <div class="sub-list">{{$row->count}} posts</div>
                             </div>
                         </a>
                         @endforeach
@@ -256,7 +258,7 @@
                                             <img class="rounded" src="{{get_images_path(getUserById($user->id, 'photo'))}}" width="100%">
                                         </div>
                                         <div class="col-9 no-padding">
-                                            <strong>{{$user->name}}</strong>
+                                            <strong><a href="{{base_url('/home/profile/'.$user->username)}}" class="text-decoration-none text-dark">{{$user->name}}</a></strong>
                                         </div>
                                     </div>
                                     <div class="limit-text small pt-2">{{$user->bio}}</div>

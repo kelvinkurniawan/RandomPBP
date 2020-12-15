@@ -20,7 +20,7 @@
 							<a href="<?php echo e(base_url('home/hashtag/?q='.$row->text)); ?>" class="w-100 text-decoration-none">
 								<div class="trending">
 									<div class="list"><?php echo e($row->text); ?></div>
-									<div class="sub-list"><?php echo e($row->count); ?> randoms</div>
+									<div class="sub-list"><?php echo e($row->count); ?> posts</div>
 								</div>
 							</a>
 						</div>
@@ -64,7 +64,7 @@
 										</div>
 										<div class="button-placement">
 											<a class="btn btn-primary btn-randomize btn-submit-post">
-												Random
+												Post
 											</a>
 										</div>
 									</div>
@@ -105,7 +105,7 @@
 										</div>
 										<div class="button-placement">
 											<a class="btn btn-primary btn-randomize btn-submit-post">
-												Random
+												Post
 											</a>
 										</div>
 									</div>
@@ -133,7 +133,7 @@
 									<img class="rounded" src="<?php echo e(get_images_path(getUserById($user->id, 'photo'))); ?>" width="100%">
 								</div>
 								<div class="col-9 no-padding">
-									<strong><?php echo e($user->name); ?></strong>
+									<strong><a href="<?php echo e(base_url('/home/profile/'.$user->username)); ?>" class="text-decoration-none text-dark"><?php echo e($user->name); ?></a></strong>
 								</div>
 							</div>
 							<div class="limit-text small pt-2"><?php echo e($user->bio); ?></div>
@@ -211,7 +211,7 @@
 									</div>
 									<div class="button-placement">
 										<button type="submit" class="btn btn-primary btn-randomize">
-											Random
+											Post
 										</button>
 									</div>
 								</div>

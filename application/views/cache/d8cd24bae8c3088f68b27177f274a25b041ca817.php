@@ -195,7 +195,7 @@
                         <a href="<?php echo e(base_url('home/hashtag/?q='.$row->text)); ?>" class="w-100 text-decoration-none">
                             <div class="trending">
                                 <div class="list"><?php echo e($row->text); ?></div>
-                                <div class="sub-list"><?php echo e($row->count); ?> randoms</div>
+                                <div class="sub-list"><?php echo e($row->count); ?> posts</div>
                             </div>
                         </a>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

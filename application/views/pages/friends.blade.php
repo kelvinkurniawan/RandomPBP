@@ -190,7 +190,7 @@
                         <a href="{{base_url('home/hashtag/?q='.$row->text)}}" class="w-100 text-decoration-none">
                             <div class="trending">
                                 <div class="list">{{$row->text}}</div>
-                                <div class="sub-list">{{$row->count}} randoms</div>
+                                <div class="sub-list">{{$row->count}} posts</div>
                             </div>
                         </a>
                         @endforeach

@@ -98,10 +98,12 @@
                     </a>
                     <div class="link bg-randomize-3 p-3 trending-group collapse" id="stories">
                         <?php $__currentLoopData = $popular; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="trending-dark">
-                            <div class="list"><?php echo e($row->text); ?></div>
-                            <div class="sub-list"><?php echo e($row->count); ?> randoms</div>
-                        </div>
+                        <a href="<?php echo e(base_url('home/hashtag/?q='.$row->text)); ?>">
+                            <div class="trending-dark">
+                                <div class="list"><?php echo e($row->text); ?></div>
+                                <div class="sub-list"><?php echo e($row->count); ?> posts</div>
+                            </div>
+                        </a>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                     <a data-toggle="collapse" href="#people" role="button" aria-expanded="false" aria-controls="personal" class="text-dark text-decoration-none">
@@ -118,21 +120,21 @@
                     <div class="trending-group bg-randomize-3 collapse" id="people">
                         <div class="friends-group">
                             <?php $__currentLoopData = $recommendedUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="card bg-randomize-3 widget center p-3 mt-3">
+                            <div class=" bg-randomize-3 friends p-3 mt-3">
                                 <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <img class="rounded-circle" src="<?php echo e(get_images_path($row->photo)); ?>" width="50%">
+                                    <div class="col-2">
+                                        <img class="rounded-circle" src="<?php echo e(get_images_path($row->photo)); ?>" width="100%">
                                     </div>
-                                    <div class="col p-0">
-                                        <strong><?php echo e($row->name); ?></strong>
+                                    <div class="col">
+                                        <strong><a href="<?php echo e(base_url('/home/profile/'.$row->username)); ?>" class="text-decoration-none text-dark"><?php echo e($row->name); ?></a></strong>
                                     </div>
                                     <div class="col-3 no-padding">
                                         <?php if(isUserFollowed($row->id)): ?>
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" style="display: none" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
-                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" onclick="unfollow(<?php echo e($row->id); ?>)">- Unfollow</a>
+                                        <a href="javascript:void(0)" class="btn-follow small text-primary text-decoration-none" id="user-<?php echo e($row->id); ?>-follow" style="display: none" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn-unfollow small text-danger  text-decoration-none" id="user-<?php echo e($row->id); ?>-unfollow" onclick="unfollow(<?php echo e($row->id); ?>)">- Unfollow</a>
                                         <?php else: ?>
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-follow" id="user-<?php echo e($row->id); ?>-follow" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
-                                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm btn-unfollow" id="user-<?php echo e($row->id); ?>-unfollow" style="display: none" onclick="unfollow(<?php echo e($row->id); ?>)">- Unfollow</a>
+                                        <a href="javascript:void(0)" class="btn-follow small text-primary  text-decoration-none" id="user-<?php echo e($row->id); ?>-follow" onclick="follow(<?php echo e($row->id); ?>)">+ Follow</a>
+                                        <a href="javascript:void(0)" class="btn-unfollow small text-danger  text-decoration-none" id="user-<?php echo e($row->id); ?>-unfollow" style="display: none" onclick="unfollow(<?php echo e($row->id); ?>)">- Unfollow</a>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -237,7 +239,7 @@
                         <a href="<?php echo e(base_url('home/hashtag/?q='.$row->text)); ?>" class="w-100 text-decoration-none">
                             <div class="trending">
                                 <div class="list"><?php echo e($row->text); ?></div>
-                                <div class="sub-list"><?php echo e($row->count); ?> randoms</div>
+                                <div class="sub-list"><?php echo e($row->count); ?> posts</div>
                             </div>
                         </a>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -259,7 +261,7 @@
                                             <img class="rounded" src="<?php echo e(get_images_path(getUserById($user->id, 'photo'))); ?>" width="100%">
                                         </div>
                                         <div class="col-9 no-padding">
-                                            <strong><?php echo e($user->name); ?></strong>
+                                            <strong><a href="<?php echo e(base_url('/home/profile/'.$user->username)); ?>" class="text-decoration-none text-dark"><?php echo e($user->name); ?></a></strong>
                                         </div>
                                     </div>
                                     <div class="limit-text small pt-2"><?php echo e($user->bio); ?></div>

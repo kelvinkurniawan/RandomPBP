@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-randomize-3 shadow-sm sticky-top" style="z-index: 999999;">
 	<div class="row">
 		<div class="col d-flex justify-content-between align-items-center d-md-none d-lg-none d-xl-none">
-			<a class="navbar-brand " href="{{base_url()}}">Randomize</a>
+			<a class="navbar-brand " href="{{base_url()}}">BacotinAja</a>
 			<a href="javascript:void(0)" class="nav-link" onclick="openSearch()">
 				<i class="gg-search"></i>
 			</a>
@@ -36,7 +36,7 @@
 	<div class="row col-md-12 ml-3">
 		<div class="col-md-3 d-none d-sm-none d-md-block">
 			<div class="col d-flex justify-content-between align-items-center">
-				<a class="navbar-brand" href="{{base_url()}}">Randomize</a>
+				<a class="navbar-brand" href="{{base_url()}}">BacotinAja</a>
 				<a href="{{base_url('/home')}}" class="nav-link">
 					<i class="gg-home-alt"></i>
 				</a>
@@ -51,7 +51,7 @@
 					<a href="javascript:void(0)" class="nav-link" onclick="openSearch()">
 						<i class="gg-search"></i>
 					</a>
-					<a data-toggle="collapse" href="#postBox" role="button" aria-expanded="false" aria-controls="postBox" onClick="openStoryModal()" class="btn btn-primary btn-randomize create-story">Create Stories</a>
+					<a data-toggle="collapse" href="#postBox" role="button" aria-expanded="false" aria-controls="postBox" onClick="openStoryModal()" class="btn btn-primary btn-randomize create-story">Create Post</a>
 				</div>
 			</div>
 		</div>
